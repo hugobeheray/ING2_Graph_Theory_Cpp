@@ -1,9 +1,10 @@
 #include <iostream>
+#include <allegro.h>
 
-using namespace std;
-
-int main()
+int main(int argc, char *argv[])
 {
-    cout << "Hello world!" << endl;
+    allegro_init();
+    allegro_message("hello world allegro !");
     return 0;
 }
+END_OF_MAIN();
