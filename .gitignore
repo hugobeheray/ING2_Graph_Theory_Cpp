@@ -34,5 +34,6 @@
 # CodeBlocks
 *.cbp
 *.layout
+*.depend
 /bin
 /obj
