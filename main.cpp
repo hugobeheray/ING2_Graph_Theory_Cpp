@@ -1,10 +1,10 @@
 #include <iostream>
-#include <allegro.h>
+#include "Graphe.h"
+#include "Sommet.h"
+#include <vector>
 
 int main(int argc, char *argv[])
 {
-    allegro_init();
-    allegro_message("hello world allegro !");
+    Graphe graphe("graphe_etoile1_topo.txt");
     return 0;
 }
-END_OF_MAIN();
