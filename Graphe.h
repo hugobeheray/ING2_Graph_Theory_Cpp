@@ -23,9 +23,7 @@ public:
     Graphe(std::string fichier);
     void afficher() ;
     ~Graphe();
-    std::vector<int> DFS(int num_s0) ;
     void marquage(int num,bool marque[]);
-    std::vector<int> BFS(int num_s0) ;
-    void rechercher_afficher_CC();
+
 };
 #endif // GRAPHE_H_INCLUDED

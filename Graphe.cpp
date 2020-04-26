@@ -16,9 +16,8 @@ Graphe::Graphe(std::string fichier)
     int i;
     if(iss)
     {
-        iss >> m_orient;
-        iss >> m_ordre;
-        iss >> m_taille;
+        iss >> m_orient; /// on récupère l'orientation du graphe
+        iss >> m_ordre; /// on récupère l'ordre du graphe
         for ( i=0; i<m_ordre; i++)
         {
             m_tabsommet.push_back(new Sommet(i));
