@@ -16,10 +16,8 @@ Graphe::Graphe(std::string fichier)
     int i;
     if(iss)
     {
-        std::cout << "test";
-        std::cout << "test2";
-        iss >> m_orient; /// on rÈcupËre l'orientation du graphe
-        iss >> m_ordre; /// on rÈcupËre l'ordre du graphe
+        iss >> m_orient; /// on r√©cup√®re l'orientation du graphe
+        iss >> m_ordre; /// on r√©cup√®re l'ordre du graphe
         for ( i=0; i<m_ordre; i++)
         {
             m_tabsommet.push_back(new Sommet(i));
@@ -28,7 +26,7 @@ Graphe::Graphe(std::string fichier)
         {
             iss >> m_id1 >> m_id2;
             m_tabsommet[m_id1]->AjouterSuccesseur(m_tabsommet[m_id2]);
-            if(!m_orient) // si le graphe n'est pas orientÈ.
+            if(!m_orient) // si le graphe n'est pas orient√©.
             {
                 m_tabsommet[m_id2]->AjouterSuccesseur(m_tabsommet[m_id1]);
             }
