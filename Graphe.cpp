@@ -16,7 +16,11 @@ Graphe::Graphe(std::string fichier)
     int i;
     if(iss)
     {
+<<<<<<< HEAD
         std::cout<<"test1";
+=======
+        std::cout <<"test2";
+>>>>>>> Dev
         iss >> m_orient; /// on récupère l'orientation du graphe
         iss >> m_ordre; /// on récupère l'ordre du graphe
         for ( i=0; i<m_ordre; i++)
