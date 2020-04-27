@@ -14,8 +14,12 @@ private:
 
     int m_orient;
     int m_taille;
-    int m_id1,m_id2;
+    int m_indiceSommet;
+    char m_nom;
+    int m_x,m_y;
     int m_ordre;
+    int m_indiceArrete;
+    int m_extrem1,m_extrem2;
     std::vector<Sommet*> m_tabsommet;
 
 
