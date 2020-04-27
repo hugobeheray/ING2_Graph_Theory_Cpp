@@ -8,6 +8,8 @@ Sommet::Sommet(int num)
 }
 
 int Sommet::GetNum()  {return m_num;}
+int Sommet::getX()  {return m_x;}
+int Sommet::getY()  {return m_y;}
 void Sommet::afficherSuccesseurs()
 {
   std::cout << " sommet " << m_num << " : ";
