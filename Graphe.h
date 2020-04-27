@@ -8,26 +8,28 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "Arete.h"
+#include "svgfile.h"
 
 class Graphe {
 private:
 
     int m_orient;
     int m_taille;
+    int m_indiceSommet2;
     int m_indiceSommet;
-    char m_nom;
-    int m_x,m_y;
     int m_ordre;
-    int m_indiceArrete;
-    int m_extrem1,m_extrem2;
     std::vector<Sommet*> m_tabsommet;
+    std::vector<Arete*> m_tabarete;
 
 
 public:
     Graphe(std::string fichier);
+    int getOrdre();
     void afficher() ;
     ~Graphe();
     void marquage(int num,bool marque[]);
+    void dessiner(Svgfile *svgout);
 
 };
 #endif // GRAPHE_H_INCLUDED
