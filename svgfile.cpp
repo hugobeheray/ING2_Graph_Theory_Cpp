@@ -1,6 +1,7 @@
 #include "svgfile.h"
 #include <iostream>
 #include <sstream>
+#include "Sommet.h"
 
 const std::string svgHeader =
     "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"

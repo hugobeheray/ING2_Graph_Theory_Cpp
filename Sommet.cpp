@@ -18,6 +18,11 @@ int Sommet::getY()
 {
     return m_y;
 }
+
+int Sommet::getIndiceSommet()
+{
+    return m_indiceSommet;
+}
 void Sommet::afficherSommet()
 {
     std::cout << "Indice: " << m_indiceSommet << " Nom :" << m_nom << " x :"<< m_x << " y: " << m_y << std::endl;

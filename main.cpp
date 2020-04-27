@@ -5,6 +5,7 @@
 #include "svgfile.h"
 #include "menu.h"
 #include "Coords.h"
+#include "calculs.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +18,9 @@ int main(int argc, char *argv[])
     Svgfile svgfile;
     graphe.dessiner(&svgfile);
 
+    graphe.centralite_degre();
+    graphe.centralite_degre_normalise();
+    graphe.centralite_vecteur();
     return 0;
 }
 
