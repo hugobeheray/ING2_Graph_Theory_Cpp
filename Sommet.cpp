@@ -32,3 +32,8 @@ std::vector< Sommet*>& Sommet::getSuccesseurs()
 {
     return m_successeurs;
 }
+
+std::string Sommet::getNom()
+{
+    return m_nom;
+}

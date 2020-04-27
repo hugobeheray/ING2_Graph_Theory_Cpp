@@ -38,7 +38,7 @@ Graphe::Graphe(std::string fichier)
         for( i=0; i<m_taille; i++)
         {
             iss >> indiceArete >> extrem1 >> extrem2;
-           m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
+            m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
         }
 
     }
@@ -64,39 +64,45 @@ void Graphe::afficher()
     {
         m_tabsommet[i]->afficherSommet();
     }
-        std::cout << "Taille :" << m_taille << std::endl;
-        for( i=0; i<m_taille; i++)
-        {
-            m_tabarete[i]->AfficherArete();
-           // std::cout << "Indice arrete: " << m_indiceArrete << " Extremite 1: " << m_extrem1 << " Extremite 2: "<< m_extrem2 << std::endl;
-        }
+    std::cout << "Taille :" << m_taille << std::endl;
+    for( i=0; i<m_taille; i++)
+    {
+        m_tabarete[i]->AfficherArete();
+        // std::cout << "Indice arrete: " << m_indiceArrete << " Extremite 1: " << m_extrem1 << " Extremite 2: "<< m_extrem2 << std::endl;
+    }
 
-        /*for(auto i : m_tabsommet)
-        {
-            i->afficherSuccesseurs();
-            std::cout<<std::endl;
-        }
-        */
+    /*for(auto i : m_tabsommet)
+    {
+        i->afficherSuccesseurs();
+        std::cout<<std::endl;
+    }
+    */
 }
 
 void Graphe::dessiner(Svgfile *svgout)
 {
-    unsigned int i;
-Sommet *m_sommet;
-
+    int i;
+    int j;
+    svgout->addGrid();
     ///affichage lettres sommets et points sommets
-    for(i=0;i<getOrdre();++i)
+    for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText(m_sommet->getX(), m_sommet->getY(),"hello", "black");
-        svgout->addCircle(m_sommet->getX(), m_sommet->getY(), 5 , 5 , "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getNom(), "black");
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 1, "black");
     }
     ///affichage aretes
-//    svgout->addLine(m_indiceSommet.getX(), m_indiceSommet.getY(), m_indiceSommet2.getX(),m_indiceSommet2.getY(), "black");
+    for(i=0; i<getOrdre()-1; ++i)
+    {
+        j=i+1;
+
+
+        svgout->addLine(m_tabsommet[i]->getX()*100, m_tabsommet[i]->getY()*100, m_tabsommet[j]->getX()*100,m_tabsommet[j]->getY()*100, "black");
+    }
 }
 
 int Graphe::getOrdre()
 {
-    return getOrdre();
+    return m_ordre;
 }
 
 Graphe::~Graphe()
