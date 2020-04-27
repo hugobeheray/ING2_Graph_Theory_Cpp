@@ -2,22 +2,21 @@
 #include <stdio.h>
 #include <iostream>
 
-Sommet::Sommet(int num)
+Sommet::Sommet(int indice, char nom, int x, int y)
 {
-  m_num = num;
+  m_indiceSommet = indice;
+  m_nom = nom;
+  m_x = x;
+  m_y = y;
 }
 
-int Sommet::GetNum()  {return m_num;}
 int Sommet::getX()  {return m_x;}
 int Sommet::getY()  {return m_y;}
 void Sommet::afficherSuccesseurs()
 {
-  std::cout << " sommet " << m_num << " : ";
-  for(auto s : m_successeurs)
-  {
-    std::cout << s->GetNum() << " ";
-  }
+  std::cout << "Indice: " << m_indiceSommet << " Nom :" << m_nom << " x :"<< m_x << " y: " << m_y << std::endl;
 }
+
 void Sommet::AjouterSuccesseur(Sommet*s)
 {
   m_successeurs.push_back(s);
