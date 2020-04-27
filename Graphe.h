@@ -17,7 +17,6 @@ private:
 
     int m_orient;
     int m_taille;
-    int m_indiceSommet2;
     int m_indiceSommet;
     int m_ordre;
     std::vector<Sommet*> m_tabsommet;
