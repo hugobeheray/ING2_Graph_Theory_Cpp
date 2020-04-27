@@ -27,7 +27,8 @@ private:
 public:
     Graphe(std::string fichier);
     int getOrdre();
-    void afficher() ;
+    int getTaille();
+    void afficher();
     ~Graphe();
     void marquage(int num,bool marque[]);
     void dessiner(Svgfile *svgout);
