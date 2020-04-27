@@ -22,15 +22,22 @@ Graphe::Graphe(std::string fichier)
         {
             m_tabsommet.push_back(new Sommet(i));
         }
+        for( i=0; i<m_ordre; i++)
+        {
+            iss >> m_indiceSommet >> m_nom >> m_x >> m_y;
+            ///m_tabsommet[m_id1]->AjouterSuccesseur(m_tabsommet[m_id2]);
+            /* if(!m_orient) // si le graphe n'est pas orienté.
+             {
+                 m_tabsommet[m_id2]->AjouterSuccesseur(m_tabsommet[m_id1]);
+             }
+             */
+        }
+        iss >> m_taille;
         for( i=0; i<m_taille; i++)
         {
-            iss >> m_id1 >> m_id2;
-            m_tabsommet[m_id1]->AjouterSuccesseur(m_tabsommet[m_id2]);
-            if(!m_orient) // si le graphe n'est pas orienté.
-            {
-                m_tabsommet[m_id2]->AjouterSuccesseur(m_tabsommet[m_id1]);
-            }
+            iss >> m_indiceArrete >> m_extrem1 >> m_extrem2;
         }
+
     }
     else
     {
@@ -41,18 +48,29 @@ Graphe::Graphe(std::string fichier)
 
 void Graphe::afficher()
 {
+    int i;
     std::cout<< "graphe ";
     if(m_orient)
         std::cout<<"oriente"<<std::endl;
     else
         std::cout<<"non oriente"<<std::endl;
     std::cout<<"ordre = "<<m_tabsommet.size()<<std::endl;
-    std::cout<<"liste d'adjacence : "<<std::endl;
-    for(auto i : m_tabsommet)
+    for( i=0; i<m_ordre; i++)
+    {
+        std::cout << "Indice: " << m_indiceSommet << " Nom: " << m_nom << " x: " << m_x << " y: " << m_y << std::endl;
+    }
+    std::cout << "Taille :" << m_taille << std::endl;
+    for( i=0; i<m_taille; i++)
+    {
+        std::cout << "Indice arrete: " << m_indiceArrete << " Extremite 1: " << m_extrem1 << " Extremite 2: "<< m_extrem2 << std::endl;
+    }
+
+    /*for(auto i : m_tabsommet)
     {
         i->afficherSuccesseurs();
         std::cout<<std::endl;
     }
+    */
 }
 
 Graphe::~Graphe()
