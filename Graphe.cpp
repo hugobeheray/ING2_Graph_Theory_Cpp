@@ -82,16 +82,21 @@ void Graphe::afficher()
 void Graphe::dessiner(Svgfile *svgout)
 {
     unsigned int i;
-
+Sommet *m_sommet;
 
     ///affichage lettres sommets et points sommets
     for(i=0;i<getOrdre();++i)
     {
-        svgout->addText(Sommet.getX(), Sommet.getY(),"hello", "black");
-        svgout->addCircle(m_indiceSommet.getX(), m_indiceSommet.getY(), 5 , 5 , "black");
+        svgout->addText(m_sommet->getX(), m_sommet->getY(),"hello", "black");
+        svgout->addCircle(m_sommet->getX(), m_sommet->getY(), 5 , 5 , "black");
     }
     ///affichage aretes
-    svgout->addLine(m_indiceSommet.getX(), m_indiceSommet.getY(), m_indiceSommet2.getX(),m_indiceSommet2.getY(), "black");
+//    svgout->addLine(m_indiceSommet.getX(), m_indiceSommet.getY(), m_indiceSommet2.getX(),m_indiceSommet2.getY(), "black");
+}
+
+int Graphe::getOrdre()
+{
+    return getOrdre();
 }
 
 Graphe::~Graphe()
