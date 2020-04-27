@@ -10,6 +10,7 @@
 #include <fstream> /// Pour les fichiers
 #include <sstream>/// Pour les ostringstream
 #include "svgfile.h"
+#include "Coords.h"
 
 
 Graphe::Graphe(std::string fichier)
@@ -27,6 +28,7 @@ Graphe::Graphe(std::string fichier)
 
             iss >> indiceSommet >> nom >> x >> y;
             m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
+            m_tabcoords.push_back(new Coords(x,y));
             //m_tabsommet[m_id1]->AjouterSuccesseur(m_tabsommet[m_id2]);
             /* if(!m_orient) // si le graphe n'est pas orienté.
              {
@@ -93,10 +95,11 @@ void Graphe::dessiner(Svgfile *svgout)
     ///affichage aretes
     for(i=0; i<getOrdre()-1; ++i)
     {
-        j=i+1;
+        //j=i+1;
 
 
-        svgout->addLine(m_tabsommet[i]->getX()*100, m_tabsommet[i]->getY()*100, m_tabsommet[j]->getX()*100,m_tabsommet[j]->getY()*100, "black");
+       // svgout->addLine(m_tabsommet[i]->getX()*100, m_tabsommet[i]->getY()*100, m_tabsommet[j]->getX()*100,m_tabsommet[j]->getY()*100, "black");
+        svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100);
     }
 }
 
