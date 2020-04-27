@@ -9,6 +9,7 @@
 #include <sstream>
 #include <string>
 #include "Arete.h"
+#include "svgfile.h"
 
 class Graphe {
 private:
@@ -28,6 +29,7 @@ public:
     void afficher() ;
     ~Graphe();
     void marquage(int num,bool marque[]);
+    void dessiner(Svgfile *svgout);
 
 };
 #endif // GRAPHE_H_INCLUDED

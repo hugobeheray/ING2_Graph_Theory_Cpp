@@ -9,6 +9,7 @@
 #include <queue>
 #include <fstream> /// Pour les fichiers
 #include <sstream>/// Pour les ostringstream
+#include "svgfile.h"
 
 
 Graphe::Graphe(std::string fichier)
@@ -76,6 +77,19 @@ void Graphe::afficher()
             std::cout<<std::endl;
         }
         */
+}
+
+void Graphe::dessiner(Svgfile *svgout)
+{
+    unsigned int i;
+    ///affichage lettres sommets et points sommets
+    for(i=0;i<getOrdre();++i)
+    {
+        svgout-->addText(m_indiceSommet.getX(), m_indiceSommet.getY(), GetNum(), "black");
+        svgout-->addCircle(m_indiceSommet.getX(), m_indiceSommet.getY(), 5 , 5 , "black");
+    }
+    ///affichage aretes
+    svgout->addLine(m_indiceSommet.getX(), m_indiceSommet.getY(), m_indiceSommet2.getX(),m_indiceSommet2.getY(), "black");
 }
 
 Graphe::~Graphe()
