@@ -10,6 +10,7 @@
 #include <string>
 #include "Arete.h"
 #include "svgfile.h"
+#include "Coords.h"
 
 class Graphe {
 private:
@@ -21,6 +22,7 @@ private:
     int m_ordre;
     std::vector<Sommet*> m_tabsommet;
     std::vector<Arete*> m_tabarete;
+    std::vector<Coords*> m_tabcoords;
 
 
 public:

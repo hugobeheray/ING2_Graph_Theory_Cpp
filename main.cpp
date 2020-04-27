@@ -4,6 +4,7 @@
 #include <vector>
 #include "svgfile.h"
 #include "menu.h"
+#include "Coords.h"
 
 int main(int argc, char *argv[])
 {

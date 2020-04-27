@@ -12,6 +12,8 @@ public:
     Arete(int indiceArete,int extrem1, int extrem2);
     ~Arete();
     void AfficherArete();
+    int getExtrem1();
+    int getExtrem2();
 
 
 };
