@@ -56,6 +56,7 @@ void Graphe::afficher()
         std::cout<<"oriente"<<std::endl;
     else
         std::cout<<"non oriente"<<std::endl;
+
     std::cout<<"ordre = "<<m_tabsommet.size()<<std::endl;
 
     for( i=0; i<m_ordre; i++)
