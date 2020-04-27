@@ -27,8 +27,9 @@ void Graphe::centralite_degre()
     }
     for(i=0;i<tabdegre.size();i++)
     {
-        std::cout << tabdegre[i] << std::endl;
+        std::cout << "Sommet "<<i<<" : "<< tabdegre[i] <<" degres"<< std::endl;
     }
+    std::cout<<std::endl;
 }
 void Graphe::centralite_degre_normalise()
 {
@@ -53,7 +54,7 @@ void Graphe::centralite_degre_normalise()
     }
     for(i=0;i<tabdegre.size();i++)
     {
-        std::cout << tabdegre[i] << std::endl;
+        std::cout << "Sommet "<<i<<" : "<< tabdegre[i] <<" degres normalises"<< std::endl;
     }
-
+ std::cout<<std::endl;
 }
