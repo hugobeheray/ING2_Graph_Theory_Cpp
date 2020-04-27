@@ -95,11 +95,7 @@ void Graphe::dessiner(Svgfile *svgout)
     ///affichage aretes
     for(i=0; i<getOrdre()-1; ++i)
     {
-        //j=i+1;
-
-
-       // svgout->addLine(m_tabsommet[i]->getX()*100, m_tabsommet[i]->getY()*100, m_tabsommet[j]->getX()*100,m_tabsommet[j]->getY()*100, "black");
-        svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100);
+        svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100);
     }
 }
 
