@@ -86,10 +86,6 @@ void Graphe::dessiner(Svgfile *svgout)
 
     int i;
     svgout->addGrid();
-
-    Sommet *m_sommet;
-
-
     ///affichage lettres sommets et points sommets
     for(i=0; i<getOrdre(); ++i)
     {

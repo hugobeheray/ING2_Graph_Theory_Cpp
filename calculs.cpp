@@ -10,11 +10,11 @@
 
 void Graphe::centralite_degre()
 {
-    int i;
+
     int j;
 
     float compteur=0;
-    for(i=0; i<getOrdre() ; i++)
+    for( int i=0; i<getOrdre() ; i++)
     {
         for(j=0; j<getTaille(); j++)
         {
@@ -26,21 +26,21 @@ void Graphe::centralite_degre()
         m_tabdegre.push_back(compteur);
         compteur=0;
     }
-    for(i=0; i<m_tabdegre.size(); i++)
+    for(unsigned int i=0; i<m_tabdegre.size(); i++)
     {
         std::cout << "Sommet "<<i<<" : "<< m_tabdegre[i] <<" degres"<< std::endl;
     }
 
     std::cout<<std::endl;
+    m_tabdegre.clear();
 }
 void Graphe::centralite_degre_normalise()
 {
-    int i;
     int j;
 
     float compteur=0;
     float compteur_normalise=0;
-    for(i=0; i<getOrdre() ; i++)
+    for( int i=0; i<getOrdre() ; i++)
     {
         for(j=0; j<getTaille(); j++)
         {
@@ -54,12 +54,13 @@ void Graphe::centralite_degre_normalise()
         compteur=0;
         compteur_normalise=0;
     }
-    for(i=0; i<m_tabdegre.size(); i++)
+    for(unsigned int i=0; i<m_tabdegre.size(); i++)
     {
         std::cout << "Sommet "<<i<<" : "<< m_tabdegre[i] <<" degres normalises"<< std::endl;
     }
 
     std::cout<<std::endl;
+    m_tabdegre.clear();
 }
 
 
@@ -69,9 +70,21 @@ void Graphe::centralite_vecteur()
     std::vector <float>copie_tabdegre;
     float i=0;
     float j=0;
-    float res=0;
     float somme=0;
     float lambda=0;
+ float compteur=0;
+    for( int i=0; i<getOrdre() ; i++)
+    {
+        for(j=0; j<getTaille(); j++)
+        {
+            if( (m_tabarete[j]->getExtrem1()==i || m_tabarete[j]->getExtrem2()==i) )
+            {
+                compteur++;
+            }
+        }
+        m_tabdegre.push_back(compteur);
+        compteur=0;
+    }
 
     copie_tabdegre=m_tabdegre;
 
@@ -92,11 +105,12 @@ void Graphe::centralite_vecteur()
         }
         lambda=sqrt(lambda);
 
-        for(j=0; j<getOrdre(); j++)
+        for(i=0; i<getOrdre(); i++)
         {
-            m_tabdegre[j]=(somme/lambda);
+            m_tabdegre[i]=(somme/lambda);
         }
         std::cout<<"lambda :" << lambda<<std::endl;
+
 
     }
     while((lambda>1) && (lambda<5));
