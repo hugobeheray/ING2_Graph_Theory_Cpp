@@ -4,13 +4,15 @@
 
 class Sommet {
 private:
-    int m_num;
+    int m_indiceSommet;
+    char m_nom;
+    int m_x,m_y;
     std::vector< Sommet*> m_successeurs;
 
 public:
-    Sommet(int num);
+    Sommet(int indice, char nom, int x, int y);
     int GetNum() ;
-    void afficherSuccesseurs() ;
+    void afficherSommet() ;
     void AjouterSuccesseur(Sommet*s);
      std::vector< Sommet*>& getSuccesseurs();
 

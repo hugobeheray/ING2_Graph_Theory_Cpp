@@ -13,19 +13,18 @@
 Graphe::Graphe(std::string fichier)
 {
     std::ifstream iss(fichier);
-    int i;
+    int i, indiceSommet, x, y;
+    char nom;
     if(iss)
     {
         iss >> m_orient; /// on récupère l'orientation du graphe
         iss >> m_ordre; /// on récupère l'ordre du graphe
-        for ( i=0; i<m_ordre; i++)
-        {
-            m_tabsommet.push_back(new Sommet(i));
-        }
         for( i=0; i<m_ordre; i++)
         {
-            iss >> m_indiceSommet >> m_nom >> m_x >> m_y;
-            ///m_tabsommet[m_id1]->AjouterSuccesseur(m_tabsommet[m_id2]);
+
+            iss >> indiceSommet >> nom >> x >> y;
+            m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
+            //m_tabsommet[m_id1]->AjouterSuccesseur(m_tabsommet[m_id2]);
             /* if(!m_orient) // si le graphe n'est pas orienté.
              {
                  m_tabsommet[m_id2]->AjouterSuccesseur(m_tabsommet[m_id1]);
@@ -57,8 +56,8 @@ void Graphe::afficher()
     std::cout<<"ordre = "<<m_tabsommet.size()<<std::endl;
     for( i=0; i<m_ordre; i++)
     {
-        std::cout << "Indice: " << m_indiceSommet << " Nom: " << m_nom << " x: " << m_x << " y: " << m_y << std::endl;
-    }
+       // std::cout << "Indice: " << m_tabsommet<< " Nom: " << m_nom << " x: " << m_x << " y: " << m_y << std::endl;
+    m_tabsommet[i]->afficherSommet();
     std::cout << "Taille :" << m_taille << std::endl;
     for( i=0; i<m_taille; i++)
     {
@@ -71,6 +70,7 @@ void Graphe::afficher()
         std::cout<<std::endl;
     }
     */
+}
 }
 
 Graphe::~Graphe()

@@ -14,9 +14,6 @@ private:
 
     int m_orient;
     int m_taille;
-    int m_indiceSommet;
-    char m_nom;
-    int m_x,m_y;
     int m_ordre;
     int m_indiceArrete;
     int m_extrem1,m_extrem2;
