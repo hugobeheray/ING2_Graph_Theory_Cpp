@@ -85,7 +85,6 @@ void Graphe::dessiner(Svgfile *svgout)
 {
 
     int i;
-    int j;
     svgout->addGrid();
 
     Sommet *m_sommet;
