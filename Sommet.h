@@ -8,6 +8,7 @@ private:
     int m_indiceSommet;
     char m_nom;
     std::vector< Sommet*> m_successeurs;
+    Sommet *m_sommet;
 
 public:
     Sommet(int indice, char nom, int x, int y);
