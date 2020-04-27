@@ -83,9 +83,14 @@ void Graphe::afficher()
 
 void Graphe::dessiner(Svgfile *svgout)
 {
+
     int i;
     int j;
     svgout->addGrid();
+
+    Sommet *m_sommet;
+
+
     ///affichage lettres sommets et points sommets
     for(i=0; i<getOrdre(); ++i)
     {
@@ -93,7 +98,7 @@ void Graphe::dessiner(Svgfile *svgout)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 1, "black");
     }
     ///affichage aretes
-    for(i=0; i<getOrdre()-1; ++i)
+    for(i=0; i<getTaille(); ++i)
     {
         svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100);
     }
@@ -102,6 +107,11 @@ void Graphe::dessiner(Svgfile *svgout)
 int Graphe::getOrdre()
 {
     return m_ordre;
+}
+
+int Graphe::getTaille()
+{
+    return m_taille;
 }
 
 Graphe::~Graphe()
