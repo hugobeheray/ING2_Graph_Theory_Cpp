@@ -22,6 +22,7 @@ private:
     std::vector<Sommet*> m_tabsommet;
     std::vector<Arete*> m_tabarete;
     std::vector<Coords*> m_tabcoords;
+    std::vector <float> m_tabdegre;
 
 
 public:
@@ -34,6 +35,8 @@ public:
     ~Graphe();
     void marquage(int num,bool marque[]);
     void dessiner(Svgfile *svgout);
+    void centralite_vecteur();
+
 
 };
 #endif // GRAPHE_H_INCLUDED

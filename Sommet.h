@@ -16,6 +16,7 @@ public:
     int GetNum() ;
     int getX();
     int getY();
+    int getIndiceSommet();
     std::string getNom();
     void afficherSommet() ;
     void afficherSuccesseurs() ;
