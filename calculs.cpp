@@ -60,7 +60,7 @@ void Graphe::centralite_degre_normalise()
     }
 
     std::cout<<std::endl;
-    m_tabdegre.clear();
+   // m_tabdegre.clear();
 }
 
 
@@ -72,21 +72,10 @@ void Graphe::centralite_vecteur()
     float j=0;
     float somme=0;
     float lambda=0;
- float compteur=0;
-    for( int i=0; i<getOrdre() ; i++)
-    {
-        for(j=0; j<getTaille(); j++)
-        {
-            if( (m_tabarete[j]->getExtrem1()==i || m_tabarete[j]->getExtrem2()==i) )
-            {
-                compteur++;
-            }
-        }
-        m_tabdegre.push_back(compteur);
-        compteur=0;
-    }
 
-    copie_tabdegre=m_tabdegre;
+
+
+    //copie_tabdegre=m_tabdegre;
 
     for(i=0; i<getOrdre(); i++)
     {
@@ -97,11 +86,11 @@ void Graphe::centralite_vecteur()
     {
         for(i=0; i<getOrdre(); i++)
         {
-            somme=copie_tabdegre[m_tabsommet[i]->getIndiceSommet()]+somme;
+            somme=m_tabdegre[m_tabsommet[i]->getIndiceSommet()]+somme;
         }
         for(i=0; i<getOrdre(); i++)
         {
-            lambda=(pow(copie_tabdegre[m_tabsommet[i]->getIndiceSommet()],2))+lambda;
+            lambda=(pow(m_tabdegre[m_tabsommet[i]->getIndiceSommet()],2))+lambda;
         }
         lambda=sqrt(lambda);
 
