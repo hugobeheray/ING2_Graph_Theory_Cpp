@@ -11,7 +11,7 @@
 #include <sstream>/// Pour les ostringstream
 #include "svgfile.h"
 #include "Coords.h"
-
+#include "calculs.h"
 
 Graphe::Graphe(std::string fichier)
 {

@@ -30,6 +30,8 @@ public:
     int getOrdre();
     int getTaille();
     void afficher();
+    void centralite_degre();
+    void centralite_degre_normalise();
     ~Graphe();
     void marquage(int num,bool marque[]);
     void dessiner(Svgfile *svgout);
