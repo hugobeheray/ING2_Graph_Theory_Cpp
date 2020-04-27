@@ -18,7 +18,7 @@ int Sommet::getY()
 {
     return m_y;
 }
-void Sommet::afficherSuccesseurs()
+void Sommet::afficherSommet()
 {
     std::cout << "Indice: " << m_indiceSommet << " Nom :" << m_nom << " x :"<< m_x << " y: " << m_y << std::endl;
 }

@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     Graphe graphe("graphe_etoile1_topo.txt");
     graphe.afficher();
     Svgfile svgfile;
+    graphe.dessiner(&svgfile);
 
     return 0;
 }
