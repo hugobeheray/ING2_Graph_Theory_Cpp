@@ -112,6 +112,18 @@ void Graphe::dessiner(Svgfile *svgout)
         if(m_tabsommet[i]->getImportance()==4)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "green");
     }
+    ///affichage legende
+    svgout->addRect(600,200,300,100,"white");
+    svgout->addLine(600,200,900,200,"red");
+    svgout->addLine(600,200,600,300,"red");
+    svgout->addLine(900,200,900,300,"red");
+    svgout->addLine(600,300,900,300,"red");
+    svgout->addText(605,215,"- Rouge : Indice de poids des arêtes", "red");
+    svgout->addText(605,235,"- Violet : Indice de centralité de degré", "purple");
+    svgout->addText(605,255,"- Rose : Indice de centralité de vecteur propre", "pink");
+    svgout->addText(605,275,"- Bleu : Indice de centralité de proximité", "blue");
+    svgout->addText(605,295,"- Vert : Indice de centralité d'intermédiarité", "green");
+
 }
 
 int Graphe::getOrdre()
