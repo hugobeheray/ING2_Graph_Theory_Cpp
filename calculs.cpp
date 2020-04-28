@@ -105,7 +105,7 @@ void Graphe::centralite_vecteur()
         }
         //std::cout<<lambda<<std::endl;//pour voir les differentes valeurs de delata
     }
-    while((lambda>0) && (lambda<95.7));///tant que delta lambda est supérieur à 0,1
+    while((lambda>0) && (lambda<95.7));///tant que delta lambda est supï¿½rieur ï¿½ 0,1
     ///affichage des indices de chaque sommet
 
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE" << std::endl << std::endl;
@@ -186,7 +186,7 @@ void Graphe :: centralite_proximite_normalise ()
 }
 
 
-//ss prgm qui éxecute l'algo de Dijsktra
+//ss prgm qui ï¿½xecute l'algo de Dijsktra
 void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
 {
     auto cmp = [](std::pair<const Sommet*,int> p1, std::pair<Sommet*,int> p2)
@@ -194,7 +194,7 @@ void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
         return p2.second<p1.second;
     };
 //on utilise "pair" pour stocker deux choses n'ayant pas le meme type : un type Sommet* et un type integer
-///utilisation de la priority queue, trie du poids par ordre décroissant
+///utilisation de la priority queue, trie du poids par ordre dï¿½croissant
     std::priority_queue<std::pair<Sommet*,int>,std::vector<std::pair<Sommet*,int>>,decltype(cmp)>file(cmp);
     std::vector<int> marquage((int)m_tabsommet.size(),0); // pour le marquage
     std::vector<int> predecesseur((int)m_tabsommet.size(),-1);
@@ -223,10 +223,8 @@ void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
                 if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
                 {
                     poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
-                    std::cout << "psucc premier "<<p.second+Psucc.second << std::endl;
-                    std::cout << "psucc second "<<Psucc.second << std::endl;
                     predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
-                    file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met à jour la file d'attente
+                    file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met ï¿½ jour la file d'attente
                 }
             }
         }
@@ -247,7 +245,7 @@ void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
             std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]];
         }
     }
-    std::cout << "=" << poidsTotale[sommetArrivee];//ici le plus court chemin d'un sommet A à un sommet b
+    std::cout << "=" << poidsTotale[sommetArrivee];//ici le plus court chemin d'un sommet A ï¿½ un sommet b
 
 
 
