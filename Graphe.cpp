@@ -60,7 +60,7 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
 void Graphe::afficher()
 {
     int i;
-    std::cout<< "graphe ";
+    std::cout<< "Graphe ";
     if(m_orient)
         std::cout<<"oriente"<<std::endl;
     else
@@ -103,6 +103,7 @@ void Graphe::dessiner(Svgfile *svgout)
     for(i=0; i<getTaille(); ++i)
     {
         svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100);
+        svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*50,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
     }
 }
 
