@@ -187,7 +187,7 @@ void Graphe :: centralite_proximite_normalise ()
 
 
 //ss prgm qui éxecute l'algo de Dijsktra
-void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
+/*void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
 {
     auto cmp = [](std::pair<const Sommet*,int> p1, std::pair<Sommet*,int> p2)
     {
@@ -248,3 +248,4 @@ void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
     }
     std::cout << "=" << poidsTotale[sommetArrivee];//ici le plus court chemin d'un sommet A à un sommet b
 }
+*/
