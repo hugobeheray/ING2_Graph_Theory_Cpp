@@ -170,3 +170,77 @@ void Graphe::centralite_vecteur_normalise()
     }
 
 }
+
+std::vector<int> Graphe:: Dijkstra(std::vector<int> bfs, std::vector<int> finalBfs, Graphe &graphe, std::vector<int> poidF)
+{
+    int temp;
+    int find2=0;
+
+
+    /// on cherche le premier sommet de la liste non noir ///
+    do
+    {
+        temp = bfs[find2];
+        find2++;
+
+    }
+    while((graphe.GetSommet()[temp].getColor() == 2) && (find2 < bfs.size()));
+
+
+    /// le sommet S est égale a la plus petite valeur de parcours poyr arriver a ce sommet
+    if(poidF[temp] != 9999999)
+    {
+        graphe.SetSomSome(temp, poidF[temp],0);
+    }
+
+
+    ///on le met gris///
+    graphe.SetCol(temp, 1);
+
+
+    /// on parcours tout ses adjacent et les rajoutes a la listes et deviennent gris///
+    for(int i=0; i<graphe.GetSommet()[temp].GetAdjacent().size(); i++)
+    {
+
+        if( graphe.GetSommet()[temp].GetAdjacent()[i].getId() != bfs[0])
+        {
+            bfs.push_back(graphe.GetSommet()[temp].GetAdjacent()[i].getId());
+            finalBfs.push_back(graphe.GetSommet()[temp].GetAdjacent()[i].getId());
+
+
+            /// l'adjacent S' est égale a la somme du sommet S plus la somme du poid de l'arete
+            graphe.SetSomSome(graphe.GetSommet()[temp].GetAdjacent()[i].getId(), graphe.rechercheArete(temp,graphe.GetSommet()[temp].GetAdjacent()[i].getId()) + graphe.GetSommet()[temp].getSomme(), 0);
+
+            /// si la nouvelle distance est inférieur a l'ancienne, le chemin est plus court donc on prend cette nouvelle distance et nouveau prev
+            if(graphe.GetSommet()[graphe.GetSommet()[temp].GetAdjacent()[i].getId()].getSomme() < poidF[graphe.GetSommet()[temp].GetAdjacent()[i].getId()])
+            {
+                poidF[graphe.GetSommet()[temp].GetAdjacent()[i].getId()] = graphe.GetSommet()[graphe.GetSommet()[temp].GetAdjacent()[i].getId()].getSomme();
+                graphe.SetPrev(graphe.GetSommet()[temp].GetAdjacent()[i].getId(), temp);
+
+                /// un sommet avec une nouvelle som peut décourdre de nouveau chemin plus court donc il sera réutilisable pour le parcours du graphe
+                if(graphe.GetSommet()[graphe.GetSommet()[temp].GetAdjacent()[i].getId()].getId() != bfs[0])
+                {
+                    graphe.SetCol(graphe.GetSommet()[graphe.GetSommet()[temp].GetAdjacent()[i].getId()].getId(), 0);
+                }
+
+            }
+        }
+
+    }
+
+    /// le sommet deviens noir ///
+    graphe.SetCol(temp, 2);
+
+    /// on test pour savoir si il reste des sommet non noir ( on test voir si l'ont a tout parcourue) ///
+    for(int i=0; i<bfs.size(); i++)
+    {
+        temp = bfs[i];
+        if(graphe.GetSommet()[temp].getColor() != 2)
+        {
+            poidF = Dijkstra(bfs, finalBfs, graphe, poidF);
+        }
+    }
+
+
+    return poidF;
+}
