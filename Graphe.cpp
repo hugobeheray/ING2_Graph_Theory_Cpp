@@ -105,14 +105,14 @@ void Graphe::dessiner(Svgfile *svgout)
     ///affichage lettres sommets
     for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getNom(), "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-35,m_tabsommet[i]->getNom(), "black");
        // svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
     }
     ///affichage aretes
     for(i=0; i<getTaille(); ++i)
     {
         svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100);
-        svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*50,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
+        svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*50 + 5,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
     }
     ///affichage coloration et sommets
     for(i=0; i<getOrdre(); ++i)
@@ -129,24 +129,24 @@ void Graphe::dessiner(Svgfile *svgout)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "green");
     }
     ///affichage legende
-    svgout->addRect(600,200,300,100,"white");
-    svgout->addLine(600,200,900,200,"red");
-    svgout->addLine(600,200,600,300,"red");
-    svgout->addLine(900,200,900,300,"red");
-    svgout->addLine(600,300,900,300,"red");
-    svgout->addText(605,215,"- Rouge : Indice de poids des arêtes", "red");
-    svgout->addText(605,235,"- Violet : Indice de centralité de degré", "purple");
-    svgout->addText(605,255,"- Rose : Indice de centralité de vecteur propre", "pink");
-    svgout->addText(605,275,"- Bleu : Indice de centralité de proximité", "blue");
-    svgout->addText(605,295,"- Vert : Indice de centralité d'intermédiarité", "green");
+    svgout->addRect(600,400,300,100,"white");
+    svgout->addLine(600,400,900,400,"red");
+    svgout->addLine(600,400,600,500,"red");
+    svgout->addLine(900,400,900,500,"red");
+    svgout->addLine(600,500,900,500,"red");
+    svgout->addText(605,415,"- Rouge : Indice de poids des arêtes", "red");
+    svgout->addText(605,435,"- Violet : Indice de centralité de degré", "purple");
+    svgout->addText(605,455,"- Rose : Indice de centralité de vecteur propre", "pink");
+    svgout->addText(605,475,"- Bleu : Indice de centralité de proximité", "blue");
+    svgout->addText(605,495,"- Vert : Indice de centralité d'intermédiarité", "green");
     ///affichage indices
     for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText((m_tabsommet[i]->getX())*100-5+12, (m_tabsommet[i]->getY())*100-15," (", "black");
-        svgout->addText((m_tabsommet[i]->getX())*100-5+14, (m_tabsommet[i]->getY())*100-15,res_cdn[i], "purple");
-        svgout->addText((m_tabsommet[i]->getX())*100-5+64, (m_tabsommet[i]->getY())*100-15,res_cvn[i], "pink");
-        svgout->addText((m_tabsommet[i]->getX())*100-5+114, (m_tabsommet[i]->getY())*100-15,res_cpn[i], "blue");
-        svgout->addText((m_tabsommet[i]->getX())*100-5+164, (m_tabsommet[i]->getY())*100-15," )", "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-55+12, (m_tabsommet[i]->getY())*100-20," (", "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-55+16, (m_tabsommet[i]->getY())*100-20,res_cdn[i], "purple");
+        svgout->addText((m_tabsommet[i]->getX())*100-55+46, (m_tabsommet[i]->getY())*100-20,res_cvn[i], "pink");
+        svgout->addText((m_tabsommet[i]->getX())*100-55+76, (m_tabsommet[i]->getY())*100-20,res_cpn[i], "blue");
+        svgout->addText((m_tabsommet[i]->getX())*100-55+104, (m_tabsommet[i]->getY())*100-20," )", "black");
     }
 }
 

@@ -37,6 +37,7 @@ void Graphe::centralite_degre()
 void Graphe::centralite_degre_normalise()
 {
     int j;
+    int entier=0;
     float compteur=0;
     float compteur_normalise=0;
     for( int i=0; i<getOrdre() ; i++)
@@ -49,6 +50,8 @@ void Graphe::centralite_degre_normalise()
             }
         }
         compteur_normalise=compteur/(getOrdre() - 1);
+        entier = (int)((0.005 + compteur_normalise)*100.0); //arrondi
+        compteur_normalise = (double)entier / 100.0;
         m_tabdegre.push_back(compteur_normalise);
         compteur=0;
         compteur_normalise=0;
@@ -68,6 +71,7 @@ void Graphe::centralite_vecteur()
     float somme=0;
     float lambda=0;
     int compteur=0;
+    int entier;
     std::vector <float> tabresultat;
     ///INITIALISATION
     for(i=0; i<getOrdre(); i++)
@@ -102,6 +106,8 @@ void Graphe::centralite_vecteur()
         for(i=0; i<getOrdre(); i++)
         {
             m_tabdegre[i]=(tabresultat[i]/lambda);
+            entier = (int)((0.005 + m_tabdegre[i])*100.0); //arrondi
+            m_tabdegre[i] = (double)entier / 100.0;
         }
         //std::cout<<lambda<<std::endl;//pour voir les differentes valeurs de delata
     }
@@ -123,6 +129,7 @@ void Graphe::centralite_vecteur_normalise()
     float somme=0;
     float lambda=0;
     int compteur=0;
+    int entier=0;
     std::vector <float> tabresultat;
     std::vector <float> tabdegrenormalise;
     ///INITIALISATION
@@ -159,6 +166,8 @@ void Graphe::centralite_vecteur_normalise()
         {
             m_tabdegre[i]=(tabresultat[i]/lambda);
             tabdegrenormalise.push_back(m_tabdegre[i]/(getOrdre()-1));
+            entier = (int)((0.005 + tabdegrenormalise[i])*100.0); //arrondi
+            tabdegrenormalise[i] = (double)entier / 100.0;
         }
     }
     while((lambda>0) && (lambda<4));
@@ -177,10 +186,13 @@ void Graphe::centralite_vecteur_normalise()
 
 void Graphe :: centralite_proximite (std::vector<float> &tabresultats)
 {
+    int entier;
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE" << std::endl << std::endl;
     for(int i=0;i<tabresultats.size();i++)
         {
             tabresultats[i]=1/tabresultats[i];
+            entier = (int)((0.005 + tabresultats[i])*100.0); //arrondi
+            tabresultats[i] = (double)entier / 100.0;
             std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
         }
     res_cp=tabresultats;
@@ -188,10 +200,13 @@ void Graphe :: centralite_proximite (std::vector<float> &tabresultats)
 
 void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
 {
+    int entier;
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE NORMALISE" << std::endl << std::endl;
     for(int i=0;i<tabresultats.size();i++)
         {
             tabresultats[i]=(getOrdre()-1)/tabresultats[i];
+            entier = (int)((0.005 + tabresultats[i])*100.0); //arrondi
+            tabresultats[i] = (double)entier / 100.0;
             std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
         }
     res_cpn=tabresultats;
