@@ -34,6 +34,8 @@ private:
     std::vector <float> res_cdn;
     std::vector <float> res_cv;
     std::vector <float> res_cvn;
+    std::vector <float> res_cp;
+    std::vector <float> res_cpn;
 
 
 public:

@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     graphe.centralite_vecteur_normalise();
     graphe.Dijsktra(tabresultats);
     graphe.centralite_proximite(tabresultats);
+    tabresultats.clear();
     graphe.Dijsktra(tabresultats);
     graphe.centralite_proximite_normalise(tabresultats);
     graphe.coloration();

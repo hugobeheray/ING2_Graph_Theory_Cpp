@@ -106,7 +106,7 @@ void Graphe::dessiner(Svgfile *svgout)
     for(i=0; i<getOrdre(); ++i)
     {
         svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getNom(), "black");
-        svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
+       // svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
     }
     ///affichage aretes
     for(i=0; i<getTaille(); ++i)
@@ -139,7 +139,15 @@ void Graphe::dessiner(Svgfile *svgout)
     svgout->addText(605,255,"- Rose : Indice de centralité de vecteur propre", "pink");
     svgout->addText(605,275,"- Bleu : Indice de centralité de proximité", "blue");
     svgout->addText(605,295,"- Vert : Indice de centralité d'intermédiarité", "green");
-
+    ///affichage indices
+    for(i=0; i<getOrdre(); ++i)
+    {
+        svgout->addText((m_tabsommet[i]->getX())*100-5+12, (m_tabsommet[i]->getY())*100-15," (", "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-5+14, (m_tabsommet[i]->getY())*100-15,res_cdn[i], "purple");
+        svgout->addText((m_tabsommet[i]->getX())*100-5+64, (m_tabsommet[i]->getY())*100-15,res_cvn[i], "pink");
+        svgout->addText((m_tabsommet[i]->getX())*100-5+114, (m_tabsommet[i]->getY())*100-15,res_cpn[i], "blue");
+        svgout->addText((m_tabsommet[i]->getX())*100-5+164, (m_tabsommet[i]->getY())*100-15," )", "black");
+    }
 }
 
 int Graphe::getOrdre()
@@ -162,7 +170,7 @@ void Graphe::sauvegarde()
     {
         for(int i=0; i<getOrdre(); ++i)
         {
-            flux << m_tabsommet[i]->getIndiceSommet() << " " << res_cd[i] << " " << res_cdn[i] << " " << res_cv[i] << " " << res_cvn[i] <<" " << std::endl;
+            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << res_cd[i] << "\t" << res_cdn[i] << "\t" << res_cv[i] << "\t" << res_cvn[i] <<"\t" << res_cp[i] << "\t" << res_cpn[i] << std::endl;
         }
     }
 }

@@ -27,7 +27,7 @@ void Graphe::centralite_degre()
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE DEGRE" << std::endl << std::endl;
     for(unsigned int i=0; i<m_tabdegre.size(); i++)
     {
-        std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] <<" degres"<< std::endl;
+        std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
     res_cd=m_tabdegre;
     std::cout<<std::endl;
@@ -56,7 +56,7 @@ void Graphe::centralite_degre_normalise()
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE DEGRE NORMALISE" << std::endl << std::endl;
     for(unsigned int i=0; i<m_tabdegre.size(); i++)
     {
-        std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] <<" degres"<< std::endl;
+        std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
     res_cdn=m_tabdegre;
     std::cout<<std::endl;
@@ -111,7 +111,7 @@ void Graphe::centralite_vecteur()
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE" << std::endl << std::endl;
     for(i=0; i<m_tabdegre.size(); i++)
     {
-        std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] <<" degres"<< std::endl;
+        std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
     res_cv=m_tabdegre;
     m_tabdegre.clear();
@@ -167,7 +167,7 @@ void Graphe::centralite_vecteur_normalise()
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE NORMALISE" << std::endl << std::endl;
     for(i=0; i<tabdegrenormalise.size(); i++)
     {
-        std::cout << "              Sommet "<<i<<" : "<< tabdegrenormalise[i] <<" degres"<< std::endl;
+        std::cout << "              Sommet "<<i<<" : "<< tabdegrenormalise[i] << std::endl;
     }
     res_cvn=tabdegrenormalise;
 //m_tabdegre.clear();/// peut etre a supr
@@ -177,20 +177,24 @@ void Graphe::centralite_vecteur_normalise()
 
 void Graphe :: centralite_proximite (std::vector<float> &tabresultats)
 {
+    std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE" << std::endl << std::endl;
     for(int i=0;i<tabresultats.size();i++)
         {
             tabresultats[i]=1/tabresultats[i];
-            std::cout <<" centralite prox " <<  tabresultats[i] << " ";
+            std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
         }
+    res_cp=tabresultats;
 }
 
 void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
 {
+    std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE NORMALISE" << std::endl << std::endl;
     for(int i=0;i<tabresultats.size();i++)
         {
             tabresultats[i]=(getOrdre()-1)/tabresultats[i];
-             std::cout <<" centralite prox normalise" << tabresultats[i] << " ";
+            std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
         }
+    res_cpn=tabresultats;
 }
 
 
@@ -245,8 +249,8 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                         }
                     }
                 }
-//et on affiche
-                std::cout <<"Sommet d'arrivee: "<<arrivee;
+///AFFICHAGE
+               /* std::cout <<"Sommet d'arrivee: "<<arrivee;
                 for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])
                 {
 
@@ -263,6 +267,7 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                 }
                 std::cout << "=" << poidsTotale[arrivee];//ici le plus court chemin d'un sommet A � un sommet b
                 std::cout << std::endl;
+                */
                 POIDS=poidsTotale[arrivee];
                 somme= POIDS+somme;
 
