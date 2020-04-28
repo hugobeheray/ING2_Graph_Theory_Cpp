@@ -187,67 +187,76 @@ void Graphe :: centralite_proximite_normalise ()
 
 
 //ss prgm qui �xecute l'algo de Dijsktra
-void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
+void Graphe::Dijsktra()
 {
-    auto cmp = [](std::pair<const Sommet*,int> p1, std::pair<Sommet*,int> p2)
+    int depart, arrivee;
+    for(depart=0; depart<getOrdre(); ++depart)
     {
-        return p2.second<p1.second;
-    };
+        for(arrivee=0; arrivee<getOrdre(); ++arrivee)
+        {
+            if(depart!=arrivee)
+            {
+
+                auto cmp = [](std::pair<const Sommet*,int> p1, std::pair<Sommet*,int> p2)
+                {
+                    return p2.second<p1.second;
+                };
 //on utilise "pair" pour stocker deux choses n'ayant pas le meme type : un type Sommet* et un type integer
 ///utilisation de la priority queue, trie du poids par ordre d�croissant
-    std::priority_queue<std::pair<Sommet*,int>,std::vector<std::pair<Sommet*,int>>,decltype(cmp)>file(cmp);
-    std::vector<int> marquage((int)m_tabsommet.size(),0); // pour le marquage
-    std::vector<int> predecesseur((int)m_tabsommet.size(),-1);
-    std::vector<int> poidsTotale((int)m_tabsommet.size(),-1);
-    poidsTotale[sommetDepart] = 0;
-    file.push({m_tabsommet[sommetDepart],0});
-    std::pair<Sommet*,int> p;
-
+                std::priority_queue<std::pair<Sommet*,int>,std::vector<std::pair<Sommet*,int>>,decltype(cmp)>file(cmp);
+                std::vector<int> marquage((int)m_tabsommet.size(),0); // pour le marquage
+                std::vector<int> predecesseur((int)m_tabsommet.size(),-1);
+                std::vector<int> poidsTotale((int)m_tabsommet.size(),-1);
+                poidsTotale[depart] = 0;
+                file.push({m_tabsommet[depart],0});
+                std::pair<Sommet*,int> p;
 //tant que la file n'est pas vide, on applique l'algo
-    while(!file.empty())
-    {
-        p=file.top();
-        file.pop();
-        while((!file.empty()) && (marquage[p.first->getIndiceSommet()]))
-        {
-            p=file.top();
-            file.pop();
-        }
-
-
-        marquage[(p.first)->getIndiceSommet()]=1;
-        for(auto Psucc:(p.first)->getSuccesseurs())
-        {
-            if(marquage[(Psucc.first)->getIndiceSommet()]==0)
-            {
-                if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
+                while(!file.empty())
                 {
-                    poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
-                    predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
-                    file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met � jour la file d'attente
+                    p=file.top();
+                    file.pop();
+                    while((!file.empty()) && (marquage[p.first->getIndiceSommet()]))
+                    {
+                        p=file.top();
+                        file.pop();
+                    }
+
+
+                    marquage[(p.first)->getIndiceSommet()]=1;
+                    for(auto Psucc:(p.first)->getSuccesseurs())
+                    {
+                        if(marquage[(Psucc.first)->getIndiceSommet()]==0)
+                        {
+                            if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
+                            {
+                                poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
+                                predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
+                                file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met � jour la file d'attente
+                            }
+                        }
+                    }
                 }
+//et on affiche
+                std::cout <<"Sommet d'arrivee: "<<arrivee;
+                for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])
+                {
+
+                    std::cout << " <- " << z;
+
+                }
+                std::cout <<std::endl << "Longueur totale: " << poidsTotale[arrivee]-poidsTotale[predecesseur[arrivee]];
+                for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])
+                {
+                    if(poidsTotale[z]!=0)
+                    {
+                        std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]];
+                    }
+                }
+                std::cout << "=" << poidsTotale[arrivee];//ici le plus court chemin d'un sommet A � un sommet b
+                std::cout << std::endl;
+
             }
         }
     }
-//et on affiche
-    std::cout <<"Sommet d'arrivee: "<<sommetArrivee;
-    for(auto z = predecesseur[sommetArrivee]; z!= -1; z = predecesseur[z])
-    {
-
-        std::cout << " <- " << z;
-
-    }
-    std::cout <<std::endl << "Longueur totale: " << poidsTotale[sommetArrivee]-poidsTotale[predecesseur[sommetArrivee]];
-    for(auto z = predecesseur[sommetArrivee]; z!= -1; z = predecesseur[z])
-    {
-        if(poidsTotale[z]!=0)
-        {
-            std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]];
-        }
-    }
-    std::cout << "=" << poidsTotale[sommetArrivee];//ici le plus court chemin d'un sommet A � un sommet b
-
-
-
 }
 

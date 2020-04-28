@@ -54,7 +54,7 @@ public:
     void centralite_proximite_normalise();
     void sauvegarde();
     void coloration();
-    void Dijsktra(int sommetDepart,int sommetArrivee);
+    void Dijsktra();
 
 
 };

@@ -30,6 +30,8 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
             m_tabpoids.push_back(new Arete(indiceArete,poids));
         }
     }
+    else
+        std::cout << "erreur lors de l'ouverture du fichier "<<std::endl;
 
     if(iss)
     {
@@ -37,10 +39,12 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
         iss >> m_ordre; /// on récupère l'ordre du graphe
         for( i=0; i<m_ordre; i++)
         {
+           // std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
             iss >> indiceSommet >> nom >> x >> y;
             m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
             m_tabcoords.push_back(new Coords(x,y));
-            m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
+            //m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
+
         }
         iss >> m_taille;
         for( i=0; i<m_taille; i++)
