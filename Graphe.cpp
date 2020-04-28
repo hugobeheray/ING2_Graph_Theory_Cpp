@@ -90,7 +90,7 @@ void Graphe::dessiner(Svgfile *svgout)
     for(i=0; i<getOrdre(); ++i)
     {
         svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getNom(), "black");
-       // svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 1, "black");
+        svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
     }
     ///affichage aretes
     for(i=0; i<getTaille(); ++i)
@@ -102,15 +102,15 @@ void Graphe::dessiner(Svgfile *svgout)
     for(i=0; i<getOrdre(); ++i)
     {
         if(m_tabsommet[i]->getImportance()==0)
-        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "black");
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "black");
         if(m_tabsommet[i]->getImportance()==1)
-        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "grey");
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "grey");
         if(m_tabsommet[i]->getImportance()==2)
-        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "blue");
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "blue");
         if(m_tabsommet[i]->getImportance()==3)
-        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "red");
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "red");
         if(m_tabsommet[i]->getImportance()==4)
-        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "green");
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "green");
     }
 }
 
@@ -139,8 +139,6 @@ void Graphe::sauvegarde()
     }
 }
 
-
-
 ///introduction de l'attribut m_importance (peut etre assujetti aux plusieurs methodes de centralisation, ici adapté seulement qu'à la 1ere methode)
 void Graphe::coloration()
 {
@@ -152,8 +150,6 @@ void Graphe::coloration()
 
 
 }
-
-
 
 Graphe::~Graphe()
 {
