@@ -117,6 +117,22 @@ int Graphe::getTaille()
     return m_taille;
 }
 
+void Graphe::sauvegarde()
+{
+    std::string fichiersauv;
+    std::ofstream flux("sauv.txt");
+    ///std::cout<<"nom du fichier"<<std::endl;
+    ///std::cin>>fichiersauv;
+    if (flux)
+    {
+        for(int i=0; i<getOrdre();++i)
+        {
+           flux << m_tabsommet[i]->getIndiceSommet() << " " << res_cd[i] << " " << res_cdn[i] << " " << res_cv[i] << " " << res_cvn[i] <<" " << std::endl;
+        }
+
+    }
+
+}
 
 Graphe::~Graphe()
 {

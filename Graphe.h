@@ -24,6 +24,10 @@ private:
     std::vector<Coords*> m_tabcoords;
     std::vector <float> m_tabdegre;
     std::vector<Arete*> m_tabpoids;
+    std::vector <float> res_cd;
+    std::vector <float> res_cdn;
+    std::vector <float> res_cv;
+    std::vector <float> res_cvn;
 
 
 public:
@@ -38,6 +42,10 @@ public:
     void dessiner(Svgfile *svgout);
     void centralite_vecteur();
     void centralite_vecteur_normalise();
+    void Dijkstra();
+    void centralite_proximite();
+    void centralite_proximite_normalise();
+    void sauvegarde();
 
 
 };

@@ -10,6 +10,7 @@
 
 void Graphe::centralite_degre()
 {
+
     float compteur=0;
     for( int i=0; i<getOrdre() ; i++)
     {
@@ -28,7 +29,7 @@ void Graphe::centralite_degre()
     {
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] <<" degres"<< std::endl;
     }
-
+    res_cd=m_tabdegre;
     std::cout<<std::endl;
     m_tabdegre.clear();
 }
@@ -56,7 +57,7 @@ void Graphe::centralite_degre_normalise()
     {
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] <<" degres"<< std::endl;
     }
-
+    res_cdn=m_tabdegre;
     std::cout<<std::endl;
 }
 
@@ -112,6 +113,7 @@ void Graphe::centralite_vecteur()
     {
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] <<" degres"<< std::endl;
     }
+    res_cv=m_tabdegre;
     m_tabdegre.clear();
 }
 
@@ -168,9 +170,25 @@ void Graphe::centralite_vecteur_normalise()
     {
         std::cout << "              Sommet "<<i<<" : "<< tabdegrenormalise[i] <<" degres"<< std::endl;
     }
+    res_cvn=tabdegrenormalise;
+//m_tabdegre.clear();/// peut etre a supr
+}
+
+void Graphe :: Dijkstra ()
+{
 
 }
 
+void Graphe :: centralite_proximite ()
+{
+
+}
+
+void Graphe :: centralite_proximite_normalise ()
+{
+
+}
+/*
 std::vector<int> Graphe:: Dijkstra(std::vector<int> bfs, std::vector<int> finalBfs, Graphe &graphe, std::vector<int> poidF)
 {
     int temp;
@@ -243,4 +261,4 @@ std::vector<int> Graphe:: Dijkstra(std::vector<int> bfs, std::vector<int> finalB
 
 
     return poidF;
-}
+}*/
