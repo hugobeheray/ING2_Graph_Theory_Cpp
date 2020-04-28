@@ -103,9 +103,8 @@ void Graphe::centralite_vecteur()
         {
             m_tabdegre[i]=(tabresultat[i]/lambda);
         }
-        //std::cout<<"lambda :" << lambda<<std::endl;
     }
-    while((lambda>0) && (lambda<30));
+    while((lambda>0) && (lambda<4));
     ///affichage des indices de chaque sommet
 
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE" << std::endl << std::endl;
@@ -160,7 +159,6 @@ void Graphe::centralite_vecteur_normalise()
             m_tabdegre[i]=(tabresultat[i]/lambda);
             tabdegrenormalise.push_back(m_tabdegre[i]/(getOrdre()-1));
         }
-        //std::cout<<"lambda :" << lambda<<std::endl;
     }
     while((lambda>0) && (lambda<4));
     ///affichage des indices de chaque sommet
