@@ -175,21 +175,30 @@ void Graphe::centralite_vecteur_normalise()
 
 
 
-void Graphe :: centralite_proximite ()
+void Graphe :: centralite_proximite (std::vector<float> &tabresultats)
 {
-
+    for(int i=0;i<tabresultats.size();i++)
+        {
+            tabresultats[i]=1/tabresultats[i];
+            std::cout <<" centralite prox " <<  tabresultats[i] << " ";
+        }
 }
 
-void Graphe :: centralite_proximite_normalise ()
+void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
 {
-
+    for(int i=0;i<tabresultats.size();i++)
+        {
+            tabresultats[i]=(getOrdre()-1)/tabresultats[i];
+             std::cout <<" centralite prox normalise" << tabresultats[i] << " ";
+        }
 }
 
 
 //ss prgm qui �xecute l'algo de Dijsktra
-void Graphe::Dijsktra()
+void Graphe::Dijsktra(std::vector<float> &tabresultats)
 {
-    int depart, arrivee;
+    int POIDS;
+    int depart, arrivee, somme=0;
     for(depart=0; depart<getOrdre(); ++depart)
     {
         for(arrivee=0; arrivee<getOrdre(); ++arrivee)
@@ -254,9 +263,15 @@ void Graphe::Dijsktra()
                 }
                 std::cout << "=" << poidsTotale[arrivee];//ici le plus court chemin d'un sommet A � un sommet b
                 std::cout << std::endl;
+                POIDS=poidsTotale[arrivee];
+                somme= POIDS+somme;
+
 
             }
+
         }
+        tabresultats.push_back(somme);
+        somme=0;
     }
 }
 

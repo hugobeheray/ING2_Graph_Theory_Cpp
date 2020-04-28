@@ -10,11 +10,12 @@
 int main(int argc, char *argv[])
 {
     // menu();
+    std::vector<float> tabresultats;
     std::string nomfichier;
     std::string nomfichierpoids;
     //std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
     //std::cin >> nomfichier;
-    Graphe graphe("graphe_etoile3_topo.txt","graphe_etoile3_topo_poids.txt");
+    Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
     graphe.afficher();
     Svgfile svgfile;
 
@@ -22,7 +23,10 @@ int main(int argc, char *argv[])
     graphe.centralite_degre_normalise();
     graphe.centralite_vecteur();
     graphe.centralite_vecteur_normalise();
-    graphe.Dijsktra();
+    graphe.Dijsktra(tabresultats);
+    graphe.centralite_proximite(tabresultats);
+    graphe.Dijsktra(tabresultats);
+    graphe.centralite_proximite_normalise(tabresultats);
     graphe.coloration();
     graphe.dessiner(&svgfile);
 
