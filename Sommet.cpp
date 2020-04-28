@@ -38,6 +38,11 @@ std::vector< Sommet*>& Sommet::getSuccesseurs()
     return m_successeurs;
 }
 
+float Sommet::getImportance()
+{
+    return m_importance;
+}
+
 std::string Sommet::getNom()
 {
     return m_nom;

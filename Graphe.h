@@ -20,7 +20,7 @@ private:
     int m_taille;
     int m_indiceSommet;
     int m_ordre;
-    int m_importance;
+
 
     std::vector<Sommet*> m_tabsommet;
     std::vector<Arete*> m_tabarete;
@@ -39,6 +39,7 @@ public:
     Graphe(std::string fichier,std::string fichierpoids);
     int getOrdre();
     int getTaille();
+
     void afficher();
     void centralite_degre();
     void centralite_degre_normalise();

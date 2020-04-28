@@ -131,7 +131,7 @@ void Graphe::coloration()
     for(int i=0; i<getOrdre();++i)
     {
         //std::cout<<res_cd[i]<<std::endl;
-        //m_tabsommet[i].m_importance=res_cd[i]
+        (m_tabsommet[i]->getImportance())=res_cd[i]
     }
 
 

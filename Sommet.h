@@ -11,6 +11,7 @@ private:
     std::string m_nom;
     std::vector<Sommet*> m_successeurs;///pour Dijsktra
     Sommet *m_sommet;
+    float m_importance;
 
 public:
     Sommet(int indice, char nom, int x, int y);
@@ -18,6 +19,7 @@ public:
     int getX();
     int getY();
     int getIndiceSommet();
+    float getImportance();
     std::string getNom();
     void afficherSommet() ;
     void afficherSuccesseurs() ;
