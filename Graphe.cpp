@@ -13,12 +13,24 @@
 #include "Coords.h"
 #include "calculs.h"
 
-Graphe::Graphe(std::string fichier)
+Graphe::Graphe(std::string fichier,std::string fichierpoids)
 {
     std::ifstream iss(fichier);
+    std::ifstream iss2(fichierpoids);
     int i, indiceSommet, x, y;
-    int indiceArete,extrem1, extrem2;
+    int indiceArete,extrem1, extrem2, poids;
     char nom;
+    if(iss2)
+    {
+        iss2 >> m_taille;
+        for(i=0;i<m_taille;++i)
+        {
+            iss2 >> indiceArete >> poids;
+            m_tabpoids.push_back(new Arete(indiceArete,poids));
+        }
+
+
+    }
     if(iss)
     {
         iss >> m_orient; /// on récupère l'orientation du graphe
@@ -29,17 +41,11 @@ Graphe::Graphe(std::string fichier)
             iss >> indiceSommet >> nom >> x >> y;
             m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
             m_tabcoords.push_back(new Coords(x,y));
-            //m_tabsommet[m_id1]->AjouterSuccesseur(m_tabsommet[m_id2]);
-            /* if(!m_orient) // si le graphe n'est pas orienté.
-             {
-                 m_tabsommet[m_id2]->AjouterSuccesseur(m_tabsommet[m_id1]);
-             }
-             */
         }
         iss >> m_taille;
         for( i=0; i<m_taille; i++)
         {
-            iss >> indiceArete >> extrem1 >> extrem2;
+            iss >> indiceArete >> extrem1 >> extrem2 ;
             m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
         }
 
@@ -70,15 +76,14 @@ void Graphe::afficher()
     for( i=0; i<m_taille; i++)
     {
         m_tabarete[i]->AfficherArete();
-        // std::cout << "Indice arrete: " << m_indiceArrete << " Extremite 1: " << m_extrem1 << " Extremite 2: "<< m_extrem2 << std::endl;
     }
 
-    /*for(auto i : m_tabsommet)
+    for(i=0;i<m_taille;++i)
     {
-        i->afficherSuccesseurs();
-        std::cout<<std::endl;
+        m_tabpoids[i]->AfficherAretePoids();
     }
-    */
+
+
 }
 
 void Graphe::dessiner(Svgfile *svgout)

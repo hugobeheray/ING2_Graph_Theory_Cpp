@@ -23,17 +23,18 @@ private:
     std::vector<Arete*> m_tabarete;
     std::vector<Coords*> m_tabcoords;
     std::vector <float> m_tabdegre;
+    std::vector<Arete*> m_tabpoids;
 
 
 public:
-    Graphe(std::string fichier);
+    Graphe(std::string fichier,std::string fichierpoids);
     int getOrdre();
     int getTaille();
     void afficher();
     void centralite_degre();
     void centralite_degre_normalise();
     ~Graphe();
-    void marquage(int num,bool marque[]);
+    //void marquage(int num,bool marque[]);
     void dessiner(Svgfile *svgout);
     void centralite_vecteur();
     void centralite_vecteur_normalise();

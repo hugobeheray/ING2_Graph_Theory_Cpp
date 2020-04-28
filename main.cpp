@@ -11,9 +11,10 @@ int main(int argc, char *argv[])
 {
    // menu();
     std::string nomfichier;
+    std::string nomfichierpoids;
     //std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
     //std::cin >> nomfichier;
-    Graphe graphe("graphe_etoile1_topo.txt");
+    Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
     graphe.afficher();
     Svgfile svgfile;
     graphe.dessiner(&svgfile);
