@@ -7,6 +7,7 @@
 #include "Coords.h"
 #include "calculs.h"
 #include <math.h>
+#include<queue>
 
 void Graphe::centralite_degre()
 {
@@ -186,77 +187,66 @@ void Graphe :: centralite_proximite_normalise ()
 {
 
 }
-/*
-std::vector<int> Graphe:: Dijkstra(std::vector<int> bfs, std::vector<int> finalBfs, Graphe &graphe, std::vector<int> poidF)
+
+
+//ss prgm qui éxecute l'algo de Dijsktra
+void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
 {
-    int temp;
-    int find2=0;
-
-
-    /// on cherche le premier sommet de la liste non noir ///
-    do
+    auto cmp = [](std::pair<const Sommet*,int> p1, std::pair<Sommet*,int> p2)
     {
-        temp = bfs[find2];
-        find2++;
+        return p2.second<p1.second;
+    };
+//on utilise "pair" pour stocker deux choses n'ayant pas le meme type : un type Sommet* et un type integer
+///utilisation de la priority queue, trie du poids par ordre décroissant
+    std::priority_queue<std::pair<Sommet*,int>,std::vector<std::pair<Sommet*,int>>,decltype(cmp)>file(cmp);
+    std::vector<int> marquage((int)m_tabsommet.size(),0); // pour le marquage
+    std::vector<int> predecesseur((int)m_tabsommet.size(),-1);
+    std::vector<int> poidsTotale((int)m_tabsommet.size(),-1);
+    poidsTotale[sommetDepart] = 0;
+    file.push({m_tabsommet[sommetDepart],0});
+    std::pair<Sommet*,int> p;
 
-    }
-    while((graphe.GetSommet()[temp].getColor() == 2) && (find2 < bfs.size()));
-
-
-    /// le sommet S est égale a la plus petite valeur de parcours poyr arriver a ce sommet
-    if(poidF[temp] != 9999999)
+//tant que la file n'est pas vide, on applique l'algo
+    while(!file.empty())
     {
-        graphe.SetSomSome(temp, poidF[temp],0);
-    }
-
-
-    ///on le met gris///
-    graphe.SetCol(temp, 1);
-
-
-    /// on parcours tout ses adjacent et les rajoutes a la listes et deviennent gris///
-    for(int i=0; i<graphe.GetSommet()[temp].GetAdjacent().size(); i++)
-    {
-
-        if( graphe.GetSommet()[temp].GetAdjacent()[i].getId() != bfs[0])
+        p=file.top();
+        file.pop();
+        while((!file.empty()) && (marquage[p.first->GetNum()]))
         {
-            bfs.push_back(graphe.GetSommet()[temp].GetAdjacent()[i].getId());
-            finalBfs.push_back(graphe.GetSommet()[temp].GetAdjacent()[i].getId());
+            p=file.top();
+            file.pop();
+        }
 
 
-            /// l'adjacent S' est égale a la somme du sommet S plus la somme du poid de l'arete
-            graphe.SetSomSome(graphe.GetSommet()[temp].GetAdjacent()[i].getId(), graphe.rechercheArete(temp,graphe.GetSommet()[temp].GetAdjacent()[i].getId()) + graphe.GetSommet()[temp].getSomme(), 0);
-
-            /// si la nouvelle distance est inférieur a l'ancienne, le chemin est plus court donc on prend cette nouvelle distance et nouveau prev
-            if(graphe.GetSommet()[graphe.GetSommet()[temp].GetAdjacent()[i].getId()].getSomme() < poidF[graphe.GetSommet()[temp].GetAdjacent()[i].getId()])
+        marquage[(p.first)->GetNum()]=1;
+        for(auto Psucc:(p.first)->getSuccesseurs())
+        {
+            if(marquage[(Psucc.first)->GetNum()]==0)
             {
-                poidF[graphe.GetSommet()[temp].GetAdjacent()[i].getId()] = graphe.GetSommet()[graphe.GetSommet()[temp].GetAdjacent()[i].getId()].getSomme();
-                graphe.SetPrev(graphe.GetSommet()[temp].GetAdjacent()[i].getId(), temp);
-
-                /// un sommet avec une nouvelle som peut décourdre de nouveau chemin plus court donc il sera réutilisable pour le parcours du graphe
-                if(graphe.GetSommet()[graphe.GetSommet()[temp].GetAdjacent()[i].getId()].getId() != bfs[0])
+                if((poidsTotale[(Psucc.first)->GetNum()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->GetNum()]))
                 {
-                    graphe.SetCol(graphe.GetSommet()[graphe.GetSommet()[temp].GetAdjacent()[i].getId()].getId(), 0);
+                    poidsTotale[(Psucc.first)->GetNum()] = p.second+Psucc.second;
+                    predecesseur[(Psucc.first)->GetNum()] = p.first->GetNum();
+                    file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->GetNum()]));//on met à jour la file d'attente
                 }
-
             }
         }
+    }
+//et on affiche
+    std::cout <<"Sommet d'arrivee: "<<j;
+    for(auto z = predecesseur[j]; z!= -1; z = predecesseur[z])
+    {
+
+        std::cout << " <- " << z;
 
     }
-
-    /// le sommet deviens noir ///
-    graphe.SetCol(temp, 2);
-
-    /// on test pour savoir si il reste des sommet non noir ( on test voir si l'ont a tout parcourue) ///
-    for(int i=0; i<bfs.size(); i++)
+    std::cout <<std::endl << "Longueur totale: " << poidsTotale[j]-poidsTotale[predecesseur[j]];
+    for(auto z = predecesseur[j]; z!= -1; z = predecesseur[z])
     {
-        temp = bfs[i];
-        if(graphe.GetSommet()[temp].getColor() != 2)
+        if(poidsTotale[z]!=0)
         {
-            poidF = Dijkstra(bfs, finalBfs, graphe, poidF);
+            std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]];
         }
     }
-
-
-    return poidF;
-}*/
+    std::cout << "=" << poidsTotale[j];//ici le plus court chemin d'un sommet A à un sommet b
+}

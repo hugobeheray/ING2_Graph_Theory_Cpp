@@ -18,7 +18,6 @@ int main(int argc, char *argv[])
     graphe.afficher();
     Svgfile svgfile;
 
-
     graphe.centralite_degre();
     graphe.centralite_degre_normalise();
     graphe.centralite_vecteur();
