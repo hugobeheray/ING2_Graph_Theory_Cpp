@@ -24,7 +24,7 @@ void Graphe::centralite_degre()
         compteur=0;
     }
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE DEGRE" << std::endl << std::endl;
-    for(int i=0; i<m_tabdegre.size(); i++)
+    for(unsigned int i=0; i<m_tabdegre.size(); i++)
     {
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] <<" degres"<< std::endl;
     }
@@ -64,7 +64,6 @@ void Graphe::centralite_degre_normalise()
 void Graphe::centralite_vecteur()
 {
     float i=0;
-    float j=0;
     float somme=0;
     float lambda=0;
     int compteur=0;
@@ -118,7 +117,6 @@ void Graphe::centralite_vecteur()
 void Graphe::centralite_vecteur_normalise()
 {
     float i=0;
-    float j=0;
     float somme=0;
     float lambda=0;
     int compteur=0;
