@@ -40,12 +40,14 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
             iss >> indiceSommet >> nom >> x >> y;
             m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
             m_tabcoords.push_back(new Coords(x,y));
+            m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
         }
         iss >> m_taille;
         for( i=0; i<m_taille; i++)
         {
             iss >> indiceArete >> extrem1 >> extrem2 ;
             m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],poids));
+
             m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
         }
     }

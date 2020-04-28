@@ -10,6 +10,7 @@ private:
     int m_indiceSommet;
     std::string m_nom;
    std::vector<std::pair<Sommet*,int>> m_successeurs;
+   int m_poidsD;
     Sommet *m_sommet;
     float m_importance;
 
@@ -21,6 +22,7 @@ public:
     int getIndiceSommet();
     float getImportance();
     void setImportance(float importance);
+    void setPoidsD(int poidsD);
     std::string getNom();
     void afficherSommet() ;
     void afficherSuccesseurs() ;

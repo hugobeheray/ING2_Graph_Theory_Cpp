@@ -223,6 +223,7 @@ void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
                 if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
                 {
                     poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
+                    std::cout << p.second+Psucc.second << std::endl;
                     predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
                     file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met à jour la file d'attente
                 }

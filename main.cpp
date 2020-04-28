@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     graphe.centralite_degre_normalise();
     graphe.centralite_vecteur();
     graphe.centralite_vecteur_normalise();
-    graphe.Dijsktra(0,8);
+    graphe.Dijsktra(0,5);
     graphe.coloration();
     graphe.dessiner(&svgfile);
 

@@ -61,3 +61,8 @@ std::string Sommet::getNom()
 {
     return m_nom;
 }
+
+void Sommet::setPoidsD(int poidsD)
+{
+    m_poidsD=poidsD;
+}
