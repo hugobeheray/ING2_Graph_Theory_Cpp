@@ -249,10 +249,6 @@ void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
     }
     std::cout << "=" << poidsTotale[sommetArrivee];//ici le plus court chemin d'un sommet A à un sommet b
 
-    for(int i=0; i<getTaille();i++)
-    {
-       std::cout<<m_tabpoids[i]->GetPoids()<<std::endl;
-    }
 
 
 }
