@@ -105,7 +105,7 @@ void Graphe::centralite_vecteur()
         }
         //std::cout<<"lambda :" << lambda<<std::endl;
     }
-    while((lambda>0) && (lambda<4));
+    while((lambda>0) && (lambda<30));
     ///affichage des indices de chaque sommet
 
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE" << std::endl << std::endl;
