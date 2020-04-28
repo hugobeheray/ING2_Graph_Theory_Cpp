@@ -86,17 +86,31 @@ void Graphe::dessiner(Svgfile *svgout)
 {
     int i;
     svgout->addGrid();
-    ///affichage lettres sommets et points sommets
+    ///affichage lettres sommets
     for(i=0; i<getOrdre(); ++i)
     {
         svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getNom(), "black");
-        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 1, "black");
+       // svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 1, "black");
     }
     ///affichage aretes
     for(i=0; i<getTaille(); ++i)
     {
         svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100);
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*50,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
+    }
+    ///affichage coloration et sommets
+    for(i=0; i<getOrdre(); ++i)
+    {
+        if(m_tabsommet[i]->getImportance()==0)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "black");
+        if(m_tabsommet[i]->getImportance()==1)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "grey");
+        if(m_tabsommet[i]->getImportance()==2)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "blue");
+        if(m_tabsommet[i]->getImportance()==3)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "red");
+        if(m_tabsommet[i]->getImportance()==4)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 2, "green");
     }
 }
 
@@ -125,17 +139,21 @@ void Graphe::sauvegarde()
     }
 }
 
-///introduction de l'attribut m_importance
+
+
+///introduction de l'attribut m_importance (peut etre assujetti aux plusieurs methodes de centralisation, ici adapté seulement qu'à la 1ere methode)
 void Graphe::coloration()
 {
-    for(int i=0; i<getOrdre();++i)
+    for(int i=0; i<getOrdre(); ++i)
     {
-        //std::cout<<res_cd[i]<<std::endl;
-        (m_tabsommet[i]->getImportance())=res_cd[i]
+        m_tabsommet[i]->setImportance(res_cd[i]);
+        //std::cout<<m_tabsommet[i]->getImportance()<<std::endl;
     }
 
 
 }
+
+
 
 Graphe::~Graphe()
 {

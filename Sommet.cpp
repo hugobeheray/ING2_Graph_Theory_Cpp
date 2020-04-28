@@ -43,6 +43,11 @@ float Sommet::getImportance()
     return m_importance;
 }
 
+void Sommet::setImportance(float importance)
+{
+     m_importance=importance;
+}
+
 std::string Sommet::getNom()
 {
     return m_nom;

@@ -13,6 +13,7 @@ private:
     Sommet *m_sommet;
     float m_importance;
 
+
 public:
     Sommet(int indice, char nom, int x, int y);
     int GetNum() ;
@@ -20,6 +21,7 @@ public:
     int getY();
     int getIndiceSommet();
     float getImportance();
+    void setImportance(float importance);
     std::string getNom();
     void afficherSommet() ;
     void afficherSuccesseurs() ;

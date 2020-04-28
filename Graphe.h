@@ -22,6 +22,7 @@ private:
     int m_ordre;
 
 
+
     std::vector<Sommet*> m_tabsommet;
     std::vector<Arete*> m_tabarete;
     std::vector<Coords*> m_tabcoords;
