@@ -187,7 +187,7 @@ void Graphe :: centralite_proximite_normalise ()
 
 
 //ss prgm qui éxecute l'algo de Dijsktra
-/*void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
+void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
 {
     auto cmp = [](std::pair<const Sommet*,int> p1, std::pair<Sommet*,int> p2)
     {
@@ -223,7 +223,8 @@ void Graphe :: centralite_proximite_normalise ()
                 if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
                 {
                     poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
-                    std::cout << p.second+Psucc.second << std::endl;
+                    std::cout << "psucc premier "<<p.second+Psucc.second << std::endl;
+                    std::cout << "psucc second "<<Psucc.second << std::endl;
                     predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
                     file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met à jour la file d'attente
                 }
@@ -247,5 +248,12 @@ void Graphe :: centralite_proximite_normalise ()
         }
     }
     std::cout << "=" << poidsTotale[sommetArrivee];//ici le plus court chemin d'un sommet A à un sommet b
+
+    for(int i=0; i<getTaille();i++)
+    {
+       std::cout<<m_tabpoids[i]->GetPoids()<<std::endl;
+    }
+
+
 }
-*/
+
