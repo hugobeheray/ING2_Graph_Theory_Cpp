@@ -50,7 +50,6 @@ public:
     void dessiner(Svgfile *svgout);
     void centralite_vecteur();
     void centralite_vecteur_normalise();
-    void Dijkstra();
     void centralite_proximite();
     void centralite_proximite_normalise();
     void sauvegarde();

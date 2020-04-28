@@ -20,7 +20,8 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
     int i, indiceSommet, x, y;
     int indiceArete,extrem1, extrem2, poids;
     char nom;
-    if(iss2)
+
+     if(iss2)
     {
         iss2 >> m_taille;
         for(i=0; i<m_taille; ++i)
@@ -29,6 +30,7 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
             m_tabpoids.push_back(new Arete(indiceArete,poids));
         }
     }
+
     if(iss)
     {
         iss >> m_orient; /// on récupère l'orientation du graphe
@@ -43,6 +45,7 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
         for( i=0; i<m_taille; i++)
         {
             iss >> indiceArete >> extrem1 >> extrem2 ;
+            m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],poids));
             m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
         }
     }
@@ -55,6 +58,12 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
 void Graphe::afficher()
 {
     int i;
+
+    for(auto i : m_tabsommet)
+    {
+        i->afficherSuccesseurs();
+        std::cout<<std::endl;
+    }
     std::cout<< "Graphe ";
     if(m_orient)
         std::cout<<"oriente"<<std::endl;

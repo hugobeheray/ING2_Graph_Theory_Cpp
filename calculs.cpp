@@ -173,10 +173,7 @@ void Graphe::centralite_vecteur_normalise()
 //m_tabdegre.clear();/// peut etre a supr
 }
 
-void Graphe :: Dijkstra ()
-{
 
-}
 
 void Graphe :: centralite_proximite ()
 {
@@ -211,42 +208,42 @@ void Graphe::Dijsktra(int sommetDepart,int sommetArrivee)
     {
         p=file.top();
         file.pop();
-        while((!file.empty()) && (marquage[p.first->GetNum()]))
+        while((!file.empty()) && (marquage[p.first->getIndiceSommet()]))
         {
             p=file.top();
             file.pop();
         }
 
 
-        marquage[(p.first)->GetNum()]=1;
+        marquage[(p.first)->getIndiceSommet()]=1;
         for(auto Psucc:(p.first)->getSuccesseurs())
         {
-            if(marquage[(Psucc.first)->GetNum()]==0)
+            if(marquage[(Psucc.first)->getIndiceSommet()]==0)
             {
-                if((poidsTotale[(Psucc.first)->GetNum()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->GetNum()]))
+                if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
                 {
-                    poidsTotale[(Psucc.first)->GetNum()] = p.second+Psucc.second;
-                    predecesseur[(Psucc.first)->GetNum()] = p.first->GetNum();
-                    file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->GetNum()]));//on met à jour la file d'attente
+                    poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
+                    predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
+                    file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met à jour la file d'attente
                 }
             }
         }
     }
 //et on affiche
-    std::cout <<"Sommet d'arrivee: "<<j;
-    for(auto z = predecesseur[j]; z!= -1; z = predecesseur[z])
+    std::cout <<"Sommet d'arrivee: "<<sommetArrivee;
+    for(auto z = predecesseur[sommetArrivee]; z!= -1; z = predecesseur[z])
     {
 
         std::cout << " <- " << z;
 
     }
-    std::cout <<std::endl << "Longueur totale: " << poidsTotale[j]-poidsTotale[predecesseur[j]];
-    for(auto z = predecesseur[j]; z!= -1; z = predecesseur[z])
+    std::cout <<std::endl << "Longueur totale: " << poidsTotale[sommetArrivee]-poidsTotale[predecesseur[sommetArrivee]];
+    for(auto z = predecesseur[sommetArrivee]; z!= -1; z = predecesseur[z])
     {
         if(poidsTotale[z]!=0)
         {
             std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]];
         }
     }
-    std::cout << "=" << poidsTotale[j];//ici le plus court chemin d'un sommet A à un sommet b
+    std::cout << "=" << poidsTotale[sommetArrivee];//ici le plus court chemin d'un sommet A à un sommet b
 }
