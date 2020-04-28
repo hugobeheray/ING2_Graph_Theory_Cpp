@@ -36,6 +36,7 @@ public:
     void marquage(int num,bool marque[]);
     void dessiner(Svgfile *svgout);
     void centralite_vecteur();
+    void centralite_vecteur_normalise();
 
 
 };
