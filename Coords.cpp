@@ -2,11 +2,11 @@
 #include "Coords.h"
 
 Coords::Coords(double x, double y)
-: m_x{x}, m_y{y}
+    : m_x{x}, m_y{y}
 { }
 
 Coords::Coords()
-: m_x{0}, m_y{0}
+    : m_x{0}, m_y{0}
 { }
 
 void Coords::afficher() const

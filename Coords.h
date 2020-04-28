@@ -1,10 +1,9 @@
 #ifndef COORDS_H_INCLUDED
 #define COORDS_H_INCLUDED
 
-
 class Coords
 {
-    public :
+public :
     Coords(double x, double y);
     Coords();
 
@@ -19,7 +18,7 @@ class Coords
 
     friend Coords operator+(const Coords& c1, const Coords& c2);
 
-    private :
+private :
     double m_x;
     double m_y;
 };
