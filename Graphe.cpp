@@ -72,17 +72,19 @@ void Graphe::afficher()
     {
         m_tabsommet[i]->afficherSommet();
     }
+    std::cout << std::endl;
     std::cout << "Taille :" << m_taille << std::endl;
     for( i=0; i<m_taille; i++)
     {
         m_tabarete[i]->AfficherArete();
     }
+    std::cout << std::endl;
 
     for(i=0;i<m_taille;++i)
     {
         m_tabpoids[i]->AfficherAretePoids();
     }
-
+    std::cout << std::endl;
 
 }
 
