@@ -9,7 +9,7 @@
 
 int main(int argc, char *argv[])
 {
-   // menu();
+    // menu();
     std::string nomfichier;
     std::string nomfichierpoids;
     //std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
     graphe.centralite_vecteur();
     graphe.centralite_vecteur_normalise();
     graphe.sauvegarde();
+    graphe.coloration();
     return 0;
 }
 

@@ -3,12 +3,13 @@
 #include <vector>
 #include <string>
 
-class Sommet {
+class Sommet
+{
 private:
     int m_x,m_y;
     int m_indiceSommet;
     std::string m_nom;
-    std::vector< Sommet*> m_successeurs;
+    std::vector<Sommet*> m_successeurs;///pour Dijsktra
     Sommet *m_sommet;
 
 public:
@@ -21,7 +22,7 @@ public:
     void afficherSommet() ;
     void afficherSuccesseurs() ;
     void AjouterSuccesseur(Sommet*s);
-     std::vector< Sommet*>& getSuccesseurs();
+    std::vector< Sommet*>& getSuccesseurs();
 
 };
 

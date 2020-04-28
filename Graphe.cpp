@@ -23,13 +23,11 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
     if(iss2)
     {
         iss2 >> m_taille;
-        for(i=0;i<m_taille;++i)
+        for(i=0; i<m_taille; ++i)
         {
             iss2 >> indiceArete >> poids;
             m_tabpoids.push_back(new Arete(indiceArete,poids));
         }
-
-
     }
     if(iss)
     {
@@ -37,7 +35,6 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
         iss >> m_ordre; /// on récupère l'ordre du graphe
         for( i=0; i<m_ordre; i++)
         {
-
             iss >> indiceSommet >> nom >> x >> y;
             m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
             m_tabcoords.push_back(new Coords(x,y));
@@ -48,13 +45,11 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
             iss >> indiceArete >> extrem1 >> extrem2 ;
             m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
         }
-
     }
     else
     {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
     }
-
 }
 
 void Graphe::afficher()
@@ -80,17 +75,15 @@ void Graphe::afficher()
     }
     std::cout << std::endl;
 
-    for(i=0;i<m_taille;++i)
+    for(i=0; i<m_taille; ++i)
     {
         m_tabpoids[i]->AfficherAretePoids();
     }
     std::cout << std::endl;
-
 }
 
 void Graphe::dessiner(Svgfile *svgout)
 {
-
     int i;
     svgout->addGrid();
     ///affichage lettres sommets et points sommets
@@ -125,12 +118,22 @@ void Graphe::sauvegarde()
     ///std::cin>>fichiersauv;
     if (flux)
     {
-        for(int i=0; i<getOrdre();++i)
+        for(int i=0; i<getOrdre(); ++i)
         {
-           flux << m_tabsommet[i]->getIndiceSommet() << " " << res_cd[i] << " " << res_cdn[i] << " " << res_cv[i] << " " << res_cvn[i] <<" " << std::endl;
+            flux << m_tabsommet[i]->getIndiceSommet() << " " << res_cd[i] << " " << res_cdn[i] << " " << res_cv[i] << " " << res_cvn[i] <<" " << std::endl;
         }
-
     }
+}
+
+///introduction de l'attribut m_importance
+void Graphe::coloration()
+{
+    for(int i=0; i<getOrdre();++i)
+    {
+        //std::cout<<res_cd[i]<<std::endl;
+        //m_tabsommet[i].m_importance=res_cd[i]
+    }
+
 
 }
 
@@ -141,4 +144,3 @@ Graphe::~Graphe()
         delete i;
     }
 }
-

@@ -10,7 +10,6 @@
 
 void Graphe::centralite_degre()
 {
-
     float compteur=0;
     for( int i=0; i<getOrdre() ; i++)
     {
@@ -33,6 +32,7 @@ void Graphe::centralite_degre()
     std::cout<<std::endl;
     m_tabdegre.clear();
 }
+
 void Graphe::centralite_degre_normalise()
 {
     int j;
@@ -60,7 +60,6 @@ void Graphe::centralite_degre_normalise()
     res_cdn=m_tabdegre;
     std::cout<<std::endl;
 }
-
 
 void Graphe::centralite_vecteur()
 {
@@ -103,8 +102,9 @@ void Graphe::centralite_vecteur()
         {
             m_tabdegre[i]=(tabresultat[i]/lambda);
         }
+        //std::cout<<lambda<<std::endl;//pour voir les differentes valeurs de delata
     }
-    while((lambda>0) && (lambda<4));
+    while((lambda>0) && (lambda<95.7));///tant que delta lambda est supérieur à 0,1
     ///affichage des indices de chaque sommet
 
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE" << std::endl << std::endl;

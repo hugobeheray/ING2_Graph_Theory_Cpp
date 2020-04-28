@@ -10,6 +10,7 @@ Arete::Arete(int indiceArete, int extrem1, int extrem2)
     m_extrem2 = extrem2;
 }
 
+///constructeur pour récuperer le poids
 Arete::Arete(int indiceArete, int poids)
 {
     m_indiceArete=indiceArete;
@@ -18,7 +19,7 @@ Arete::Arete(int indiceArete, int poids)
 
 void Arete::AfficherArete()
 {
-  std::cout << "Indice: " << m_indiceArete << " Extremite 1: " << m_extrem1 << " Extremite 2 :"<< m_extrem2 << std::endl;
+    std::cout << "Indice: " << m_indiceArete << " Extremite 1: " << m_extrem1 << " Extremite 2 :"<< m_extrem2 << std::endl;
 }
 
 void Arete::AfficherAretePoids()
