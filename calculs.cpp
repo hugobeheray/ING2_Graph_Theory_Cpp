@@ -188,7 +188,7 @@ void Graphe :: centralite_proximite (std::vector<float> &tabresultats)
 {
     int entier;
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE" << std::endl << std::endl;
-    for(int i=0;i<tabresultats.size();i++)
+    for(unsigned int i=0;i<tabresultats.size();i++)
         {
             tabresultats[i]=1/tabresultats[i];
             entier = (int)((0.005 + tabresultats[i])*100.0); //arrondi
@@ -202,7 +202,7 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
 {
     int entier;
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE NORMALISE" << std::endl << std::endl;
-    for(int i=0;i<tabresultats.size();i++)
+    for(unsigned int i=0;i<tabresultats.size();i++)
         {
             tabresultats[i]=(getOrdre()-1)/tabresultats[i];
             entier = (int)((0.005 + tabresultats[i])*100.0); //arrondi

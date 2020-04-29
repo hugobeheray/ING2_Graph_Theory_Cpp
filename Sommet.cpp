@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <iostream>
 
-Sommet::Sommet(int indice, std::string nom, int x, int y)
+Sommet::Sommet(int indice, std::string nom, float x, float y)
 {
     m_indiceSommet = indice;
     m_nom = nom;
@@ -10,11 +10,11 @@ Sommet::Sommet(int indice, std::string nom, int x, int y)
     m_y = y;
 }
 
-int Sommet::getX()
+float Sommet::getX()
 {
     return m_x;
 }
-int Sommet::getY()
+float Sommet::getY()
 {
     return m_y;
 }
