@@ -28,6 +28,7 @@ public:
     void afficherSuccesseurs() ;
     void AjouterSuccesseur(std::pair<Sommet*,int> s);
     std::vector<std::pair<Sommet*,int>>& getSuccesseurs();
+   // ~Sommet();
 
 };
 

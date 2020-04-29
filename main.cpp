@@ -9,29 +9,9 @@
 
 int main(int argc, char *argv[])
 {
-    // menu();
-    std::vector<float> tabresultats;
-    std::string nomfichier;
-    std::string nomfichierpoids;
-    //std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
-    //std::cin >> nomfichier;
-    Graphe graphe("graphe_ameriquedusud_topo.txt","graphe_ameriquedusud_topo_poids.txt");
-    graphe.afficher();
-    Svgfile svgfile;
 
-    graphe.centralite_degre();
-    graphe.centralite_degre_normalise();
-    graphe.centralite_vecteur();
-    graphe.centralite_vecteur_normalise();
-    graphe.Dijsktra(tabresultats);
-    graphe.centralite_proximite(tabresultats);
-    tabresultats.clear();
-    graphe.Dijsktra(tabresultats);
-    graphe.centralite_proximite_normalise(tabresultats);
-    graphe.coloration();
-    graphe.dessiner(&svgfile);
+    menu();
 
-    graphe.sauvegarde();
 
     return 0;
 }

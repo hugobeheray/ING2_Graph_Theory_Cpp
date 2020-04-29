@@ -213,6 +213,11 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
 }
 
 
+void Graphe::centralite_intermediarite()
+{
+
+}
+
 //ss prgm qui �xecute l'algo de Dijsktra
 void Graphe::Dijsktra(std::vector<float> &tabresultats)
 {
@@ -230,7 +235,7 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                     return p2.second<p1.second;
                 };
 //on utilise "pair" pour stocker deux choses n'ayant pas le meme type : un type Sommet* et un type integer
-///utilisation de la priority queue, trie du poids par ordre d�croissant
+///utilisation de la priority queue, trie du poids par ordre decroissant
                 std::priority_queue<std::pair<Sommet*,int>,std::vector<std::pair<Sommet*,int>>,decltype(cmp)>file(cmp);
                 std::vector<int> marquage((int)m_tabsommet.size(),0); // pour le marquage
                 std::vector<int> predecesseur((int)m_tabsommet.size(),-1);
@@ -264,6 +269,7 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                         }
                     }
                 }
+
 ///AFFICHAGE
                /* std::cout <<"Sommet d'arrivee: "<<arrivee;
                 for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])

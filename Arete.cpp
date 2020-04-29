@@ -42,3 +42,8 @@ int Arete::GetPoids()
     return m_poids;
 }
 
+Arete::~Arete()
+{
+
+}
+

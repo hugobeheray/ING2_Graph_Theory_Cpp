@@ -66,3 +66,5 @@ void Sommet::setPoidsD(int poidsD)
 {
     m_poidsD=poidsD;
 }
+
+
