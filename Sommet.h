@@ -9,7 +9,7 @@ private:
     float m_x,m_y;
     int m_indiceSommet;
     std::string m_nom;
-   std::vector<std::pair<Sommet*,int>> m_successeurs;
+    std::vector<std::pair<Sommet*,int>> m_successeurs;
    int m_poidsD;
     Sommet *m_sommet;
     float m_importance;
