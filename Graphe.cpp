@@ -17,7 +17,8 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
 {
     std::ifstream iss(fichier);
     std::ifstream iss2(fichierpoids);
-    int i, indiceSommet, x, y;
+    int i, indiceSommet;
+    float x, y;
     int indiceArete,extrem1, extrem2, poids;
     std::string nom;
 
