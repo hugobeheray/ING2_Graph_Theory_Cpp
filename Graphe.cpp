@@ -106,7 +106,7 @@ void Graphe::dessiner(Svgfile *svgout)
     ///affichage lettres sommets
     for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-35,m_tabsommet[i]->getNom(), "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-25, (m_tabsommet[i]->getY())*100-35,m_tabsommet[i]->getNom(), "black");
        // svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
     }
     ///affichage aretes

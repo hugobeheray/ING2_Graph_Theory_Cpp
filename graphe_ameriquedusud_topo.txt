@@ -1,18 +1,18 @@
 0
 13
-0 Bresil 5.5 3
-1 Guyane_FR 5.5 1.5
-2 Suriname 5.2 1.6
-3 Guyana 4.9 1.4
-4 Venezuela 4.2 1.3
-5 Colombie 3.8 2
-6 Equateur 3.4 2.4
-7 Perou 3.7 3.1
-8 Bolivie 4.5 3.5
-9 Paraguay 5 4
-10 Chili 4.5 4.3
-11 Argentine 5 6
-12 Uruguay 5.4 5.7
+0 Bresil 5.3 3
+1 Guyane_FR 5.2 1.5
+2 Suriname 4.8 1.6
+3 Guyana 4.5 1.4
+4 Venezuela 3.8 1.3
+5 Colombie 3.3 1.9
+6 Equateur 2.8 2.4
+7 Perou 3.1 3.1
+8 Bolivie 4.1 3.8
+9 Paraguay 4.6 4.3
+10 Chili 3.5 4.4
+11 Argentine 4.6 6
+12 Uruguay 5.0 5.7
 25
 0 0 1
 1 0 2
