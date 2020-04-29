@@ -23,8 +23,19 @@ void menu()
     std::vector<float> tabresultats;
     std::string nomfichier;
     std::string nomfichierpoids;
-    Svgfile svgfile;
-    Graphe graphe("graphe_cycle5_topo.txt","graphe_cycle5_topo_poids.txt");
+/*
+    std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
+    couleurverte();
+    std::cin >> nomfichierpoids;
+    couleurcyan();
+    std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
+    couleurverte();
+    std::cin >> nomfichier;
+    couleurcyan();*/
+    Graphe graphe("graphe_ameriquedusud_topo.txt","graphe_ameriquedusud_topo_poids.txt");
+
+
+
     while(choix!=5)
     {
         do
@@ -39,10 +50,7 @@ void menu()
         switch(choix)
         {
         case 1:
-//std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
-    //std::cin >> nomfichier;
             graphe.afficher();
-
             break;
         case 2:
             std::cout<<std::endl;
@@ -63,10 +71,12 @@ void menu()
             graphe.sauvegarde();
             break;
         case 4:
-
+        {
+            Svgfile svgfile;
             graphe.coloration();
             graphe.dessiner(&svgfile);
-            break;
+        }
+        break;
         case 5:
             exit(0);
             break;

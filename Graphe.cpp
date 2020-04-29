@@ -128,6 +128,19 @@ void Graphe::dessiner(Svgfile *svgout)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "red");
         if(m_tabsommet[i]->getImportance()==4)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "green");
+        if(m_tabsommet[i]->getImportance()==5)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "purple");
+        if(m_tabsommet[i]->getImportance()==6)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "pink");
+        if(m_tabsommet[i]->getImportance()==7)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "brown");
+        if(m_tabsommet[i]->getImportance()==8)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "yellow");
+        if(m_tabsommet[i]->getImportance()==9)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "cyan");
+        if(m_tabsommet[i]->getImportance()==10)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "orange");
+
     }
     ///affichage legende
     svgout->addRect(600,400,300,100,"white");
@@ -191,6 +204,21 @@ void Graphe::coloration()
 Graphe::~Graphe()
 {
     for(auto i : m_tabsommet)
+    {
+        delete i;
+    }
+
+     for(auto i : m_tabarete)
+    {
+        delete i;
+    }
+
+    for(auto i : m_tabpoids)
+    {
+        delete i;
+    }
+
+    for(auto i : m_tabcoords)
     {
         delete i;
     }
