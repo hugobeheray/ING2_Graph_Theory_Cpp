@@ -20,12 +20,17 @@ void menu()
 {
     couleurcyan();
     int choix;
+    std::vector<float> tabresultats;
+    std::string nomfichier;
+    std::string nomfichierpoids;
+    Svgfile svgfile;
+    Graphe graphe("graphe_cycle5_topo.txt","graphe_cycle5_topo_poids.txt");
     while(choix!=5)
     {
         do
         {
-            std::cout << "Bienvenue" << std::endl << "Que voulez vous faire?" << std::endl << "1.Charger un graphe" << std::endl << "2.Changer le systeme de ponderation d'un graphe" << std::endl <<
-                      "3. Calculer, afficher et sauvegarder les differents indices de centralite" << std::endl << "4.Tester la vulnerabilite du graphe" << std::endl << "5.Quitter" << std::endl;
+            std::cout << "Bienvenue" << std::endl << "Que voulez vous faire?" << std::endl << "1.Charger un graphe" << std::endl << "2.Rien" << std::endl <<
+                      "3. Calculer, afficher et sauvegarder les differents indices de centralite" << std::endl << "4.Dessiner" << std::endl << "5.Quitter" << std::endl;
             couleurverte();
             std::cin >> choix;
             couleurcyan();
@@ -34,12 +39,33 @@ void menu()
         switch(choix)
         {
         case 1:
+//std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
+    //std::cin >> nomfichier;
+            graphe.afficher();
+
             break;
         case 2:
+            std::cout<<std::endl;
             break;
         case 3:
+            graphe.centralite_degre();
+            graphe.centralite_degre_normalise();
+            graphe.centralite_vecteur();
+            graphe.centralite_vecteur_normalise();
+
+            graphe.Dijsktra(tabresultats);
+            graphe.centralite_proximite(tabresultats);
+            tabresultats.clear();
+            graphe.Dijsktra(tabresultats);
+            graphe.centralite_proximite_normalise(tabresultats);
+
+            graphe.Dijsktra(tabresultats);
+            graphe.sauvegarde();
             break;
         case 4:
+
+            graphe.coloration();
+            graphe.dessiner(&svgfile);
             break;
         case 5:
             exit(0);

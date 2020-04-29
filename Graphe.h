@@ -57,6 +57,7 @@ public:
     void sauvegarde();
     void coloration();
     void Dijsktra(std::vector<float> &tabresultats);
+    void centralite_intermediarite();
 
 
 };
