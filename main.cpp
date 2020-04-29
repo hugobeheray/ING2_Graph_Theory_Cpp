@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     std::string nomfichierpoids;
     //std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
     //std::cin >> nomfichier;
-    Graphe graphe("graphe_cycle5_topo.txt","graphe_cycle5_topo_poids.txt");
+    Graphe graphe("graphe_ameriquedusud_topo.txt","graphe_ameriquedusud_topo_poids.txt");
     graphe.afficher();
     Svgfile svgfile;
 
