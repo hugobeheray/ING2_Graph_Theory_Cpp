@@ -17,9 +17,10 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
 {
     std::ifstream iss(fichier);
     std::ifstream iss2(fichierpoids);
-    int i, indiceSommet, x, y;
+    int i, indiceSommet;
+    float x, y;
     int indiceArete,extrem1, extrem2, poids;
-    char nom;
+    std::string nom;
 
      if(iss2)
     {
@@ -30,6 +31,8 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
             m_tabpoids.push_back(new Arete(indiceArete,poids));
         }
     }
+    else
+        std::cout << "erreur lors de l'ouverture du fichier "<<std::endl;
 
     if(iss)
     {
@@ -37,10 +40,12 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
         iss >> m_ordre; /// on récupère l'ordre du graphe
         for( i=0; i<m_ordre; i++)
         {
+           // std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
             iss >> indiceSommet >> nom >> x >> y;
             m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
             m_tabcoords.push_back(new Coords(x,y));
-            m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
+            //m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
+
         }
         iss >> m_taille;
         for( i=0; i<m_taille; i++)
@@ -101,14 +106,14 @@ void Graphe::dessiner(Svgfile *svgout)
     ///affichage lettres sommets
     for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getNom(), "black");
-        svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
+        svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-35,m_tabsommet[i]->getNom(), "black");
+       // svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
     }
     ///affichage aretes
     for(i=0; i<getTaille(); ++i)
     {
         svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100);
-        svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*50,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
+        svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*50 + 5,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
     }
     ///affichage coloration et sommets
     for(i=0; i<getOrdre(); ++i)
@@ -123,19 +128,40 @@ void Graphe::dessiner(Svgfile *svgout)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "red");
         if(m_tabsommet[i]->getImportance()==4)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "green");
+        if(m_tabsommet[i]->getImportance()==5)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "purple");
+        if(m_tabsommet[i]->getImportance()==6)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "pink");
+        if(m_tabsommet[i]->getImportance()==7)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "brown");
+        if(m_tabsommet[i]->getImportance()==8)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "yellow");
+        if(m_tabsommet[i]->getImportance()==9)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "cyan");
+        if(m_tabsommet[i]->getImportance()==10)
+        svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "orange");
+
     }
     ///affichage legende
-    svgout->addRect(600,200,300,100,"white");
-    svgout->addLine(600,200,900,200,"red");
-    svgout->addLine(600,200,600,300,"red");
-    svgout->addLine(900,200,900,300,"red");
-    svgout->addLine(600,300,900,300,"red");
-    svgout->addText(605,215,"- Rouge : Indice de poids des arêtes", "red");
-    svgout->addText(605,235,"- Violet : Indice de centralité de degré", "purple");
-    svgout->addText(605,255,"- Rose : Indice de centralité de vecteur propre", "pink");
-    svgout->addText(605,275,"- Bleu : Indice de centralité de proximité", "blue");
-    svgout->addText(605,295,"- Vert : Indice de centralité d'intermédiarité", "green");
-
+    svgout->addRect(600,400,300,100,"white");
+    svgout->addLine(600,400,900,400,"red");
+    svgout->addLine(600,400,600,500,"red");
+    svgout->addLine(900,400,900,500,"red");
+    svgout->addLine(600,500,900,500,"red");
+    svgout->addText(605,415,"- Rouge : Indice de poids des arêtes", "red");
+    svgout->addText(605,435,"- Violet : Indice de centralité de degré", "purple");
+    svgout->addText(605,455,"- Rose : Indice de centralité de vecteur propre", "pink");
+    svgout->addText(605,475,"- Bleu : Indice de centralité de proximité", "blue");
+    svgout->addText(605,495,"- Vert : Indice de centralité d'intermédiarité", "green");
+    ///affichage indices
+    for(i=0; i<getOrdre(); ++i)
+    {
+        svgout->addText((m_tabsommet[i]->getX())*100-55+12, (m_tabsommet[i]->getY())*100-20," (", "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-55+16, (m_tabsommet[i]->getY())*100-20,res_cdn[i], "purple");
+        svgout->addText((m_tabsommet[i]->getX())*100-55+46, (m_tabsommet[i]->getY())*100-20,res_cvn[i], "pink");
+        svgout->addText((m_tabsommet[i]->getX())*100-55+76, (m_tabsommet[i]->getY())*100-20,res_cpn[i], "blue");
+        svgout->addText((m_tabsommet[i]->getX())*100-55+104, (m_tabsommet[i]->getY())*100-20," )", "black");
+    }
 }
 
 int Graphe::getOrdre()
@@ -158,7 +184,7 @@ void Graphe::sauvegarde()
     {
         for(int i=0; i<getOrdre(); ++i)
         {
-            flux << m_tabsommet[i]->getIndiceSommet() << " " << res_cd[i] << " " << res_cdn[i] << " " << res_cv[i] << " " << res_cvn[i] <<" " << std::endl;
+            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << res_cd[i] << "\t" << res_cdn[i] << "\t" << res_cv[i] << "\t" << res_cvn[i] <<"\t" << res_cp[i] << "\t" << res_cpn[i] << std::endl;
         }
     }
 }
@@ -178,6 +204,21 @@ void Graphe::coloration()
 Graphe::~Graphe()
 {
     for(auto i : m_tabsommet)
+    {
+        delete i;
+    }
+
+     for(auto i : m_tabarete)
+    {
+        delete i;
+    }
+
+    for(auto i : m_tabpoids)
+    {
+        delete i;
+    }
+
+    for(auto i : m_tabcoords)
     {
         delete i;
     }

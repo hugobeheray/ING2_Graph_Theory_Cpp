@@ -6,7 +6,7 @@
 class Sommet
 {
 private:
-    int m_x,m_y;
+    float m_x,m_y;
     int m_indiceSommet;
     std::string m_nom;
    std::vector<std::pair<Sommet*,int>> m_successeurs;
@@ -16,9 +16,9 @@ private:
 
 
 public:
-    Sommet(int indice, char nom, int x, int y);
-    int getX();
-    int getY();
+    Sommet(int indice, std::string nom, float x, float y);
+    float getX();
+    float getY();
     int getIndiceSommet();
     float getImportance();
     void setImportance(float importance);
@@ -28,6 +28,7 @@ public:
     void afficherSuccesseurs() ;
     void AjouterSuccesseur(std::pair<Sommet*,int> s);
     std::vector<std::pair<Sommet*,int>>& getSuccesseurs();
+   // ~Sommet();
 
 };
 

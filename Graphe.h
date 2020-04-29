@@ -34,6 +34,8 @@ private:
     std::vector <float> res_cdn;
     std::vector <float> res_cv;
     std::vector <float> res_cvn;
+    std::vector <float> res_cp;
+    std::vector <float> res_cpn;
 
 
 public:
@@ -50,11 +52,12 @@ public:
     void dessiner(Svgfile *svgout);
     void centralite_vecteur();
     void centralite_vecteur_normalise();
-    void centralite_proximite();
-    void centralite_proximite_normalise();
+    void centralite_proximite(std::vector<float> &tabresultats);
+    void centralite_proximite_normalise(std::vector<float> &tabresultats);
     void sauvegarde();
     void coloration();
-    void Dijsktra(int sommetDepart,int sommetArrivee);
+    void Dijsktra(std::vector<float> &tabresultats);
+    void centralite_intermediarite();
 
 
 };
