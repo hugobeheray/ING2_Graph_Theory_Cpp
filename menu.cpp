@@ -67,7 +67,7 @@ void menu()
             graphe.Dijsktra(tabresultats);
             graphe.centralite_proximite_normalise(tabresultats);
 
-            graphe.Dijsktra(tabresultats);
+            //graphe.Dijsktra(tabresultats);
             graphe.sauvegarde();
             break;
         case 4:

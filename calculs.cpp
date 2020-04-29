@@ -188,13 +188,13 @@ void Graphe :: centralite_proximite (std::vector<float> &tabresultats)
 {
     int entier;
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE" << std::endl << std::endl;
-    for(unsigned int i=0;i<tabresultats.size();i++)
-        {
-            tabresultats[i]=1/tabresultats[i];
-            entier = (int)((0.005 + tabresultats[i])*100.0); //arrondi
-            tabresultats[i] = (double)entier / 100.0;
-            std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
-        }
+    for(unsigned int i=0; i<tabresultats.size(); i++)
+    {
+        tabresultats[i]=1/tabresultats[i];
+        entier = (int)((0.005 + tabresultats[i])*100.0); //arrondi
+        tabresultats[i] = (double)entier / 100.0;
+        std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
+    }
     res_cp=tabresultats;
 }
 
@@ -202,13 +202,13 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
 {
     int entier;
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE NORMALISE" << std::endl << std::endl;
-    for(unsigned int i=0;i<tabresultats.size();i++)
-        {
-            tabresultats[i]=(getOrdre()-1)/tabresultats[i];
-            entier = (int)((0.005 + tabresultats[i])*100.0); //arrondi
-            tabresultats[i] = (double)entier / 100.0;
-            std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
-        }
+    for(unsigned int i=0; i<tabresultats.size(); i++)
+    {
+        tabresultats[i]=(getOrdre()-1)/tabresultats[i];
+        entier = (int)((0.005 + tabresultats[i])*100.0); //arrondi
+        tabresultats[i] = (double)entier / 100.0;
+        std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
+    }
     res_cpn=tabresultats;
 }
 
@@ -270,7 +270,7 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                     {
                         if(marquage[(Psucc.first)->getIndiceSommet()]==0)
                         {
-                            if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second <= poidsTotale[(Psucc.first)->getIndiceSommet()]))
+                            if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
                             {
 
                                 poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
@@ -283,37 +283,24 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
 
                 }
 
-              /*  for(int i=0; i<tabcompteur.size();++i)
-                {
-                     sommeintermediarite=tabcompteur[i]+sommeintermediarite;
-                }
-                for(int i=0; i<tabcompteur.size();++i)
-                {
-                     tabresintermediarite[i]=tabcompteur[i]/sommeintermediarite;
-                }*/
 
 ///AFFICHAGE
                 std::cout <<"Sommet d'arrivee: "<<arrivee;
                 for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])
                 {
-
                     std::cout << " <- " << z;
                     tabcompteur[z]++;
-
                 }
-                std::cout <<std::endl << "Longueur totale: " << poidsTotale[arrivee]-poidsTotale[predecesseur[arrivee]];
+
+                std::cout <<std::endl << "Longueur totale: " << poidsTotale[arrivee]-poidsTotale[predecesseur[arrivee]] << std::endl;
                 for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])
                 {
                     if(poidsTotale[z]!=0)
                     {
-                        std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]];
+                        std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]] << std::endl;
                     }
 
                 }
-                for(i=0;i<getOrdre();++i)
-                    {
-                        std::cout << "INDICE INTER SOMMET" << i << " : " << tabcompteur[i] << std::endl;
-                    }
 
                 std::cout << "=" << poidsTotale[arrivee];//ici le plus court chemin d'un sommet A � un sommet b
                 std::cout << std::endl;
@@ -321,12 +308,20 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                 POIDS=poidsTotale[arrivee];
                 somme= POIDS+somme;
 
-
             }
 
         }
+
         tabresultats.push_back(somme);
         somme=0;
+    }
+    for(i=0; i<getOrdre(); i++)
+    {
+        tabcompteur[i] = tabcompteur[i] - (getOrdre() -1);
+    }
+    for(i=0; i<getOrdre(); ++i)
+    {
+        std::cout << "INDICE INTER SOMMET" << i << " : " << tabcompteur[i] << std::endl;
     }
 }
 
