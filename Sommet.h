@@ -16,7 +16,7 @@ private:
 
 
 public:
-    Sommet(int indice, char nom, int x, int y);
+    Sommet(int indice, std::string nom, int x, int y);
     int getX();
     int getY();
     int getIndiceSommet();

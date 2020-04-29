@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <iostream>
 
-Sommet::Sommet(int indice, char nom, int x, int y)
+Sommet::Sommet(int indice, std::string nom, int x, int y)
 {
     m_indiceSommet = indice;
     m_nom = nom;
