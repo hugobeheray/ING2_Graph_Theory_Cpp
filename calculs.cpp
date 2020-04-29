@@ -223,6 +223,12 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
 {
     int POIDS;
     int depart, arrivee, somme=0;
+
+    int tabcompteur[m_tabsommet.size()];
+
+    int sommeintermediarite=0;
+    std::vector<float> tabresintermediarite;
+
     for(depart=0; depart<getOrdre(); ++depart)
     {
         for(arrivee=0; arrivee<getOrdre(); ++arrivee)
@@ -243,6 +249,9 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                 poidsTotale[depart] = 0;
                 file.push({m_tabsommet[depart],0});
                 std::pair<Sommet*,int> p;
+
+
+
 //tant que la file n'est pas vide, on applique l'algo
                 while(!file.empty())
                 {
@@ -260,15 +269,32 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                     {
                         if(marquage[(Psucc.first)->getIndiceSommet()]==0)
                         {
-                            if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
+                            if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second <= poidsTotale[(Psucc.first)->getIndiceSommet()]))
                             {
+
                                 poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
                                 predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
                                 file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met � jour la file d'attente
+
+                                tabcompteur[(p.first)->getIndiceSommet()]=tabcompteur[(p.first)->getIndiceSommet()]+1;
                             }
                         }
                     }
+
                 }
+                for(int i=0; i<m_tabsommet.size();++i)
+                {
+                     std::cout<<" cpt : "<<tabcompteur[*i]<<std::endl;
+                }
+
+              /*  for(int i=0; i<tabcompteur.size();++i)
+                {
+                     sommeintermediarite=tabcompteur[i]+sommeintermediarite;
+                }
+                for(int i=0; i<tabcompteur.size();++i)
+                {
+                     tabresintermediarite[i]=tabcompteur[i]/sommeintermediarite;
+                }*/
 
 ///AFFICHAGE
                /* std::cout <<"Sommet d'arrivee: "<<arrivee;
