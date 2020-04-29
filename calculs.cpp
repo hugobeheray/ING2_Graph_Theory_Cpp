@@ -222,9 +222,10 @@ void Graphe::centralite_intermediarite()
 void Graphe::Dijsktra(std::vector<float> &tabresultats)
 {
     int POIDS;
+    int i;
     int depart, arrivee, somme=0;
 
-    int tabcompteur[m_tabsommet.size()];
+    int tabcompteur[getOrdre()] =  {0};
 
     int sommeintermediarite=0;
     std::vector<float> tabresintermediarite;
@@ -276,15 +277,10 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                                 predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
                                 file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met � jour la file d'attente
 
-                                tabcompteur[(p.first)->getIndiceSommet()]=tabcompteur[(p.first)->getIndiceSommet()]+1;
                             }
                         }
                     }
 
-                }
-                for(int i=0; i<m_tabsommet.size();++i)
-                {
-                     std::cout<<" cpt : "<<tabcompteur[*i]<<std::endl;
                 }
 
               /*  for(int i=0; i<tabcompteur.size();++i)
@@ -297,11 +293,12 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                 }*/
 
 ///AFFICHAGE
-               /* std::cout <<"Sommet d'arrivee: "<<arrivee;
+                std::cout <<"Sommet d'arrivee: "<<arrivee;
                 for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])
                 {
 
                     std::cout << " <- " << z;
+                    tabcompteur[z]++;
 
                 }
                 std::cout <<std::endl << "Longueur totale: " << poidsTotale[arrivee]-poidsTotale[predecesseur[arrivee]];
@@ -311,10 +308,16 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                     {
                         std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]];
                     }
+
                 }
+                for(i=0;i<getOrdre();++i)
+                    {
+                        std::cout << "INDICE INTER SOMMET" << i << " : " << tabcompteur[i] << std::endl;
+                    }
+
                 std::cout << "=" << poidsTotale[arrivee];//ici le plus court chemin d'un sommet A � un sommet b
                 std::cout << std::endl;
-                */
+
                 POIDS=poidsTotale[arrivee];
                 somme= POIDS+somme;
 
