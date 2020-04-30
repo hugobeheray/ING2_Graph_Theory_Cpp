@@ -32,7 +32,7 @@ void menu()
     couleurverte();
     std::cin >> nomfichier;
     couleurcyan();*/
-    Graphe graphe("graphe_etoile3_topo.txt","graphe_etoile3_topo_poids.txt");
+    Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
 
 
 

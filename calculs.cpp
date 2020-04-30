@@ -221,15 +221,7 @@ void Graphe::centralite_intermediarite()
 void Graphe::Dijsktra(std::vector<float> &tabresultats)
 {
     int POIDS;
-    int compteur_chemins=0;
-    int i;
     int depart, arrivee, somme=0;
-    std::vector<std::vector<int>> tabpredecesseur;
-
-    int tabcompteur[getOrdre()] =  {0};
-
-    int sommeintermediarite=0;
-    std::vector<float> tabresintermediarite;
 
     for(depart=0; depart<getOrdre(); ++depart)
     {
@@ -271,11 +263,6 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                         {
                             if(marquage[(Psucc.first)->getIndiceSommet()]==0)
                             {
-                                if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second == poidsTotale[(Psucc.first)->getIndiceSommet()]))
-                                {
-                                    compteur_chemins++;
-                                }
-
                                 if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
                                 {
                                     poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
@@ -289,25 +276,26 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                     }
 
 ///AFFICHAGE
+/*
                     std::cout <<"Sommet d'arrivee: "<<arrivee;
                     for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])
                     {
                         std::cout << " <- " << z;
-                        tabcompteur[z]++;
                     }
 
-                    std::cout <<std::endl << "Longueur totale: " << poidsTotale[arrivee]-poidsTotale[predecesseur[arrivee]] << std::endl;
+                    std::cout <<std::endl << "Longueur totale: " << poidsTotale[arrivee]-poidsTotale[predecesseur[arrivee]];
                     for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])
                     {
                         if(poidsTotale[z]!=0)
                         {
-                            std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]] << std::endl;
+                            std::cout << "+" << poidsTotale[z]-poidsTotale[predecesseur[z]];
                         }
 
                     }
 
                     std::cout << "=" << poidsTotale[arrivee];//ici le plus court chemin d'un sommet A � un sommet b
                     std::cout << std::endl;
+                    */
 
                     POIDS=poidsTotale[arrivee];
                     somme=POIDS+somme;
@@ -317,13 +305,5 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
         }
         tabresultats.push_back(somme);
         somme=0;
-    }
-    for(i=0; i<getOrdre(); i++)
-    {
-        tabcompteur[i] = tabcompteur[i] - (getOrdre() -1);
-    }
-    for(i=0; i<getOrdre(); ++i)
-    {
-        std::cout << "INDICE INTER SOMMET" << i << " : " << tabcompteur[i] << std::endl;
     }
 }
