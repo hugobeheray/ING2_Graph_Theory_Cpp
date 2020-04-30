@@ -51,8 +51,10 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
         for( i=0; i<m_taille; i++)
         {
             iss >> indiceArete >> extrem1 >> extrem2 ;
-            m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));
+            m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
             m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
+            m_tabsommet[extrem1]->AjouterSuccesseurNoPair(m_tabsommet[extrem2]);/// sans pair
+            m_tabsommet[extrem2]->AjouterSuccesseurNoPair(m_tabsommet[extrem1]);
 
             m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
         }

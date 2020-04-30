@@ -307,3 +307,91 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
         somme=0;
     }
 }
+
+std::vector<int> Graphe::calcul_intermediarite(int depart)
+{
+     /// déclaration de la file
+    std::queue<Sommet*> file;
+    /// pour le marquage
+    std::vector<int> couleurs((int)m_tabsommet.size(),0);
+    ///pour noter les prédécesseurs : on note les numéros des prédécesseurs (on pourrait stocker des pointeurs sur ...)
+    std::vector<int> preds((int)m_tabsommet.size(),-1);
+
+    ///étape initiale : on enfile et on marque le sommet initial
+
+    file.push(m_tabsommet[depart]);
+    couleurs[depart] = 1;
+
+
+
+    Sommet*s;
+    ///tant que la file n'est pas vide
+    while(!file.empty())
+    {
+        s=file.front();
+        std::vector<Sommet*> succ;
+        succ = m_tabsommet[s->getIndiceSommet()]->getSuccesseursNoPair();
+        file.pop();
+        for(size_t i=0; i<succ.size(); ++i)
+        {
+
+            if(couleurs[succ[i]->getIndiceSommet()] == 0)
+            {
+                file.push(succ[i]);
+                couleurs[succ[i]->getIndiceSommet()] = 1;
+                preds[succ[i]->getIndiceSommet()]= s->getIndiceSommet();
+
+            }
+            ///s'il n'est pas marqué
+            ///on le marque
+            ///on note son prédecesseur (=le sommet défilé)
+            ///on le met dans la file
+        }
+
+    }
+    return preds;
+}
+
+/*std::vector<int> Graphe::BFS(int num_s0)
+{
+    /// déclaration de la file
+    std::queue<Sommet*> file;
+    /// pour le marquage
+    std::vector<int> couleurs((int)m_tabsommet.size(),0);
+    ///pour noter les prédécesseurs : on note les numéros des prédécesseurs (on pourrait stocker des pointeurs sur ...)
+    std::vector<int> preds((int)m_tabsommet.size(),-1);
+
+    ///étape initiale : on enfile et on marque le sommet initial
+
+    file.push(m_tabsommet[num_s0]);
+    couleurs[num_s0] = 1;
+
+
+
+    Sommet*s;
+    ///tant que la file n'est pas vide
+    while(!file.empty())
+    {
+        s=file.front();
+        std::vector<Sommet*> succ;
+        succ=m_tabsommet[s->GetNum()]->getSuccesseurs();
+        file.pop();
+        for(size_t i=0; i<succ.size(); ++i)
+        {
+
+            if(couleurs[succ[i]->GetNum()] == 0)
+            {
+                file.push(succ[i]);
+                couleurs[succ[i]->GetNum()] = 1;
+                preds[succ[i]->GetNum()]= s->GetNum();
+
+            }
+            ///s'il n'est pas marqué
+            ///on le marque
+            ///on note son prédecesseur (=le sommet défilé)
+            ///on le met dans la file
+        }
+
+    }
+    return preds;
+}*/

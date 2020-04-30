@@ -54,6 +54,7 @@ public:
     void centralite_vecteur_normalise();
     void centralite_proximite(std::vector<float> &tabresultats);
     void centralite_proximite_normalise(std::vector<float> &tabresultats);
+    std::vector<int> calcul_intermediarite(int depart);
     void sauvegarde();
     void coloration();
     void Dijsktra(std::vector<float> &tabresultats);

@@ -5,6 +5,27 @@
 #include "svgfile.h"
 #include "windows.h"
 
+void afficher_parcours(size_t num, std::vector<int>& arbre)
+{
+    for(size_t i=0; i<arbre.size(); ++i)
+    {
+        if(i!=num)
+        {
+            if(arbre[i]!=-1)
+            {
+                std::cout<<i<<" <-- ";
+                size_t j=arbre[i];
+                while(j!=num)
+                {
+                    std::cout<<j<<" <-- ";
+                    j=arbre[j];
+                }
+                std::cout<<j<<std::endl;
+            }
+        }
+    }
+}
+
 void couleurverte()
 {
     HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
@@ -22,7 +43,9 @@ void menu()
     int choix;
     std::vector<float> tabresultats;
     std::string nomfichier;
+    std::vector<int> arbre_BFS;
     std::string nomfichierpoids;
+    int depart;
 /*
     std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
     couleurverte();
@@ -66,6 +89,12 @@ void menu()
             tabresultats.clear();
             graphe.Dijsktra(tabresultats);
             graphe.centralite_proximite_normalise(tabresultats);
+            for(depart=0; depart<5; ++depart)
+            {
+                arbre_BFS=graphe.calcul_intermediarite(depart);
+                afficher_parcours(depart,arbre_BFS);
+            }
+
 
             //graphe.Dijsktra(tabresultats);
             graphe.sauvegarde();
