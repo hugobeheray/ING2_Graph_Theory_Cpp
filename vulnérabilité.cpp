@@ -19,11 +19,11 @@ void Graphe::suppression_arete(std::string *nomfichier)
     int choix;
     do
     {
-        std::cout << "Quelle arete voulez vous supprimer?" << std::endl;
+        std::cout << "Quelle arete voulez vous supprimer pour tester la connexite?" << std::endl;
         std::cin >> choix;
     }
-    while(choix<0); // a changer
-    for(unsigned int i=0; i<m_tabarete.size(); i++)
+    while(choix<0 || choix>getTaille());
+    for(unsigned int i=0;i<m_tabarete.size();i++)
     {
         if(choix==m_tabarete[i]->GetIndiceArete())
         {

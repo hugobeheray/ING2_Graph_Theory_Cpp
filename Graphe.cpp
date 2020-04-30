@@ -1,4 +1,3 @@
-
 #include "graphe.h"
 #include "Sommet.h"
 #include "Arete.h"
@@ -265,8 +264,6 @@ void Graphe::coloration()
     {
         m_tabsommet[i]->setImportance(m_res_cd[i]);
     }
-
-
 }
 
 Graphe::~Graphe()
