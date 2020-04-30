@@ -229,6 +229,7 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
         {
             if(depart!=arrivee)
             {
+                ///rajouter le if pour j<k
 
                     auto cmp = [](std::pair<const Sommet*,int> p1, std::pair<Sommet*,int> p2)
                     {
@@ -268,8 +269,7 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                                     poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
                                     predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
                                     file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met a jour la file d'attente
-
-
+                                    compteur_chemins++;
                                 }
                             }
                         }
