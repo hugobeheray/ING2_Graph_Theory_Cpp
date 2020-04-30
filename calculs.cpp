@@ -237,8 +237,7 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
         {
             if(depart!=arrivee)
             {
-                //if(depart<arrivee)
-                //{
+
                     auto cmp = [](std::pair<const Sommet*,int> p1, std::pair<Sommet*,int> p2)
                     {
                         return p2.second<p1.second;
@@ -313,7 +312,7 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                     POIDS=poidsTotale[arrivee];
                     somme=POIDS+somme;
 
-                //}
+
             }
         }
         tabresultats.push_back(somme);

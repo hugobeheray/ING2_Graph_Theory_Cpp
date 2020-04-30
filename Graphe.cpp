@@ -142,7 +142,7 @@ void Graphe::dessiner(Svgfile *svgout)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "orange");
 
     }
-    ///affichage legende
+  /*  ///affichage legende
     svgout->addRect(600,400,300,100,"white");
     svgout->addLine(600,400,900,400,"red");
     svgout->addLine(600,400,600,500,"red");
@@ -152,7 +152,7 @@ void Graphe::dessiner(Svgfile *svgout)
     svgout->addText(605,435,"- Violet : Indice de centralité de degré", "purple");
     svgout->addText(605,455,"- Rose : Indice de centralité de vecteur propre", "pink");
     svgout->addText(605,475,"- Bleu : Indice de centralité de proximité", "blue");
-    svgout->addText(605,495,"- Vert : Indice de centralité d'intermédiarité", "green");
+    svgout->addText(605,495,"- Vert : Indice de centralité d'intermédiarité", "green");*/
     ///affichage indices
     for(i=0; i<getOrdre(); ++i)
     {
