@@ -30,7 +30,7 @@ void Graphe::centralite_degre()
     {
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
-    res_cd=m_tabdegre;
+    m_res_cd=m_tabdegre;
     std::cout<<std::endl;
     m_tabdegre.clear();
 }
@@ -62,7 +62,7 @@ void Graphe::centralite_degre_normalise()
     {
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
-    res_cdn=m_tabdegre;
+    m_res_cdn=m_tabdegre;
     std::cout<<std::endl;
 }
 
@@ -120,7 +120,7 @@ void Graphe::centralite_vecteur()
     {
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
-    res_cv=m_tabdegre;
+    m_res_cv=m_tabdegre;
     m_tabdegre.clear();
 }
 
@@ -179,7 +179,7 @@ void Graphe::centralite_vecteur_normalise()
     {
         std::cout << "              Sommet "<<i<<" : "<< tabdegrenormalise[i] << std::endl;
     }
-    res_cvn=tabdegrenormalise;
+    m_res_cvn=tabdegrenormalise;
 //m_tabdegre.clear();/// peut etre a supr
 }
 
@@ -196,7 +196,7 @@ void Graphe :: centralite_proximite (std::vector<float> &tabresultats)
         tabresultats[i] = (double)entier / 100.0;
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
-    res_cp=tabresultats;
+    m_res_cp=tabresultats;
 }
 
 void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
@@ -210,7 +210,7 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
         tabresultats[i] = (double)entier / 100.0;
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
-    res_cpn=tabresultats;
+    m_res_cpn=tabresultats;
 }
 
 void Graphe::centralite_intermediarite(std::vector<float> &tabresultats)
@@ -224,7 +224,7 @@ int entier;
         tabresultats[i] = (double)entier / 100.0;
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
-    res_ci=tabresultats;
+    m_res_ci=tabresultats;
 }
 
 void Graphe::centralite_intermediarite_normalise(std::vector<float> &tabresultats)
@@ -238,7 +238,7 @@ int entier;
         tabresultats[i] = (double)entier / 100.0;
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
-    res_cin=tabresultats;
+    m_res_cin=tabresultats;
 }
 
 //ss prgm qui �xecute l'algo de Dijsktra
@@ -339,7 +339,6 @@ void Graphe::calcul_intermediarite(std::vector<float> &tabresultats)
 
     int tabcompteur[getOrdre()] =  {0};
 
-    int sommeintermediarite=0;
     std::vector<float> tabresintermediarite;
 
     for(depart=0; depart<getOrdre(); ++depart)
@@ -451,51 +450,3 @@ void Graphe::calcul_intermediarite(std::vector<float> &tabresultats)
     }*/
 
 }
-
-
-
-
-
-/*std::vector<int> Graphe::BFS(int num_s0)
-{
-    /// déclaration de la file
-    std::queue<Sommet*> file;
-    /// pour le marquage
-    std::vector<int> couleurs((int)m_tabsommet.size(),0);
-    ///pour noter les prédécesseurs : on note les numéros des prédécesseurs (on pourrait stocker des pointeurs sur ...)
-    std::vector<int> preds((int)m_tabsommet.size(),-1);
-
-    ///étape initiale : on enfile et on marque le sommet initial
-
-    file.push(m_tabsommet[num_s0]);
-    couleurs[num_s0] = 1;
-
-
-
-    Sommet*s;
-    ///tant que la file n'est pas vide
-    while(!file.empty())
-    {
-        s=file.front();
-        std::vector<Sommet*> succ;
-        succ=m_tabsommet[s->GetNum()]->getSuccesseurs();
-        file.pop();
-        for(size_t i=0; i<succ.size(); ++i)
-        {
-
-            if(couleurs[succ[i]->GetNum()] == 0)
-            {
-                file.push(succ[i]);
-                couleurs[succ[i]->GetNum()] = 1;
-                preds[succ[i]->GetNum()]= s->GetNum();
-
-            }
-            ///s'il n'est pas marqué
-            ///on le marque
-            ///on note son prédecesseur (=le sommet défilé)
-            ///on le met dans la file
-        }
-
-    }
-    return preds;
-}*/

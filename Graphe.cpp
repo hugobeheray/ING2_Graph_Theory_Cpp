@@ -161,10 +161,10 @@ void Graphe::dessiner(Svgfile *svgout)
     for(i=0; i<getOrdre(); ++i)
     {
         svgout->addText((m_tabsommet[i]->getX())*100-65+12, (m_tabsommet[i]->getY())*100-20," (", "black");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+16, (m_tabsommet[i]->getY())*100-20,res_cdn[i], "purple");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+46, (m_tabsommet[i]->getY())*100-20,res_cvn[i], "pink");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+76, (m_tabsommet[i]->getY())*100-20,res_cpn[i], "blue");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+106, (m_tabsommet[i]->getY())*100-20,res_cin[i], "green");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+16, (m_tabsommet[i]->getY())*100-20,m_res_cdn[i], "purple");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+46, (m_tabsommet[i]->getY())*100-20,m_res_cvn[i], "pink");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+76, (m_tabsommet[i]->getY())*100-20,m_res_cpn[i], "blue");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+106, (m_tabsommet[i]->getY())*100-20,m_res_cin[i], "green");
         svgout->addText((m_tabsommet[i]->getX())*100-65+120, (m_tabsommet[i]->getY())*100-20," )", "black");
     }
 }
@@ -189,7 +189,7 @@ void Graphe::sauvegarde()
     {
         for(int i=0; i<getOrdre(); ++i)
         {
-            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << res_cd[i] << "\t" << res_cdn[i] << "\t" << res_cv[i] << "\t" << res_cvn[i] <<"\t" << res_cp[i] << "\t" << res_cpn[i] << "\t " << res_ci[i] << "\t" << res_cin[i] << std::endl;
+            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << m_res_cd[i] << "\t" << m_res_cdn[i] << "\t" << m_res_cv[i] << "\t" << m_res_cvn[i] <<"\t" << m_res_cp[i] << "\t" << m_res_cpn[i] << "\t " << m_res_ci[i] << "\t" << m_res_cin[i] << std::endl;
         }
     }
 }
@@ -199,8 +199,7 @@ void Graphe::coloration()
 {
     for(int i=0; i<getOrdre(); ++i)
     {
-        m_tabsommet[i]->setImportance(res_cd[i]);
-        //std::cout<<m_tabsommet[i]->getImportance()<<std::endl;
+        m_tabsommet[i]->setImportance(m_res_cd[i]);
     }
 
 

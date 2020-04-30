@@ -45,7 +45,6 @@ void menu()
     std::vector<float> tabresultats;
     std::string nomfichier;
     std::string nomfichierpoids;
-    int depart;
 /*
     std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
     couleurverte();
@@ -55,8 +54,8 @@ void menu()
     couleurverte();
     std::cin >> nomfichier;
     couleurcyan();*/
-    //Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
-    Graphe graphe("metro_paris.txt","metro_paris_poids.txt");
+    Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
+    //Graphe graphe("metro_paris.txt","metro_paris_poids.txt");
 
 
 
@@ -78,6 +77,7 @@ void menu()
             graphe.afficher();
             break;
         case 2:
+            graphe.suppression_arete();
             std::cout<<std::endl;
             break;
         case 3:
