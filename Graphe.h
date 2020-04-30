@@ -59,12 +59,12 @@ public:
     void calcul_intermediarite(std::vector<float> &tabresultats);
     void sauvegarde();
     void coloration();
-    void suppression_arete(std::string *nomfichier);
+    void suppression_arete(std::string &nomfichier,std::string &nomfichiertopo,Graphe graphe);
     void Dijsktra(std::vector<float> &tabresultats);
     void centralite_intermediarite(std::vector<float> &tabresultats);
     void centralite_intermediarite_normalise(std::vector<float> &tabresultats);
-    void chargementTopo();
-    void chargementPoids();
+    void chargementTopo(std::string &fichiertopo);
+    void chargementPoids(std::string &fichierpoids);
     Graphe();
 
 

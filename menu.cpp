@@ -42,19 +42,10 @@ void menu()
     couleurcyan();
     int choix;
     std::vector<float> tabresultats;
-    std::string nomfichier;
-    std::string nomfichierpoids;
-/*
-    std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
-    couleurverte();
-    std::cin >> nomfichierpoids;
-    couleurcyan();
-    std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
-    couleurverte();
-    std::cin >> nomfichier;
-    couleurcyan();*/
+    std::string nomfichierpoids,nomfichiertopo;
+
+
     Graphe graphe;
-    //Graphe graphe("metro_paris.txt","metro_paris_poids.txt");
 
 
 
@@ -73,13 +64,22 @@ void menu()
         switch(choix)
         {
         case 1:
-
-            graphe.chargementPoids();
-            graphe.chargementTopo();
+    std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
+    couleurverte();
+    std::cin >> nomfichierpoids;
+    couleurcyan();
+    std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
+    couleurverte();
+    std::cin >> nomfichiertopo;
+    couleurcyan();
+            std::cout << nomfichierpoids << nomfichiertopo << std::endl;
+             graphe.chargementPoids(nomfichierpoids);
+          graphe.chargementTopo(nomfichiertopo);
+            std::cout << nomfichierpoids << nomfichiertopo << std::endl;
             graphe.afficher();
             break;
         case 2:
-            graphe.suppression_arete(&nomfichierpoids);
+            graphe.suppression_arete(nomfichierpoids,nomfichiertopo,graphe);
             std::cout<<std::endl;
             break;
         case 3:

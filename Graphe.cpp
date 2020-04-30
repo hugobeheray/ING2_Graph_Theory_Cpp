@@ -18,13 +18,10 @@ Graphe::Graphe()
 
 }
 
-void Graphe::chargementPoids()
+void Graphe::chargementPoids(std::string &fichierpoids)
 {
     int indiceArete,poids;
-    std::string fichierpoids;
-    std::cout << "Entrez le nom du fichier" << std::endl;
-    std::cin >> fichierpoids;
-    std::ifstream iss2("graphe_cycle5_topo_poids.txt");
+    std::ifstream iss2(fichierpoids);
 
     if(iss2)
     {
@@ -39,13 +36,12 @@ void Graphe::chargementPoids()
         std::cout << "erreur lors de l'ouverture du fichier "<<std::endl;
 }
 
-void Graphe::chargementTopo()
+void Graphe::chargementTopo(std::string &fichiertopo)
 {
     int x,y, indiceSommet,indiceArete,extrem1,extrem2;
-    std::string fichiertopo,nom;
-    std::cout << "Entrez le nom du fichier" << std::endl;
-    std::cin >> fichiertopo;
-    std::ifstream iss("graphe_cycle5_topo.txt");
+    std::string nom;
+
+    std::ifstream iss(fichiertopo);
     if(iss)
     {
         iss >> m_orient; /// on récupère l'orientation du graphe
