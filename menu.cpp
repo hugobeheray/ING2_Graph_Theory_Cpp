@@ -43,7 +43,6 @@ void menu()
     int choix;
     std::vector<float> tabresultats;
     std::string nomfichier;
-    std::vector<int> arbre_BFS;
     std::string nomfichierpoids;
     int depart;
 /*
@@ -55,8 +54,8 @@ void menu()
     couleurverte();
     std::cin >> nomfichier;
     couleurcyan();*/
-   // Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
-    Graphe graphe("metro_paris.txt","metro_paris_poids.txt");
+    Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
+    //Graphe graphe("metro_paris.txt","metro_paris_poids.txt");
 
 
 
@@ -89,14 +88,17 @@ void menu()
             graphe.Dijsktra(tabresultats);
             graphe.centralite_proximite(tabresultats);
             tabresultats.clear();
+
             graphe.Dijsktra(tabresultats);
             graphe.centralite_proximite_normalise(tabresultats);
-            for(depart=0; depart<5; ++depart)
-            {
-                arbre_BFS=graphe.calcul_intermediarite(depart);
-                afficher_parcours(depart,arbre_BFS);
-            }
+            tabresultats.clear();
 
+            graphe.calcul_intermediarite(tabresultats);
+            graphe.centralite_intermediarite(tabresultats);
+            tabresultats.clear();
+
+            graphe.calcul_intermediarite(tabresultats);
+            graphe.centralite_intermediarite_normalise(tabresultats);
 
             //graphe.Dijsktra(tabresultats);
             graphe.sauvegarde();
