@@ -36,6 +36,8 @@ private:
     std::vector <float> res_cvn;
     std::vector <float> res_cp;
     std::vector <float> res_cpn;
+    std::vector <float> res_ci;
+    std::vector <float> res_cin;
 
 
 public:
@@ -54,10 +56,12 @@ public:
     void centralite_vecteur_normalise();
     void centralite_proximite(std::vector<float> &tabresultats);
     void centralite_proximite_normalise(std::vector<float> &tabresultats);
+    void calcul_intermediarite(std::vector<float> &tabresultats);
     void sauvegarde();
     void coloration();
     void Dijsktra(std::vector<float> &tabresultats);
-    void centralite_intermediarite();
+    void centralite_intermediarite(std::vector<float> &tabresultats);
+    void centralite_intermediarite_normalise(std::vector<float> &tabresultats);
 
 
 };

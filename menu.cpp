@@ -1,9 +1,31 @@
+
 #include <iostream>
 #include "Graphe.h"
 #include "Sommet.h"
 #include <vector>
 #include "svgfile.h"
 #include "windows.h"
+
+void afficher_parcours(size_t num, std::vector<int>& arbre)
+{
+    for(size_t i=0; i<arbre.size(); ++i)
+    {
+        if(i!=num)
+        {
+            if(arbre[i]!=-1)
+            {
+                std::cout<<i<<" <-- ";
+                size_t j=arbre[i];
+                while(j!=num)
+                {
+                    std::cout<<j<<" <-- ";
+                    j=arbre[j];
+                }
+                std::cout<<j<<std::endl;
+            }
+        }
+    }
+}
 
 void couleurverte()
 {
@@ -23,6 +45,7 @@ void menu()
     std::vector<float> tabresultats;
     std::string nomfichier;
     std::string nomfichierpoids;
+    int depart;
 /*
     std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
     couleurverte();
@@ -32,7 +55,9 @@ void menu()
     couleurverte();
     std::cin >> nomfichier;
     couleurcyan();*/
-    Graphe graphe("graphe_ameriquedusud_topo.txt","graphe_ameriquedusud_topo_poids.txt");
+    //Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
+    Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
+
 
 
 
@@ -64,10 +89,19 @@ void menu()
             graphe.Dijsktra(tabresultats);
             graphe.centralite_proximite(tabresultats);
             tabresultats.clear();
-            graphe.Dijsktra(tabresultats);
-            graphe.centralite_proximite_normalise(tabresultats);
 
             graphe.Dijsktra(tabresultats);
+            graphe.centralite_proximite_normalise(tabresultats);
+            tabresultats.clear();
+
+            graphe.calcul_intermediarite(tabresultats);
+            graphe.centralite_intermediarite(tabresultats);
+            tabresultats.clear();
+
+            graphe.calcul_intermediarite(tabresultats);
+            graphe.centralite_intermediarite_normalise(tabresultats);
+
+            //graphe.Dijsktra(tabresultats);
             graphe.sauvegarde();
             break;
         case 4:

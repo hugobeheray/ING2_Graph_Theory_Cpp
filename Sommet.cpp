@@ -67,4 +67,22 @@ void Sommet::setPoidsD(int poidsD)
     m_poidsD=poidsD;
 }
 
+void Sommet::afficherSuccesseursNoPair()
+{
+  std::cout << " sommet " << m_indiceSommet << " : ";
+  for(auto s : m_successeursNopair)
+  {
+    std::cout << s->getIndiceSommet() << " ";
+  }
+}
+void Sommet::AjouterSuccesseurNoPair(Sommet*s)
+{
+  m_successeursNopair.push_back(s);
+}
+
+ std::vector< Sommet*>& Sommet::getSuccesseursNoPair()
+{
+  return m_successeursNopair;
+}
+
 

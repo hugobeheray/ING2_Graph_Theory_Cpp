@@ -1,3 +1,4 @@
+
 #include "graphe.h"
 #include "Sommet.h"
 #include "Arete.h"
@@ -51,8 +52,10 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
         for( i=0; i<m_taille; i++)
         {
             iss >> indiceArete >> extrem1 >> extrem2 ;
-            m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));
+            m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
             m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
+            m_tabsommet[extrem1]->AjouterSuccesseurNoPair(m_tabsommet[extrem2]);/// sans pair
+            m_tabsommet[extrem2]->AjouterSuccesseurNoPair(m_tabsommet[extrem1]);
 
             m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
         }
@@ -106,7 +109,8 @@ void Graphe::dessiner(Svgfile *svgout)
     ///affichage lettres sommets
     for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText((m_tabsommet[i]->getX())*100-5, (m_tabsommet[i]->getY())*100-35,m_tabsommet[i]->getNom(), "black");
+
+        svgout->addText((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100-35,m_tabsommet[i]->getNom(), "black");
        // svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
     }
     ///affichage aretes
@@ -142,7 +146,7 @@ void Graphe::dessiner(Svgfile *svgout)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "orange");
 
     }
-    ///affichage legende
+  /*  ///affichage legende
     svgout->addRect(600,400,300,100,"white");
     svgout->addLine(600,400,900,400,"red");
     svgout->addLine(600,400,600,500,"red");
@@ -152,15 +156,16 @@ void Graphe::dessiner(Svgfile *svgout)
     svgout->addText(605,435,"- Violet : Indice de centralité de degré", "purple");
     svgout->addText(605,455,"- Rose : Indice de centralité de vecteur propre", "pink");
     svgout->addText(605,475,"- Bleu : Indice de centralité de proximité", "blue");
-    svgout->addText(605,495,"- Vert : Indice de centralité d'intermédiarité", "green");
+    svgout->addText(605,495,"- Vert : Indice de centralité d'intermédiarité", "green");*/
     ///affichage indices
     for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText((m_tabsommet[i]->getX())*100-55+12, (m_tabsommet[i]->getY())*100-20," (", "black");
-        svgout->addText((m_tabsommet[i]->getX())*100-55+16, (m_tabsommet[i]->getY())*100-20,res_cdn[i], "purple");
-        svgout->addText((m_tabsommet[i]->getX())*100-55+46, (m_tabsommet[i]->getY())*100-20,res_cvn[i], "pink");
-        svgout->addText((m_tabsommet[i]->getX())*100-55+76, (m_tabsommet[i]->getY())*100-20,res_cpn[i], "blue");
-        svgout->addText((m_tabsommet[i]->getX())*100-55+104, (m_tabsommet[i]->getY())*100-20," )", "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+12, (m_tabsommet[i]->getY())*100-20," (", "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+16, (m_tabsommet[i]->getY())*100-20,res_cdn[i], "purple");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+46, (m_tabsommet[i]->getY())*100-20,res_cvn[i], "pink");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+76, (m_tabsommet[i]->getY())*100-20,res_cpn[i], "blue");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+106, (m_tabsommet[i]->getY())*100-20,res_cin[i], "green");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+120, (m_tabsommet[i]->getY())*100-20," )", "black");
     }
 }
 
@@ -184,7 +189,7 @@ void Graphe::sauvegarde()
     {
         for(int i=0; i<getOrdre(); ++i)
         {
-            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << res_cd[i] << "\t" << res_cdn[i] << "\t" << res_cv[i] << "\t" << res_cvn[i] <<"\t" << res_cp[i] << "\t" << res_cpn[i] << std::endl;
+            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << res_cd[i] << "\t" << res_cdn[i] << "\t" << res_cv[i] << "\t" << res_cvn[i] <<"\t" << res_cp[i] << "\t" << res_cpn[i] << "\t " << res_ci[i] << "\t" << res_cin[i] << std::endl;
         }
     }
 }
