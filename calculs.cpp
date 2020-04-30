@@ -221,8 +221,10 @@ void Graphe::centralite_intermediarite()
 void Graphe::Dijsktra(std::vector<float> &tabresultats)
 {
     int POIDS;
+    int compteur_chemins=0;
     int i;
     int depart, arrivee, somme=0;
+    std::vector<std::vector<int>> tabpredecesseur;
 
     int tabcompteur[getOrdre()] =  {0};
 
@@ -270,12 +272,16 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                         {
                             if(marquage[(Psucc.first)->getIndiceSommet()]==0)
                             {
-                                if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second <= poidsTotale[(Psucc.first)->getIndiceSommet()]))
+                                if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second == poidsTotale[(Psucc.first)->getIndiceSommet()]))
                                 {
+                                    compteur_chemins++;
+                                }
 
+                                if((poidsTotale[(Psucc.first)->getIndiceSommet()]==-1)||(p.second + Psucc.second < poidsTotale[(Psucc.first)->getIndiceSommet()]))
+                                {
                                     poidsTotale[(Psucc.first)->getIndiceSommet()] = p.second+Psucc.second;
                                     predecesseur[(Psucc.first)->getIndiceSommet()] = p.first->getIndiceSommet();
-                                    file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met � jour la file d'attente
+                                    file.push(std::make_pair(Psucc.first,poidsTotale[(Psucc.first)->getIndiceSommet()]));//on met a jour la file d'attente
 
 
                                 }
