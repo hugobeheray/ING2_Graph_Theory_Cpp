@@ -54,7 +54,7 @@ void menu()
     couleurverte();
     std::cin >> nomfichier;
     couleurcyan();*/
-    Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
+    Graphe graphe;
     //Graphe graphe("metro_paris.txt","metro_paris_poids.txt");
 
 
@@ -74,10 +74,13 @@ void menu()
         switch(choix)
         {
         case 1:
+
+            graphe.chargementPoids();
+            graphe.chargementTopo();
             graphe.afficher();
             break;
         case 2:
-            graphe.suppression_arete();
+            graphe.suppression_arete(&nomfichierpoids);
             std::cout<<std::endl;
             break;
         case 3:

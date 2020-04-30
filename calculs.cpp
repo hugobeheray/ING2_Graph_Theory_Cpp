@@ -110,9 +110,9 @@ void Graphe::centralite_vecteur()
             entier = (int)((0.005 + m_tabdegre[i])*100.0); //arrondi
             m_tabdegre[i] = (double)entier / 100.0;
         }
-        //std::cout<<lambda<<std::endl;//pour voir les differentes valeurs de delata
+        std::cout<<lambda<<std::endl;//pour voir les differentes valeurs de delata
     }
-    while((lambda>0) && (lambda<95.7));///tant que delta lambda est sup�rieur � 0,1
+    while((lambda>0) && (lambda<1));///tant que delta lambda est sup�rieur � 0,1
     ///affichage des indices de chaque sommet
 
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE" << std::endl << std::endl;

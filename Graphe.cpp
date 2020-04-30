@@ -14,7 +14,71 @@
 #include "Coords.h"
 #include "calculs.h"
 
-Graphe::Graphe(std::string fichier,std::string fichierpoids)
+Graphe::Graphe()
+{
+
+}
+
+void Graphe::chargementPoids()
+{
+    int indiceArete,poids;
+    std::string fichierpoids;
+    std::cout << "Entrez le nom du fichier" << std::endl;
+    std::cin >> fichierpoids;
+    std::ifstream iss2("graphe_cycle5_topo_poids.txt");
+
+    if(iss2)
+    {
+        iss2 >> m_taille;
+        for( int i=0; i<m_taille; ++i)
+        {
+            iss2 >> indiceArete >> poids;
+            m_tabpoids.push_back(new Arete(indiceArete,poids));
+        }
+    }
+    else
+        std::cout << "erreur lors de l'ouverture du fichier "<<std::endl;
+}
+
+void Graphe::chargementTopo()
+{
+    int x,y, indiceSommet,indiceArete,extrem1,extrem2;
+    std::string fichiertopo,nom;
+    std::cout << "Entrez le nom du fichier" << std::endl;
+    std::cin >> fichiertopo;
+    std::ifstream iss("graphe_cycle5_topo.txt");
+    if(iss)
+    {
+        iss >> m_orient; /// on récupère l'orientation du graphe
+        iss >> m_ordre; /// on récupère l'ordre du graphe
+        for( int i=0; i<m_ordre; i++)
+        {
+           // std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
+            iss >> indiceSommet >> nom >> x >> y;
+            m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
+            m_tabcoords.push_back(new Coords(x,y));
+            //m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
+
+        }
+        iss >> m_taille;
+        for( int i=0; i<m_taille; i++)
+        {
+            iss >> indiceArete >> extrem1 >> extrem2 ;
+            m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
+            m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
+            m_tabsommet[extrem1]->AjouterSuccesseurNoPair(m_tabsommet[extrem2]);/// sans pair
+            m_tabsommet[extrem2]->AjouterSuccesseurNoPair(m_tabsommet[extrem1]);
+
+            m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
+        }
+    }
+    else
+    {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
+    }
+}
+
+/*Graphe::Graphe(std::string fichier,std::string fichierpoids)
 {
     std::ifstream iss(fichier);
     std::ifstream iss2(fichierpoids);
@@ -64,7 +128,7 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
     {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
     }
-}
+}*/
 
 void Graphe::afficher()
 {
