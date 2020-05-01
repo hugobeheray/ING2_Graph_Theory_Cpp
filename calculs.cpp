@@ -65,6 +65,80 @@ void Graphe::centralite_degre_normalise()
     std::cout<<std::endl;
 }
 
+void Graphe::centralite_vecteur_normalise()
+{
+    float i=0;
+    float somme=0;
+    std::vector<float> sommevoisins;
+    float lambda=0;
+    float lambda2=0;
+    int entier;
+    std::vector <float> tabresultat;
+    ///INITIALISATION
+    for(i=0; i<getOrdre(); i++)
+    {
+        m_tabdegre[i]=1;
+        tabresultat.push_back(0);
+        sommevoisins.push_back(0);
+    }
+
+    ///FAIRE
+    do
+    {
+        lambda2=lambda;
+        somme=0;
+        ///Pour chaque sommet, faire la somme des indices de ses voisins
+        for( int i=0; i<getOrdre() ; i++)
+        {
+            for(int j=0; j<getTaille(); j++)
+            {
+                if(m_tabarete[j]->getExtrem1()==i )///sommet 0 : détecter 1 voisin
+                {
+                    sommevoisins[i]=sommevoisins[i]+ m_tabdegre[m_tabarete[j]->getExtrem2()];
+                    tabresultat[m_tabarete[j]->getExtrem1()]= sommevoisins[i];
+                }
+                if(m_tabarete[j]->getExtrem2()==i)
+                {
+                    sommevoisins[i]=sommevoisins[i]+ m_tabdegre[m_tabarete[j]->getExtrem1()];
+                    tabresultat[m_tabarete[j]->getExtrem2()]= sommevoisins[i];
+                }
+
+            }
+            sommevoisins[i]=0;
+        }
+       /* for(unsigned int i=0; i<tabresultat.size(); i++)
+        {
+            std::cout << "tabresultat " << i << " = " << tabresultat[i] << std::endl; //1/1/1/4/2/4/1/1/1 au premier tour de la grande boucle for
+        }*/
+
+
+        ///Calcul de lambda
+        for(i=0; i<getOrdre(); i++)
+        {
+            somme=(pow(tabresultat[i],2))+somme;
+        }
+        lambda=sqrt(somme);
+        ///Recalcul de l'indice
+        for(i=0; i<getOrdre(); i++)
+        {
+            m_tabdegre[i]=(tabresultat[i]/lambda);
+            entier = (int)((0.005 + m_tabdegre[i])*100.0); //arrondi
+            m_tabdegre[i] = (double)entier / 100.0;
+        }
+        //std::cout<< "LAMBDA = " << lambda <<std::endl;//pour voir les differentes valeurs de lambda
+    }
+    while(abs(lambda-lambda2)>0.01);///tant que delta lambda est superieur a 0,01
+    ///affichage des indices de chaque sommet
+
+    std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE NORMALISE" << std::endl << std::endl;
+    for(i=0; i<m_tabdegre.size(); i++)
+    {
+        std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
+    }
+    m_res_cv=m_tabdegre;
+    //m_tabdegre.clear();
+}
+
 void Graphe::centralite_vecteur()
 {
     float i=0;
@@ -106,10 +180,10 @@ void Graphe::centralite_vecteur()
             }
             sommevoisins[i]=0;
         }
-        for(unsigned int i=0; i<tabresultat.size(); i++)
+    /*    for(unsigned int i=0; i<tabresultat.size(); i++)
         {
             std::cout << "tabresultat " << i << " = " << tabresultat[i] << std::endl; //1/1/1/4/2/4/1/1/1 au premier tour de la grande boucle for
-        }
+        }*/
 
 
         ///Calcul de lambda
@@ -121,84 +195,22 @@ void Graphe::centralite_vecteur()
         ///Recalcul de l'indice
         for(i=0; i<getOrdre(); i++)
         {
-            m_tabdegre[i]=(tabresultat[i]/lambda);
+            m_tabdegre[i]=(tabresultat[i]);
             entier = (int)((0.005 + m_tabdegre[i])*100.0); //arrondi
             m_tabdegre[i] = (double)entier / 100.0;
         }
-        std::cout<< "LAMBDA = " << lambda <<std::endl;//pour voir les differentes valeurs de lambda
+        //std::cout<< "LAMBDA = " << lambda <<std::endl;//pour voir les differentes valeurs de lambda
     }
-    while(abs(lambda-lambda2)>0.01);///tant que delta lambda est superieur a 0,01
+    while(abs(lambda-lambda2)<25);///tant que delta lambda est superieur a 0,01
     ///affichage des indices de chaque sommet
 
-    std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE" << std::endl << std::endl;
+    std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE ('NON NORMALISE')" << std::endl << std::endl;
     for(i=0; i<m_tabdegre.size(); i++)
     {
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
     m_res_cv=m_tabdegre;
     m_tabdegre.clear();
-}
-
-void Graphe::centralite_vecteur_normalise()
-{
-    float i=0;
-    float somme=0;
-    float lambda=0;
-    float lambda2;
-    int compteur=0;
-    int entier=0;
-    std::vector <float> tabresultat;
-    std::vector <float> tabdegrenormalise;
-    ///INITIALISATION
-    for(i=0; i<getOrdre(); i++)
-    {
-        m_tabdegre[i]=1;
-    }
-
-    ///FAIRE
-    do
-    {
-        lambda2=lambda;
-        somme=0;
-        ///Pour chaque sommet, faire la somme des indices de ses voisins
-        for( int i=0; i<getOrdre() ; i++)
-        {
-            for(int j=0; j<getTaille(); j++)
-            {
-                if( (m_tabarete[j]->getExtrem1()==i || m_tabarete[j]->getExtrem2()==i) )
-                {
-                    compteur++;
-                }
-            }
-            tabresultat.push_back(compteur);
-            compteur=0;
-        }
-
-        ///Calcul de lambda
-        for(i=0; i<getOrdre(); i++)
-        {
-            somme=(pow(tabresultat[i],2))+somme;
-        }
-        lambda=sqrt(somme);
-        ///Recalcul de l'indice
-        for(i=0; i<getOrdre(); i++)
-        {
-            m_tabdegre[i]=(tabresultat[i]/lambda);
-            tabdegrenormalise.push_back(m_tabdegre[i]/(getOrdre()-1));
-            entier = (int)((0.005 + tabdegrenormalise[i])*100.0); //arrondi
-            tabdegrenormalise[i] = (double)entier / 100.0;
-        }
-    }
-    while(lambda-lambda2>0.01);
-    ///affichage des indices de chaque sommet
-
-    std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE NORMALISE" << std::endl << std::endl;
-    for(i=0; i<tabdegrenormalise.size(); i++)
-    {
-        std::cout << "              Sommet "<<i<<" : "<< tabdegrenormalise[i] << std::endl;
-    }
-    m_res_cvn=tabdegrenormalise;
-//m_tabdegre.clear();/// peut etre a supr
 }
 
 

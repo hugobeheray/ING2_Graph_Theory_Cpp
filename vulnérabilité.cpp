@@ -65,8 +65,6 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
         }
         else
             std::cout << "erreur lors de l'ouverture du fichier d'ecriture"<<std::endl;
-
-
     }
     else
         std::cout << "erreur lors de l'ouverture du fichier de lecture "<<std::endl;
@@ -100,6 +98,10 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
             for(int i=0; i<(int)m_tabarete.size()+1; i++)
             {
                 lecture2 >> indiceArete >> extrem1 >> extrem2 ;
+        /*m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
+            m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
+            m_tabsommet[extrem1]->AjouterSuccesseurNoPair(m_tabsommet[extrem2]);/// sans pair
+            m_tabsommet[extrem2]->AjouterSuccesseurNoPair(m_tabsommet[extrem1]);*/
                 if(i!=choix)
                 {
                     if(i<choix)
@@ -137,13 +139,91 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
 
 void Graphe::TestConnexite()
 {
+    int cpt=0;
+
+    /*///Test du degré de chaque sommet
     for(int i=0; i<getOrdre(); i++)
     {
         if(m_tabdegre[i] == 0)
         {
             std::cout << "Sommet "  << i << "non connecte" << std::endl;
+            cpt++;
         }
         else
-            std::cout << "Sommet " << i << "Graphe Connexe" << std::endl;
+            std::cout << "Sommet " << i << "connecte" << std::endl;
+    }*/
+
+    ///Test des eventuels graphes et sous-graphes partiels
+
+    cpt=BFSconnexite(0);
+    std::cout<<"cpt = "<<cpt<<std::endl;
+    std::cout<<"ordre = "<<getOrdre()<<std::endl;
+
+
+    if(cpt==getOrdre())
+    {
+        std::cout<<"Le graphe est connexe"<<std::endl;
     }
+    else
+    {
+         std::cout<<"Le graphe n'est pas connexe"<<std::endl;
+    }
+
+
+}
+
+int Graphe::BFSconnexite(int num_s0)
+{
+    /// déclaration de la file
+    std::queue<Sommet*> file;
+    /// pour le marquage
+    std::vector<int> couleurs((int)m_tabsommet.size(),0);
+    ///pour noter les prédécesseurs : on note les numéros des prédécesseurs (on pourrait stocker des pointeurs sur ...)
+    std::vector<int> preds((int)m_tabsommet.size(),-1);
+    int cpt=0;
+
+    ///étape initiale : on enfile et on marque le sommet initial
+
+    file.push(m_tabsommet[num_s0]);
+    couleurs[num_s0] = 1;
+    cpt++;
+
+    Sommet*s;
+    ///tant que la file n'est pas vide
+    while(!file.empty())
+    {
+        s=file.front();
+        std::vector<std::pair<Sommet*,int>> succ;
+        succ=m_tabsommet[s->getIndiceSommet()]->getSuccesseurs();
+
+        std::cout<<"s = "<<s->getIndiceSommet()<<std::endl;
+
+
+
+        for(int i=0; i<succ.size();++i)
+        {
+                std::cout<<succ[i].first->getIndiceSommet()<<std::endl;
+        }
+
+
+        file.pop();
+        for(size_t i=0; i<succ.size(); ++i)
+        {
+
+            if(couleurs[succ[i].first->getIndiceSommet()] == 0)
+            {
+                file.push(succ[i].first);
+                couleurs[succ[i].first->getIndiceSommet()] = 1;
+                cpt++;
+                preds[succ[i].first->getIndiceSommet()]= s->getIndiceSommet();
+
+            }
+            ///s'il n'est pas marqué
+            ///on le marque
+            ///on note son prédecesseur (=le sommet défilé)
+            ///on le met dans la file
+        }
+
+    }
+    return cpt;
 }

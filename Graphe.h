@@ -66,6 +66,7 @@ public:
     void chargementTopo(std::string &fichiertopo);
     void chargementPoids(std::string &fichierpoids);
     void TestConnexite();
+    int BFSconnexite(int num_s0);
     Graphe();
 
 
