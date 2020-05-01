@@ -9,9 +9,8 @@
 
 int main(int argc, char *argv[])
 {
-
+    ///Appel du menu principal
     menu();
-
 
     return 0;
 }

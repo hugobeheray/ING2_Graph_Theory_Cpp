@@ -5,6 +5,7 @@
 #include "svgfile.h"
 #include "windows.h"
 
+///affichage du parcours
 void afficher_parcours(size_t num, std::vector<int>& arbre)
 {
     for(size_t i=0; i<arbre.size(); ++i)
@@ -26,6 +27,7 @@ void afficher_parcours(size_t num, std::vector<int>& arbre)
     }
 }
 
+///ssprgm permettant de changer la couleur dans la console
 void couleurverte()
 {
     HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
@@ -44,12 +46,9 @@ void menu()
     std::vector<float> tabresultats;
     std::string nomfichierpoids,nomfichiertopo;
 
-
     Graphe graphe;
 
-
-
-
+    ///Tant qu'on ne quitte pas l'application...
     while(choix!=6)
     {
         do
@@ -61,20 +60,22 @@ void menu()
             couleurcyan();
         }
         while(choix < 1 || choix > 6);
+
+        ///En fonction du choix de l'utilisateur...
         switch(choix)
         {
         case 1:
-    std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
-    couleurverte();
-    std::cin >> nomfichierpoids;
-    couleurcyan();
-    std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
-    couleurverte();
-    std::cin >> nomfichiertopo;
-    couleurcyan();
+            std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
+            couleurverte();
+            std::cin >> nomfichierpoids;
+            couleurcyan();
+            std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
+            couleurverte();
+            std::cin >> nomfichiertopo;
+            couleurcyan();
             std::cout << nomfichierpoids << nomfichiertopo << std::endl;
-             graphe.chargementPoids(nomfichierpoids);
-          graphe.chargementTopo(nomfichiertopo);
+            graphe.chargementPoids(nomfichierpoids);
+            graphe.chargementTopo(nomfichiertopo);
             std::cout << nomfichierpoids << nomfichiertopo << std::endl;
             graphe.afficher();
             break;
@@ -87,7 +88,6 @@ void menu()
             graphe.centralite_degre_normalise();
             graphe.centralite_vecteur_normalise();
             graphe.centralite_vecteur();
-
 
             graphe.Dijsktra(tabresultats);
             graphe.centralite_proximite(tabresultats);
@@ -104,8 +104,6 @@ void menu()
             graphe.calcul_intermediarite(tabresultats);
             graphe.centralite_intermediarite_normalise(tabresultats);
 
-            //graphe.Dijsktra(tabresultats);
-            //graphe.sauvegarde();
             break;
         case 4:
         {

@@ -10,10 +10,13 @@
 #include "Graphe.h"
 #include <iostream>
 
+///Lors de la suppression d'une arete, on reecris dans deux nouveaux fichiers de sauvegarde
+///ne contenant pas les informations de l'arete supprimee pour
+///pouvoir par la suite les utiliser pour les calculs et l'affichage dans le .svg
 void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfichiertopo,Graphe graphe)
 {
     int indiceArete, poids;
-    std::string nom,sauvPoids = "sauvegardesupAretePoids.txt",sauvtopo = "sauvegardesupArete.txt";
+    std::string nom,sauvPoids = "sauvegardesupAretePoids.txt", sauvtopo = "sauvegardesupArete.txt";
     int x,y, indiceSommet,extrem1,extrem2;
     std::ifstream lecture(nomfichierpoids);
     std::ofstream ecriture(sauvPoids);
@@ -30,6 +33,7 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
     {
         if(choix==m_tabarete[i]->GetIndiceArete())
         {
+            ///suppression de l'arete dans le tableau
             m_tabarete.erase(m_tabarete.begin() + i);
             m_taille=m_taille -1;
         }
@@ -38,6 +42,8 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
     {
         std::cout << "Arete "<<m_tabarete[i]->GetIndiceArete() << std::endl;
     }
+
+    ///Changement de fichiers
     if(lecture)
     {
         if(ecriture)
@@ -54,14 +60,12 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
                     {
                         ecriture << indiceArete << " " << poids << "\n";
                     }
-                    else if(i>choix) // si on supprime le dernier indice
+                    else if(i>choix)
                     {
                         ecriture << indiceArete-1 << " " << poids << "\n";
                     }
                 }
-
             }
-
         }
         else
             std::cout << "erreur lors de l'ouverture du fichier d'ecriture"<<std::endl;
@@ -72,17 +76,18 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
     lecture.close();
     ecriture.close();
 
+    ///A GARDER?????
     /*m_tabarete.clear();
     m_tabdegre.clear();
     m_tabpoids.clear();
     m_tabcoords.clear();*/
     // m_tabsommet.clear();
 
+    ///Changement de fichiers
     if(lecture2)
     {
         if(ecriture2)
         {
-
             lecture2 >> m_orient;
             ecriture2 << m_orient << "\n";
             lecture2 >> m_ordre;
@@ -99,11 +104,6 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
             {
                 lecture2 >> indiceArete >> extrem1 >> extrem2 ;
 
-           /* m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
-            m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
-            m_tabsommet[extrem1]->AjouterSuccesseurNoPair(m_tabsommet[extrem2]);/// sans pair
-            m_tabsommet[extrem2]->AjouterSuccesseurNoPair(m_tabsommet[extrem1]);*/
-
                 if(i!=choix)
                 {
                     if(i<choix)
@@ -115,82 +115,65 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
                         ecriture2 << indiceArete-1 << " " << extrem1 << " " << extrem2<< "\n";
                     }
                 }
-
             }
-
         }
         else
             std::cout << "erreur lors de l'ouverture du fichier d'ecriture"<<std::endl;
-
-
     }
     else
         std::cout << "erreur lors de l'ouverture du fichier de lecture "<<std::endl;
     lecture2.close();
     ecriture2.close();
 
-    // std::copy(nomfichierpoids.begin(),nomfichierpoids.end(),sauvPoids.begin());
-    //std::copy(nomfichiertopo.begin(),nomfichiertopo.end(),sauvtopo.begin());
-
     std::cout << sauvPoids << std::endl << sauvtopo << std::endl;
+
+    ///Et on charge les nouveaux fichiers pour la suite...
     graphe.chargementPoids(sauvPoids);
     graphe.chargementTopo(sauvtopo);
     graphe.afficher();
 }
 
-
+///C'est ici que l'on teste la connexite des reseaux pour savoir si notre graphe et d'un seul tenant ou non
 void Graphe::TestConnexite()
 {
     int cpt=0;
 
-    /*///Test du degré de chaque sommet
-    for(int i=0; i<getOrdre(); i++)
-    {
-        if(m_tabdegre[i] == 0)
-        {
-            std::cout << "Sommet "  << i << "non connecte" << std::endl;
-            cpt++;
-        }
-        else
-            std::cout << "Sommet " << i << "connecte" << std::endl;
-    }*/
-
-    ///Test des eventuels graphes et sous-graphes partiels
-
+    ///Pour cela, on fait un BFS a partir d'un sommet de depart quelconque, et on regarde en resultat si tous
+    /// les sommets on ete colores ou non...
     cpt=BFSconnexite(0);
     std::cout<<"cpt = "<<cpt<<std::endl;
     std::cout<<"ordre = "<<getOrdre()<<std::endl;
 
-
+    ///Si le nombre de sommets colores equivaut au nombre sommet total, alors le graphe est en effet connexe, sinon non!
     if(cpt==getOrdre())
     {
         std::cout<<"Le graphe est connexe"<<std::endl;
     }
     else
     {
-         std::cout<<"Le graphe n'est pas connexe"<<std::endl;
+        std::cout<<"Le graphe n'est pas connexe"<<std::endl;
     }
-
-
 }
 
+///sssprgm qui retourne un compteur = nombre de sommets colores au cours de l'execution du BFS
 int Graphe::BFSconnexite(int num_s0)
 {
     /// déclaration de la file
     std::queue<Sommet*> file;
+
     /// pour le marquage
     std::vector<int> couleurs((int)m_tabsommet.size(),0);
-    ///pour noter les prédécesseurs : on note les numéros des prédécesseurs (on pourrait stocker des pointeurs sur ...)
+
+    ///pour noter les predecesseurs
     std::vector<int> preds((int)m_tabsommet.size(),-1);
     int cpt=0;
 
-    ///étape initiale : on enfile et on marque le sommet initial
-
+    ///On enfile et on marque le sommet initial
     file.push(m_tabsommet[num_s0]);
     couleurs[num_s0] = 1;
     cpt++;
-
     Sommet*s;
+
     ///tant que la file n'est pas vide
     while(!file.empty())
     {
@@ -200,13 +183,10 @@ int Graphe::BFSconnexite(int num_s0)
 
         std::cout<<"s = "<<s->getIndiceSommet()<<std::endl;
 
-
-
-        for(size_t i=0; i<succ.size();++i)
+        for(size_t i=0; i<succ.size(); ++i)
         {
-                std::cout<<succ[i].first->getIndiceSommet()<<std::endl;
+            std::cout<<succ[i].first->getIndiceSommet()<<std::endl;
         }
-
 
         file.pop();
         for(size_t i=0; i<succ.size(); ++i)
@@ -220,10 +200,6 @@ int Graphe::BFSconnexite(int num_s0)
                 preds[succ[i].first->getIndiceSommet()]= s->getIndiceSommet();
 
             }
-            ///s'il n'est pas marqué
-            ///on le marque
-            ///on note son prédecesseur (=le sommet défilé)
-            ///on le met dans la file
         }
 
     }

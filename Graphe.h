@@ -21,8 +21,6 @@ private:
     int m_indiceSommet;
     int m_ordre;
 
-
-
     std::vector<Sommet*> m_tabsommet;
     std::vector<Arete*> m_tabarete;
     std::vector<Coords*> m_tabcoords;
@@ -39,18 +37,15 @@ private:
     std::vector <float> m_res_ci;
     std::vector <float> m_res_cin;
 
-
 public:
+    Graphe();
+    ~Graphe();
     Graphe(std::string fichier,std::string fichierpoids);
     int getOrdre();
     int getTaille();
-
     void afficher();
     void centralite_degre();
     void centralite_degre_normalise();
-    ~Graphe();
-
-    //void marquage(int num,bool marque[]);
     void dessiner(Svgfile *svgout);
     void centralite_vecteur();
     void centralite_vecteur_normalise();
@@ -67,8 +62,5 @@ public:
     void chargementPoids(std::string &fichierpoids);
     void TestConnexite();
     int BFSconnexite(int num_s0);
-    Graphe();
-
-
 };
 #endif // GRAPHE_H_INCLUDED

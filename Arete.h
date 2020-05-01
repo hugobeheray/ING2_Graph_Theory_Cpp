@@ -8,7 +8,6 @@ private:
     int m_extrem1,m_extrem2;
     int m_poids;
 
-
 public:
     Arete(int indiceArete, int poids);
     Arete(int indiceArete,int extrem1, int extrem2);
@@ -19,9 +18,6 @@ public:
     int getExtrem2();
     int GetPoids();
     int GetIndiceArete();
-
-
 };
-
 
 #endif // ARETE_H_INCLUDED
