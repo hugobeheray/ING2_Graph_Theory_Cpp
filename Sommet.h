@@ -20,6 +20,8 @@ public:
     Sommet(int indice, std::string nom, float x, float y);
     float getX();
     float getY();
+    Sommet();
+    void clearSuccesseur();
     int getIndiceSommet();
     float getImportance();
     void setImportance(float importance);

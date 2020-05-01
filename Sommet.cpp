@@ -10,6 +10,11 @@ Sommet::Sommet(int indice, std::string nom, float x, float y)
     m_y = y;
 }
 
+Sommet::Sommet()
+{
+
+}
+
 float Sommet::getX()
 {
     return m_x;
@@ -35,16 +40,23 @@ void Sommet::AjouterSuccesseur(std::pair<Sommet*,int> s)
 
 void Sommet::afficherSuccesseurs()
 {
+    std::cout <<"AFFICHAGE SUCCESSEURS" << std::endl;
     std::cout << " sommet " << m_indiceSommet << " : ";
     for(size_t i =0; i<m_successeurs.size(); ++i)
     {
         std::cout<< m_successeurs[i].first->getIndiceSommet() << " /(Poids :" << m_successeurs[i].second<< ") ";
     }
+    std::cout << "FIN AFFICHAGE SUCCESSEURS" << std::endl;
 }
 
 std::vector<std::pair<Sommet*,int>>& Sommet::getSuccesseurs()
 {
     return m_successeurs;
+}
+
+void Sommet::clearSuccesseur()
+{
+    m_successeurs.clear();
 }
 
 float Sommet::getImportance()

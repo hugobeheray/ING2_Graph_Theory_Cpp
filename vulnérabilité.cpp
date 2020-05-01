@@ -202,7 +202,7 @@ int Graphe::BFSconnexite(int num_s0)
 
 
 
-        for(int i=0; i<succ.size();++i)
+        for(size_t i=0; i<succ.size();++i)
         {
                 std::cout<<succ[i].first->getIndiceSommet()<<std::endl;
         }

@@ -20,6 +20,7 @@ Graphe::Graphe()
 
 void Graphe::chargementPoids(std::string &fichierpoids)
 {
+
     int indiceArete,poids;
     std::ifstream iss2(fichierpoids);
 
@@ -41,6 +42,7 @@ void Graphe::chargementPoids(std::string &fichierpoids)
 
 void Graphe::chargementTopo(std::string &fichiertopo)
 {
+      Sommet sommet;
     int x,y, indiceSommet,indiceArete,extrem1,extrem2;
     std::string nom;
 
@@ -63,7 +65,8 @@ void Graphe::chargementTopo(std::string &fichiertopo)
         iss >> m_taille;
         m_tabarete.clear();
 
-
+        sommet.clearSuccesseur();
+        sommet.afficherSuccesseurs();
         for( int i=0; i<m_taille; i++)
         {
 
@@ -83,57 +86,6 @@ void Graphe::chargementTopo(std::string &fichiertopo)
     iss.close();
 }
 
-/*Graphe::Graphe(std::string fichier,std::string fichierpoids)
-{
-    std::ifstream iss(fichier);
-    std::ifstream iss2(fichierpoids);
-    int i, indiceSommet;
-    float x, y;
-    int indiceArete,extrem1, extrem2, poids;
-    std::string nom;
-
-     if(iss2)
-    {
-        iss2 >> m_taille;
-        for(i=0; i<m_taille; ++i)
-        {
-            iss2 >> indiceArete >> poids;
-            m_tabpoids.push_back(new Arete(indiceArete,poids));
-        }
-    }
-    else
-        std::cout << "erreur lors de l'ouverture du fichier "<<std::endl;
-
-    if(iss)
-    {
-        iss >> m_orient; /// on récupère l'orientation du graphe
-        iss >> m_ordre; /// on récupère l'ordre du graphe
-        for( i=0; i<m_ordre; i++)
-        {
-           // std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
-            iss >> indiceSommet >> nom >> x >> y;
-            m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
-            m_tabcoords.push_back(new Coords(x,y));
-            //m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
-
-        }
-        iss >> m_taille;
-        for( i=0; i<m_taille; i++)
-        {
-            iss >> indiceArete >> extrem1 >> extrem2 ;
-            m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
-            m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
-            m_tabsommet[extrem1]->AjouterSuccesseurNoPair(m_tabsommet[extrem2]);/// sans pair
-            m_tabsommet[extrem2]->AjouterSuccesseurNoPair(m_tabsommet[extrem1]);
-
-            m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
-        }
-    }
-    else
-    {
-        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
-    }
-}*/
 
 void Graphe::afficher()
 {
