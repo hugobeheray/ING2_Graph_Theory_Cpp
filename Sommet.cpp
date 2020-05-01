@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <iostream>
 
+///Constructeur de Sommet
 Sommet::Sommet(int indice, std::string nom, float x, float y)
 {
     m_indiceSommet = indice;
@@ -15,6 +16,7 @@ Sommet::Sommet()
 
 }
 
+///ssprgm d'affichages et de get pour pouvoir utiliser les donnees de la classe Sommet dans les ssprgm de Graphe
 float Sommet::getX()
 {
     return m_x;

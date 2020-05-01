@@ -11,10 +11,9 @@ private:
     std::string m_nom;
     std::vector<std::pair<Sommet*,int>> m_successeurs;
     std::vector<Sommet*> m_successeursNopair;
-   int m_poidsD;
+    int m_poidsD;
     Sommet *m_sommet;
     float m_importance;
-
 
 public:
     Sommet(int indice, std::string nom, float x, float y);
@@ -33,9 +32,8 @@ public:
     std::vector<std::pair<Sommet*,int>>& getSuccesseurs();
     void afficherSuccesseursNoPair() ;
     void AjouterSuccesseurNoPair(Sommet*s);
-     std::vector< Sommet*>& getSuccesseursNoPair();
-   // ~Sommet();
-
+    std::vector< Sommet*>& getSuccesseursNoPair();
+    // ~Sommet();
 };
 
 #endif // SOMMET_H_INCLUDED

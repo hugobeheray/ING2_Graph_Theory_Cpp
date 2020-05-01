@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Coords.h"
 
+/// Les coordonnees servent essentiellement a l'affichage
+
 Coords::Coords(double x, double y)
     : m_x{x}, m_y{y}
 { }
@@ -45,8 +47,7 @@ void Coords::setY(double y)
     m_y = y;
 }
 
-
-/// Somme vectorielle (version courte)
+/// Somme vectorielle
 Coords operator+(const Coords& c1, const Coords& c2)
 {
     return {c1.m_x + c2.m_x, c1.m_y + c2.m_y  };
