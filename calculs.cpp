@@ -69,35 +69,48 @@ void Graphe::centralite_vecteur()
 {
     float i=0;
     float somme=0;
+    std::vector<float> sommevoisins;
     float lambda=0;
-    int compteur=0;
+    float lambda2=0;
     int entier;
     std::vector <float> tabresultat;
     ///INITIALISATION
     for(i=0; i<getOrdre(); i++)
     {
         m_tabdegre[i]=1;
+        tabresultat.push_back(0);
+        sommevoisins.push_back(0);
     }
 
     ///FAIRE
     do
     {
+        lambda2=lambda;
         somme=0;
         ///Pour chaque sommet, faire la somme des indices de ses voisins
         for( int i=0; i<getOrdre() ; i++)
         {
-
             for(int j=0; j<getTaille(); j++)
             {
-                if( (m_tabarete[j]->getExtrem1()==i || m_tabarete[j]->getExtrem2()==i) )///ICI
+                if(m_tabarete[j]->getExtrem1()==i )///sommet 0 : détecter 1 voisin
                 {
-                    compteur++;
+                    sommevoisins[i]=sommevoisins[i]+ m_tabdegre[m_tabarete[j]->getExtrem2()];
+                    tabresultat[m_tabarete[j]->getExtrem1()]= sommevoisins[i];
                 }
-            }
-            tabresultat.push_back(compteur);
-            compteur=0;
+                if(m_tabarete[j]->getExtrem2()==i)
+                {
+                    sommevoisins[i]=sommevoisins[i]+ m_tabdegre[m_tabarete[j]->getExtrem1()];
+                    tabresultat[m_tabarete[j]->getExtrem2()]= sommevoisins[i];
+                }
 
+            }
+            sommevoisins[i]=0;
         }
+        for(int i=0; i<tabresultat.size(); i++)
+        {
+            std::cout << "tabresultat " << i << " = " << tabresultat[i] << std::endl; //1/1/1/4/2/4/1/1/1 au premier tour de la grande boucle for
+        }
+
 
         ///Calcul de lambda
         for(i=0; i<getOrdre(); i++)
@@ -112,9 +125,9 @@ void Graphe::centralite_vecteur()
             entier = (int)((0.005 + m_tabdegre[i])*100.0); //arrondi
             m_tabdegre[i] = (double)entier / 100.0;
         }
-        std::cout<<lambda<<std::endl;//pour voir les differentes valeurs de delata
+        std::cout<< "LAMBDA = " << lambda <<std::endl;//pour voir les differentes valeurs de lambda
     }
-    while((lambda>0) && (lambda<1));///tant que delta lambda est sup�rieur � 0,1
+    while(abs(lambda-lambda2)>0.01);///tant que delta lambda est superieur a 0,01
     ///affichage des indices de chaque sommet
 
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE" << std::endl << std::endl;
