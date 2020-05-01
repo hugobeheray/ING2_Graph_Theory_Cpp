@@ -98,10 +98,12 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
             for(int i=0; i<(int)m_tabarete.size()+1; i++)
             {
                 lecture2 >> indiceArete >> extrem1 >> extrem2 ;
-        /*m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
+
+           /* m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
             m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
             m_tabsommet[extrem1]->AjouterSuccesseurNoPair(m_tabsommet[extrem2]);/// sans pair
             m_tabsommet[extrem2]->AjouterSuccesseurNoPair(m_tabsommet[extrem1]);*/
+
                 if(i!=choix)
                 {
                     if(i<choix)
