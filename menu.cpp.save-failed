@@ -42,10 +42,19 @@ void menu()
     couleurcyan();
     int choix;
     std::vector<float> tabresultats;
-    std::string nomfichierpoids,nomfichiertopo;
-
-
-    Graphe graphe;
+    std::string nomfichier;
+    std::string nomfichierpoids;
+/*
+    std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
+    couleurverte();
+    std::cin >> nomfichierpoids;
+    couleurcyan();
+    std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
+    couleurverte();
+    std::cin >> nomfichier;
+    couleurcyan();*/
+    Graphe graphe("graphe_etoile1_topo.txt","graphe_etoile1_topo_poids.txt");
+    //Graphe graphe("metro_paris.txt","metro_paris_poids.txt");
 
 
 
@@ -64,29 +73,17 @@ void menu()
         switch(choix)
         {
         case 1:
-    std::cout << "Veuillez indiquer le nom du fichier de poids a charger" << std::endl;
-    couleurverte();
-    std::cin >> nomfichierpoids;
-    couleurcyan();
-    std::cout << "Veuillez indiquer le nom du fichier a charger" << std::endl;
-    couleurverte();
-    std::cin >> nomfichiertopo;
-    couleurcyan();
-            std::cout << nomfichierpoids << nomfichiertopo << std::endl;
-             graphe.chargementPoids(nomfichierpoids);
-          graphe.chargementTopo(nomfichiertopo);
-            std::cout << nomfichierpoids << nomfichiertopo << std::endl;
             graphe.afficher();
             break;
         case 2:
-            graphe.suppression_arete(nomfichierpoids,nomfichiertopo,graphe);
+            graphe.suppression_arete();
             std::cout<<std::endl;
             break;
         case 3:
             graphe.centralite_degre();
             graphe.centralite_degre_normalise();
             graphe.centralite_vecteur();
-            //graphe.centralite_vecteur_normalise();
+            graphe.centralite_vecteur_normalise();
 
             graphe.Dijsktra(tabresultats);
             graphe.centralite_proximite(tabresultats);

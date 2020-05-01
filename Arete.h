@@ -18,6 +18,7 @@ public:
     int getExtrem1();
     int getExtrem2();
     int GetPoids();
+    int GetIndiceArete();
 
 
 };

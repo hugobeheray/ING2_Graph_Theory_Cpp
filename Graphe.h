@@ -30,14 +30,14 @@ private:
     std::vector<Arete*> m_tabpoids;
 
     ///permet de stocker les differents resultats d'indices pour les sauvegarder par la suite
-    std::vector <float> res_cd;
-    std::vector <float> res_cdn;
-    std::vector <float> res_cv;
-    std::vector <float> res_cvn;
-    std::vector <float> res_cp;
-    std::vector <float> res_cpn;
-    std::vector <float> res_ci;
-    std::vector <float> res_cin;
+    std::vector <float> m_res_cd;
+    std::vector <float> m_res_cdn;
+    std::vector <float> m_res_cv;
+    std::vector <float> m_res_cvn;
+    std::vector <float> m_res_cp;
+    std::vector <float> m_res_cpn;
+    std::vector <float> m_res_ci;
+    std::vector <float> m_res_cin;
 
 
 public:
@@ -59,9 +59,13 @@ public:
     void calcul_intermediarite(std::vector<float> &tabresultats);
     void sauvegarde();
     void coloration();
+    void suppression_arete(std::string &nomfichier,std::string &nomfichiertopo,Graphe graphe);
     void Dijsktra(std::vector<float> &tabresultats);
     void centralite_intermediarite(std::vector<float> &tabresultats);
     void centralite_intermediarite_normalise(std::vector<float> &tabresultats);
+    void chargementTopo(std::string &fichiertopo);
+    void chargementPoids(std::string &fichierpoids);
+    Graphe();
 
 
 };

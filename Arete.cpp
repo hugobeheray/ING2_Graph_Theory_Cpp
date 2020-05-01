@@ -47,3 +47,8 @@ Arete::~Arete()
 
 }
 
+int Arete::GetIndiceArete()
+{
+    return m_indiceArete;
+}
+

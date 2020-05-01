@@ -1,4 +1,3 @@
-
 #include "graphe.h"
 #include "Sommet.h"
 #include "Arete.h"
@@ -14,7 +13,75 @@
 #include "Coords.h"
 #include "calculs.h"
 
-Graphe::Graphe(std::string fichier,std::string fichierpoids)
+Graphe::Graphe()
+{
+
+}
+
+void Graphe::chargementPoids(std::string &fichierpoids)
+{
+    int indiceArete,poids;
+    std::ifstream iss2(fichierpoids);
+
+    if(iss2)
+    {
+        iss2 >> m_taille;
+        m_tabpoids.clear();
+        for( int i=0; i<m_taille; ++i)
+        {
+            iss2 >> indiceArete >> poids;
+            m_tabpoids.push_back(new Arete(indiceArete,poids));
+        }
+    }
+    else
+        std::cout << "erreur lors de l'ouverture du fichier "<<std::endl;
+        iss2.close();
+
+}
+
+void Graphe::chargementTopo(std::string &fichiertopo)
+{
+    int x,y, indiceSommet,indiceArete,extrem1,extrem2;
+    std::string nom;
+
+    std::ifstream iss(fichiertopo);
+    if(iss)
+    {
+        iss >> m_orient; /// on récupère l'orientation du graphe
+        iss >> m_ordre; /// on récupère l'ordre du graphe
+        m_tabcoords.clear();
+        m_tabsommet.clear();
+        for( int i=0; i<m_ordre; i++)
+        {
+           // std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
+            iss >> indiceSommet >> nom >> x >> y;
+            m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
+            m_tabcoords.push_back(new Coords(x,y));
+            //m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
+
+        }
+        iss >> m_taille;
+        m_tabarete.clear();
+
+        for( int i=0; i<m_taille; i++)
+        {
+            iss >> indiceArete >> extrem1 >> extrem2 ;
+            m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
+            m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
+            m_tabsommet[extrem1]->AjouterSuccesseurNoPair(m_tabsommet[extrem2]);/// sans pair
+            m_tabsommet[extrem2]->AjouterSuccesseurNoPair(m_tabsommet[extrem1]);
+
+            m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
+        }
+    }
+    else
+    {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
+    }
+    iss.close();
+}
+
+/*Graphe::Graphe(std::string fichier,std::string fichierpoids)
 {
     std::ifstream iss(fichier);
     std::ifstream iss2(fichierpoids);
@@ -64,7 +131,7 @@ Graphe::Graphe(std::string fichier,std::string fichierpoids)
     {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
     }
-}
+}*/
 
 void Graphe::afficher()
 {
@@ -161,10 +228,10 @@ void Graphe::dessiner(Svgfile *svgout)
     for(i=0; i<getOrdre(); ++i)
     {
         svgout->addText((m_tabsommet[i]->getX())*100-65+12, (m_tabsommet[i]->getY())*100-20," (", "black");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+16, (m_tabsommet[i]->getY())*100-20,res_cdn[i], "purple");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+46, (m_tabsommet[i]->getY())*100-20,res_cvn[i], "pink");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+76, (m_tabsommet[i]->getY())*100-20,res_cpn[i], "blue");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+106, (m_tabsommet[i]->getY())*100-20,res_cin[i], "green");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+16, (m_tabsommet[i]->getY())*100-20,m_res_cdn[i], "purple");
+        //svgout->addText((m_tabsommet[i]->getX())*100-65+46, (m_tabsommet[i]->getY())*100-20,m_res_cvn[i], "pink");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+76, (m_tabsommet[i]->getY())*100-20,m_res_cpn[i], "blue");
+        svgout->addText((m_tabsommet[i]->getX())*100-65+106, (m_tabsommet[i]->getY())*100-20,m_res_cin[i], "green");
         svgout->addText((m_tabsommet[i]->getX())*100-65+120, (m_tabsommet[i]->getY())*100-20," )", "black");
     }
 }
@@ -189,7 +256,7 @@ void Graphe::sauvegarde()
     {
         for(int i=0; i<getOrdre(); ++i)
         {
-            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << res_cd[i] << "\t" << res_cdn[i] << "\t" << res_cv[i] << "\t" << res_cvn[i] <<"\t" << res_cp[i] << "\t" << res_cpn[i] << "\t " << res_ci[i] << "\t" << res_cin[i] << std::endl;
+            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << m_res_cd[i] << "\t" << m_res_cdn[i] << "\t" << m_res_cv[i] /*<< "\t" << m_res_cvn[i] */<<"\t" << m_res_cp[i] << "\t" << m_res_cpn[i] << "\t " << m_res_ci[i] << "\t" << m_res_cin[i] << std::endl;
         }
     }
 }
@@ -199,11 +266,8 @@ void Graphe::coloration()
 {
     for(int i=0; i<getOrdre(); ++i)
     {
-        m_tabsommet[i]->setImportance(res_cd[i]);
-        //std::cout<<m_tabsommet[i]->getImportance()<<std::endl;
+        m_tabsommet[i]->setImportance(m_res_cd[i]);
     }
-
-
 }
 
 Graphe::~Graphe()
