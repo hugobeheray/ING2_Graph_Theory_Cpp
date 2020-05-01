@@ -50,17 +50,17 @@ void menu()
 
 
 
-    while(choix!=5)
+    while(choix!=6)
     {
         do
         {
-            std::cout << "Bienvenue" << std::endl << "Que voulez vous faire?" << std::endl << "1.Charger un graphe" << std::endl << "2.Rien" << std::endl <<
-                      "3. Calculer, afficher et sauvegarder les differents indices de centralite" << std::endl << "4.Dessiner" << std::endl << "5.Quitter" << std::endl;
+            std::cout << "Bienvenue" << std::endl << "Que voulez vous faire?" << std::endl << "1.Charger un graphe" << std::endl << "2.Supprimer une arete" << std::endl <<
+                      "3. Calculer, afficher et sauvegarder les differents indices de centralite" << std::endl << "4.Dessiner" << std::endl << "5.Tester la connexite" <<  std::endl << "6.Quitter" << std::endl;
             couleurverte();
             std::cin >> choix;
             couleurcyan();
         }
-        while(choix < 1 || choix > 5);
+        while(choix < 1 || choix > 6);
         switch(choix)
         {
         case 1:
@@ -114,6 +114,9 @@ void menu()
         }
         break;
         case 5:
+            graphe.TestConnexite();
+            break;
+        case 6:
             exit(0);
             break;
         }

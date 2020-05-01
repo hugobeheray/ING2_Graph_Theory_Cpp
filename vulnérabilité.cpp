@@ -26,7 +26,7 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
         std::cin >> choix;
     }
     while(choix<0 || choix>getTaille());
-    for(int i=0; i<m_tabarete.size(); i++)
+    for(int i=0; i<(int)m_tabarete.size(); i++)
     {
         if(choix==m_tabarete[i]->GetIndiceArete())
         {
@@ -34,7 +34,7 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
             m_taille=m_taille -1;
         }
     }
-    for( int i=0; i<m_tabarete.size(); i++)
+    for( int i=0; i<(int)m_tabarete.size(); i++)
     {
         std::cout << "Arete "<<m_tabarete[i]->GetIndiceArete() << std::endl;
     }
@@ -45,7 +45,7 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
             lecture >>  m_taille;
             m_taille = m_taille-1;
             ecriture << m_taille << "\n";
-            for(int i=0; i<m_tabarete.size()+1; i++)
+            for(int i=0; i<(int)m_tabarete.size()+1; i++)
             {
                 lecture >> indiceArete >> poids;
                 if(i!=choix)
@@ -97,7 +97,7 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
             lecture2>>  m_taille;
             m_taille = m_taille-1;
             ecriture2 << m_taille << "\n";
-            for(int i=0; i<m_tabarete.size()+1; i++)
+            for(int i=0; i<(int)m_tabarete.size()+1; i++)
             {
                 lecture2 >> indiceArete >> extrem1 >> extrem2 ;
                 if(i!=choix)
@@ -132,17 +132,18 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
     graphe.chargementPoids(sauvPoids);
     graphe.chargementTopo(sauvtopo);
     graphe.afficher();
+}
 
 
-
-    /*for(int i=0;i<getOrdre();i++)
+void Graphe::TestConnexite()
+{
+    for(int i=0; i<getOrdre(); i++)
     {
         if(m_tabdegre[i] == 0)
-    {
-        std::cout << "Non connexes" << std::endl;
+        {
+            std::cout << "Sommet "  << i << "non connecte" << std::endl;
+        }
+        else
+            std::cout << "Sommet " << i << "Graphe Connexe" << std::endl;
     }
-    else
-        std::cout << "Graphe Connexe" << std::endl;
-    }*/
-
 }

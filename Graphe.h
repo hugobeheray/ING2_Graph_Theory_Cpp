@@ -65,6 +65,7 @@ public:
     void centralite_intermediarite_normalise(std::vector<float> &tabresultats);
     void chargementTopo(std::string &fichiertopo);
     void chargementPoids(std::string &fichierpoids);
+    void TestConnexite();
     Graphe();
 
 
