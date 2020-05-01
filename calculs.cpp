@@ -106,7 +106,7 @@ void Graphe::centralite_vecteur()
             }
             sommevoisins[i]=0;
         }
-        for(int i=0; i<tabresultat.size(); i++)
+        for(unsigned int i=0; i<tabresultat.size(); i++)
         {
             std::cout << "tabresultat " << i << " = " << tabresultat[i] << std::endl; //1/1/1/4/2/4/1/1/1 au premier tour de la grande boucle for
         }
