@@ -149,7 +149,7 @@ void Graphe::centralite_vecteur_normalise()
     {
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
-    m_res_cv=m_tabdegre;
+    m_res_cvn=m_tabdegre;
     //m_tabdegre.clear();
 }
 

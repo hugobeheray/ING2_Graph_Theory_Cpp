@@ -28,7 +28,7 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
         std::cout << "Quelle arete voulez vous supprimer pour tester la connexite?" << std::endl;
         std::cin >> choix;
     }
-    while(choix<0 || choix>getTaille());
+    while(choix<0 || choix>getTaille()-1);
     for(int i=0; i<(int)m_tabarete.size(); i++)
     {
         if(choix==m_tabarete[i]->GetIndiceArete())
