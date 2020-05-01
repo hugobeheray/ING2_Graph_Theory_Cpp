@@ -282,7 +282,7 @@ void Graphe::centralite_intermediarite_normalise(std::vector<float> &tabresultat
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE INTERMEDIARITE NORMALISE" << std::endl << std::endl;
     for(unsigned int i=0; i<tabresultats.size(); i++)
     {
-        tabresultats[i]=(tabresultats[i]/1)/(pow(getOrdre(),2)-3*getOrdre()+2);
+        tabresultats[i]=((tabresultats[i]/1)/(pow(getOrdre(),2)-3*getOrdre()+2))*2;
         entier = (int)((0.005 + tabresultats[i])*100.0);
         tabresultats[i] = (double)entier / 100.0;
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
