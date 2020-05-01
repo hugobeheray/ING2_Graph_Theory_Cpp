@@ -71,14 +71,14 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
     else
         std::cout << "erreur lors de l'ouverture du fichier de lecture "<<std::endl;
 
-        lecture.close();
-        ecriture.close();
+    lecture.close();
+    ecriture.close();
 
-        /*m_tabarete.clear();
-        m_tabdegre.clear();
-        m_tabpoids.clear();
-        m_tabcoords.clear();*/
-       // m_tabsommet.clear();
+    /*m_tabarete.clear();
+    m_tabdegre.clear();
+    m_tabpoids.clear();
+    m_tabcoords.clear();*/
+    // m_tabsommet.clear();
 
     if(lecture2)
     {
@@ -122,16 +122,16 @@ void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfic
     }
     else
         std::cout << "erreur lors de l'ouverture du fichier de lecture "<<std::endl;
-        lecture2.close();
-        ecriture2.close();
+    lecture2.close();
+    ecriture2.close();
 
-       // std::copy(nomfichierpoids.begin(),nomfichierpoids.end(),sauvPoids.begin());
-        //std::copy(nomfichiertopo.begin(),nomfichiertopo.end(),sauvtopo.begin());
+    // std::copy(nomfichierpoids.begin(),nomfichierpoids.end(),sauvPoids.begin());
+    //std::copy(nomfichiertopo.begin(),nomfichiertopo.end(),sauvtopo.begin());
 
-        std::cout << sauvPoids << std::endl << sauvtopo << std::endl;
-        graphe.chargementPoids(sauvPoids);
-        graphe.chargementTopo(sauvtopo);
-        graphe.afficher();
+    std::cout << sauvPoids << std::endl << sauvtopo << std::endl;
+    graphe.chargementPoids(sauvPoids);
+    graphe.chargementTopo(sauvtopo);
+    graphe.afficher();
 
 
 
