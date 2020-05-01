@@ -26,6 +26,7 @@ void Graphe::chargementPoids(std::string &fichierpoids)
     if(iss2)
     {
         iss2 >> m_taille;
+        m_tabpoids.clear();
         for( int i=0; i<m_taille; ++i)
         {
             iss2 >> indiceArete >> poids;
@@ -34,6 +35,8 @@ void Graphe::chargementPoids(std::string &fichierpoids)
     }
     else
         std::cout << "erreur lors de l'ouverture du fichier "<<std::endl;
+        iss2.close();
+
 }
 
 void Graphe::chargementTopo(std::string &fichiertopo)
@@ -46,6 +49,8 @@ void Graphe::chargementTopo(std::string &fichiertopo)
     {
         iss >> m_orient; /// on récupère l'orientation du graphe
         iss >> m_ordre; /// on récupère l'ordre du graphe
+        m_tabcoords.clear();
+        m_tabsommet.clear();
         for( int i=0; i<m_ordre; i++)
         {
            // std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
@@ -56,6 +61,8 @@ void Graphe::chargementTopo(std::string &fichiertopo)
 
         }
         iss >> m_taille;
+        m_tabarete.clear();
+
         for( int i=0; i<m_taille; i++)
         {
             iss >> indiceArete >> extrem1 >> extrem2 ;
@@ -71,6 +78,7 @@ void Graphe::chargementTopo(std::string &fichiertopo)
     {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
     }
+    iss.close();
 }
 
 /*Graphe::Graphe(std::string fichier,std::string fichierpoids)
@@ -221,7 +229,7 @@ void Graphe::dessiner(Svgfile *svgout)
     {
         svgout->addText((m_tabsommet[i]->getX())*100-65+12, (m_tabsommet[i]->getY())*100-20," (", "black");
         svgout->addText((m_tabsommet[i]->getX())*100-65+16, (m_tabsommet[i]->getY())*100-20,m_res_cdn[i], "purple");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+46, (m_tabsommet[i]->getY())*100-20,m_res_cvn[i], "pink");
+        //svgout->addText((m_tabsommet[i]->getX())*100-65+46, (m_tabsommet[i]->getY())*100-20,m_res_cvn[i], "pink");
         svgout->addText((m_tabsommet[i]->getX())*100-65+76, (m_tabsommet[i]->getY())*100-20,m_res_cpn[i], "blue");
         svgout->addText((m_tabsommet[i]->getX())*100-65+106, (m_tabsommet[i]->getY())*100-20,m_res_cin[i], "green");
         svgout->addText((m_tabsommet[i]->getX())*100-65+120, (m_tabsommet[i]->getY())*100-20," )", "black");
@@ -248,7 +256,7 @@ void Graphe::sauvegarde()
     {
         for(int i=0; i<getOrdre(); ++i)
         {
-            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << m_res_cd[i] << "\t" << m_res_cdn[i] << "\t" << m_res_cv[i] << "\t" << m_res_cvn[i] <<"\t" << m_res_cp[i] << "\t" << m_res_cpn[i] << "\t " << m_res_ci[i] << "\t" << m_res_cin[i] << std::endl;
+            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << m_res_cd[i] << "\t" << m_res_cdn[i] << "\t" << m_res_cv[i] /*<< "\t" << m_res_cvn[i] */<<"\t" << m_res_cp[i] << "\t" << m_res_cpn[i] << "\t " << m_res_ci[i] << "\t" << m_res_cin[i] << std::endl;
         }
     }
 }

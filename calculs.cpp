@@ -70,6 +70,7 @@ void Graphe::centralite_vecteur()
     float i=0;
     float somme=0;
     float lambda=0;
+    float lambda2;
     int compteur=0;
     int entier;
     std::vector <float> tabresultat;
@@ -82,6 +83,7 @@ void Graphe::centralite_vecteur()
     ///FAIRE
     do
     {
+        lambda2=lambda;
         somme=0;
         ///Pour chaque sommet, faire la somme des indices de ses voisins
         for( int i=0; i<getOrdre() ; i++)
@@ -114,7 +116,7 @@ void Graphe::centralite_vecteur()
         }
         std::cout<<lambda<<std::endl;//pour voir les differentes valeurs de delata
     }
-    while((lambda>0) && (lambda<1));///tant que delta lambda est sup�rieur � 0,1
+    while(lambda-lambda2>0.01);///tant que delta lambda est sup�rieur � 0,1
     ///affichage des indices de chaque sommet
 
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE" << std::endl << std::endl;
@@ -131,6 +133,7 @@ void Graphe::centralite_vecteur_normalise()
     float i=0;
     float somme=0;
     float lambda=0;
+    float lambda2;
     int compteur=0;
     int entier=0;
     std::vector <float> tabresultat;
@@ -144,6 +147,8 @@ void Graphe::centralite_vecteur_normalise()
     ///FAIRE
     do
     {
+        lambda2=lambda;
+        somme=0;
         ///Pour chaque sommet, faire la somme des indices de ses voisins
         for( int i=0; i<getOrdre() ; i++)
         {
@@ -173,7 +178,7 @@ void Graphe::centralite_vecteur_normalise()
             tabdegrenormalise[i] = (double)entier / 100.0;
         }
     }
-    while((lambda>0) && (lambda<4));
+    while(lambda-lambda2>0.01);
     ///affichage des indices de chaque sommet
 
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE NORMALISE" << std::endl << std::endl;

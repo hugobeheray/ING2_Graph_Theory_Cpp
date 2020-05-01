@@ -86,7 +86,7 @@ void menu()
             graphe.centralite_degre();
             graphe.centralite_degre_normalise();
             graphe.centralite_vecteur();
-            graphe.centralite_vecteur_normalise();
+            //graphe.centralite_vecteur_normalise();
 
             graphe.Dijsktra(tabresultats);
             graphe.centralite_proximite(tabresultats);
