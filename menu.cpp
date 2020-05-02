@@ -52,6 +52,7 @@ void menu()
     ///Pour une bonne gestion du blindage menu
     bool blindagemenu=false;
     bool blindagemenu2=false;
+    bool blindagemenu3=false;
     int choixnomfichier;
     int compteur_comparaison=0;
     std::vector<float> tabresultats;
@@ -84,6 +85,16 @@ void menu()
                     graphe.couleurverte();
                     std::cin >> choix;
                 }while(choix==4 || choix <1 || choix >7);
+            }
+            if(choix==6 && blindagemenu3==false)
+            {
+                do
+                {
+                    graphe.couleurbleue();
+                    std::cout << "Impossible de comparer avant de supprimer une arete. Veuillez resaisir un choix" << std::endl;
+                    graphe.couleurverte();
+                    std::cin >> choix;
+                }while(choix==6 || choix <1 || choix >7);
             }
             if((choix==2 && blindagemenu2==false) || (choix==3 && blindagemenu2==false) || (choix==4 && blindagemenu2==false) || (choix==5 && blindagemenu2==false) ||(choix==6 && blindagemenu2==false))
             {
@@ -134,6 +145,7 @@ void menu()
             break;
         case 2:
 
+            blindagemenu3=true;
             graphe.suppression_arete();
             std::cout<<std::endl;
             break;
