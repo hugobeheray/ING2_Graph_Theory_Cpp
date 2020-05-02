@@ -37,6 +37,13 @@ private:
     std::vector <float> m_res_ci;
     std::vector <float> m_res_cin;
 
+    ///permet de stocker les differents resultats d'indices INITIAUX
+    std::vector <float> m_res_cdn_initial;
+    std::vector <float> m_res_cvn_initial;
+    std::vector <float> m_res_cpn_initial;
+    std::vector <float> m_res_cin_initial;
+
+
 public:
     Graphe();
     ~Graphe();
@@ -48,20 +55,21 @@ public:
    // int getTaille();
     void afficher();
     void centralite_degre();
-    void centralite_degre_normalise();
+    void centralite_degre_normalise(int &compteur_comparaison);
     void dessiner(Svgfile *svgout);
     void centralite_vecteur();
-    void centralite_vecteur_normalise();
+    void centralite_vecteur_normalise(int &compteur_comparaison);
     void centralite_proximite(std::vector<float> &tabresultats);
-    void centralite_proximite_normalise(std::vector<float> &tabresultats);
+    void centralite_proximite_normalise(std::vector<float> &tabresultats,int &compteur_comparaison);
     void calcul_intermediarite(std::vector<float> &tabresultats);
     void sauvegarde();
     void coloration();
     void Majsuccesseurs();
     void suppression_arete();
+    void comparaison_indices();
     void Dijsktra(std::vector<float> &tabresultats);
     void centralite_intermediarite(std::vector<float> &tabresultats);
-    void centralite_intermediarite_normalise(std::vector<float> &tabresultats);
+    void centralite_intermediarite_normalise(std::vector<float> &tabresultats,int &compteur_comparaison);
     void chargementTopo(std::string &fichiertopo);
     void chargementPoids(std::string &fichierpoids);
     void TestConnexite();

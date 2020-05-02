@@ -53,6 +53,7 @@ void menu()
     bool blindagemenu=false;
     bool blindagemenu2=false;
     int choixnomfichier;
+    int compteur_comparaison=0;
     std::vector<float> tabresultats;
     std::string nomfichierpoids,nomfichiertopo;
 
@@ -60,7 +61,7 @@ void menu()
     graphe.couleurbleue();
 
     ///Tant qu'on ne quitte pas l'application...
-    while(choix!=6)
+    while(choix!=7)
     {
         do
         {
@@ -69,7 +70,9 @@ void menu()
             std::cout << "\t\t\t\t\t    Que voulez vous faire ?\n\n" << std::endl;
             graphe.couleurbleue();
             std::cout << "\t\t1 - Charger un graphe" << std::endl << "\t\t2 - Supprimer une arete" << std::endl <<
-                      "\t\t3 - Calculer, afficher et sauvegarder les differents indices de centralite" << std::endl << "\t\t4 - Dessiner(impossible avant calculs)" << std::endl << "\t\t5 - Tester la connexite" <<  std::endl << "\t\t6 - Quitter\n\n\n\n" << std::endl;
+                      "\t\t3 - Calculer, afficher et sauvegarder les differents indices de centralite" << std::endl <<
+                      "\t\t4 - Dessiner(impossible avant calculs)" << std::endl << "\t\t5 - Tester la connexite" <<  std::endl <<
+                       "\t\t6 - Comparer les indices (apres suppression)\n" << "\t\t7 - Quitter\n\n\n\n" << std::endl;
             graphe.couleurverte();
             std::cin >> choix;
             if(choix==4 && blindagemenu==false)
@@ -80,9 +83,9 @@ void menu()
                     std::cout << "Impossible de dessiner avant de faire les calculs d'indices. Veuillez resaisir un choix" << std::endl;
                     graphe.couleurverte();
                     std::cin >> choix;
-                }while(choix==4 || choix <1 || choix >6);
+                }while(choix==4 || choix <1 || choix >7);
             }
-            if((choix==2 && blindagemenu2==false) || (choix==3 && blindagemenu2==false) || (choix==4 && blindagemenu2==false) || (choix==5 && blindagemenu2==false))
+            if((choix==2 && blindagemenu2==false) || (choix==3 && blindagemenu2==false) || (choix==4 && blindagemenu2==false) || (choix==5 && blindagemenu2==false) ||(choix==6 && blindagemenu2==false))
             {
                 do
                 {
@@ -90,11 +93,11 @@ void menu()
                     std::cout << "Impossible d'effectuer des actions avant de charger un graphe. Veuillez resaisir un choix" << std::endl;
                     graphe.couleurverte();
                     std::cin >> choix;
-                }while(choix!=1 || choix <1 || choix >6);
+                }while(choix!=1 || choix <1 || choix >7);
             }
             graphe.couleurbleue();
         }
-        while(choix < 1 || choix > 6);
+        while(choix < 1 || choix > 7);
 
         ///En fonction du choix de l'utilisateur...
         switch(choix)
@@ -137,8 +140,8 @@ void menu()
         case 3:
             blindagemenu=true;
             graphe.centralite_degre();
-            graphe.centralite_degre_normalise();
-            graphe.centralite_vecteur_normalise();
+            graphe.centralite_degre_normalise(compteur_comparaison);
+            graphe.centralite_vecteur_normalise(compteur_comparaison);
             graphe.centralite_vecteur();
             //tabresultats.clear();
 
@@ -147,7 +150,7 @@ void menu()
             tabresultats.clear();
 
             graphe.Dijsktra(tabresultats);
-            graphe.centralite_proximite_normalise(tabresultats);
+            graphe.centralite_proximite_normalise(tabresultats, compteur_comparaison);
             tabresultats.clear();
 
             graphe.calcul_intermediarite(tabresultats);
@@ -155,7 +158,7 @@ void menu()
             tabresultats.clear();
 
             graphe.calcul_intermediarite(tabresultats);
-            graphe.centralite_intermediarite_normalise(tabresultats);
+            graphe.centralite_intermediarite_normalise(tabresultats, compteur_comparaison);
             tabresultats.clear();
 
             break;
@@ -169,7 +172,10 @@ void menu()
         case 5:
             graphe.TestConnexite();
             break;
-        case 6:
+        case 6 :
+            graphe.comparaison_indices();
+            break;
+        case 7:
             exit(0);
             break;
         }
