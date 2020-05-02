@@ -121,12 +121,17 @@ void menu()
             if(choixnomfichier==5) {nomfichierpoids="graphe_ameriquedusud_topo_poids.txt";nomfichiertopo="graphe_ameriquedusud_topo.txt";}
             if(choixnomfichier==6) {nomfichierpoids="graphe_metro_paris_topo_poids.txt";nomfichiertopo="graphe_metro_paris_topo.txt";}
             couleurbleue();
-            graphe.chargementPoids(nomfichierpoids);
+
+
             graphe.chargementTopo(nomfichiertopo);
+             graphe.chargementPoids(nomfichierpoids);
+            graphe.Majsuccesseurs();
             graphe.afficher();
             break;
         case 2:
-            graphe.suppression_arete(nomfichierpoids,nomfichiertopo,graphe);
+
+            graphe.suppression_arete();
+            graphe.Majsuccesseurs();
             std::cout<<std::endl;
             break;
         case 3:

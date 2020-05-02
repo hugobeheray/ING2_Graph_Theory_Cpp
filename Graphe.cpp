@@ -29,7 +29,7 @@ void Graphe::chargementPoids(std::string &fichierpoids)
     {
         iss2 >> m_taille;
        // m_tabpoids.clear();
-        for( int i=0; i<m_taille; ++i)
+        for( int i=0; i<m_tabarete.size(); ++i)
         {
             iss2 >> indiceArete >> poids;
             m_tabpoids.push_back(new Arete(indiceArete,poids));
@@ -44,6 +44,7 @@ void Graphe::chargementPoids(std::string &fichierpoids)
 ///ssprgm qui charge le fichier et stock tout ça dans des tableaux
 void Graphe::chargementTopo(std::string &fichiertopo)
 {
+    int taille;
     Sommet sommet;
     int indiceSommet,indiceArete,extrem1,extrem2;
 
@@ -66,17 +67,14 @@ void Graphe::chargementTopo(std::string &fichiertopo)
             m_tabcoords.push_back(new Coords(x,y));
             //m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
         }
-        iss >> m_taille;
+        iss >> taille;
        // m_tabarete.clear();
 
-        for( int i=0; i<m_taille; i++)
+        for( int i=0; i<taille; i++)
         {
             iss >> indiceArete >> extrem1 >> extrem2 ;
-            m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
-            m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
-            m_tabsommet[extrem1]->AjouterSuccesseurNoPair(m_tabsommet[extrem2]);/// sans pair
-            m_tabsommet[extrem2]->AjouterSuccesseurNoPair(m_tabsommet[extrem1]);
-
+           // m_tabsommet[extrem1]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem2],m_tabpoids[i]->GetPoids()));///avec pair
+           // m_tabsommet[extrem2]->AjouterSuccesseur(std::make_pair(m_tabsommet[extrem1],m_tabpoids[i]->GetPoids()));
             m_tabarete.push_back(new Arete(indiceArete,extrem1,extrem2));
         }
     }
@@ -111,13 +109,13 @@ void Graphe::afficher()
     }
     std::cout << std::endl;
     std::cout << "Taille :" << m_taille << std::endl;
-    for( i=0; i<m_taille; i++)
+    for( size_t i=0; i<m_tabarete.size(); i++)
     {
         m_tabarete[i]->AfficherArete();
     }
     std::cout << std::endl;
 
-    for(i=0; i<m_taille; ++i)
+    for(size_t i=0; i<m_tabarete.size(); ++i)
     {
         m_tabpoids[i]->AfficherAretePoids();
     }

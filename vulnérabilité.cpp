@@ -13,23 +13,39 @@
 ///Lors de la suppression d'une arete, on reecris dans deux nouveaux fichiers de sauvegarde
 ///ne contenant pas les informations de l'arete supprimee pour
 ///pouvoir par la suite les utiliser pour les calculs et l'affichage dans le .svg
-void Graphe::suppression_arete(std::string &nomfichierpoids, std::string &nomfichiertopo,Graphe graphe)
-{
 
+
+void Graphe::Majsuccesseurs()
+{
+    for(size_t i=0;i<m_tabsommet.size();++i)
+    {
+            m_tabsommet[i]->RetirerSuccesseur();///avec pair
+    }
+     for( size_t i=0; i<m_tabarete.size(); i++)
+     {
+            m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
+            m_tabsommet[m_tabarete[i]->getExtrem2()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem1()],m_tabpoids[i]->GetPoids()));
+    }
+}
+void Graphe::suppression_arete()
+{
+Majsuccesseurs();
     int choix;
+      ///afficher les indices des aretes a faire
     do
     {
         std::cout << "Quelle arete voulez vous supprimer pour tester la connexite?" << std::endl;
         std::cin >> choix;
-    }
-    while(choix<0 || choix>getTaille()-1);
+    } while(choix<0 || choix>getTaille()-1);
+
     for(int i=0; i<(int)m_tabarete.size(); i++)
     {
         if(choix==m_tabarete[i]->GetIndiceArete())
         {
             ///suppression de l'arete dans le tableau
             m_tabarete.erase(m_tabarete.begin() + i);
-            m_taille=m_taille -1;
+            std::cout << m_tabarete.size();
+            break;
         }
     }
     for( int i=0; i<(int)m_tabarete.size(); i++)

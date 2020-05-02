@@ -54,7 +54,8 @@ public:
     void calcul_intermediarite(std::vector<float> &tabresultats);
     void sauvegarde();
     void coloration();
-    void suppression_arete(std::string &nomfichier,std::string &nomfichiertopo,Graphe graphe);
+    void Majsuccesseurs();
+    void suppression_arete();
     void Dijsktra(std::vector<float> &tabresultats);
     void centralite_intermediarite(std::vector<float> &tabresultats);
     void centralite_intermediarite_normalise(std::vector<float> &tabresultats);

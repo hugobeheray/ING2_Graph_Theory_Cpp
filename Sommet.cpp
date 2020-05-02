@@ -40,6 +40,11 @@ void Sommet::AjouterSuccesseur(std::pair<Sommet*,int> s)
     m_successeurs.push_back(s);
 }
 
+void Sommet::RetirerSuccesseur()
+{
+    m_successeurs.clear();
+}
+
 void Sommet::afficherSuccesseurs()
 {
     std::cout <<"AFFICHAGE SUCCESSEURS" << std::endl;
@@ -76,23 +81,10 @@ std::string Sommet::getNom()
     return m_nom;
 }
 
-void Sommet::setPoidsD(int poidsD)
+/*void Sommet::setPoidsD(int poidsD)
 {
     m_poidsD=poidsD;
-}
-
-void Sommet::afficherSuccesseursNoPair()
-{
-  std::cout << " sommet " << m_indiceSommet << " : ";
-  for(auto s : m_successeursNopair)
-  {
-    std::cout << s->getIndiceSommet() << " ";
-  }
-}
-void Sommet::AjouterSuccesseurNoPair(Sommet*s)
-{
-  m_successeursNopair.push_back(s);
-}
+}*/
 
  std::vector< Sommet*>& Sommet::getSuccesseursNoPair()
 {
