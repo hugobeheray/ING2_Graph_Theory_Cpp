@@ -42,6 +42,7 @@ void Graphe::suppression_arete()
         std::cout << "Quelle arete voulez vous supprimer pour tester la connexite?" << std::endl;
         couleurverte();
         std::cin >> choix;
+        couleurbleue();
 
     }
     while(choix<0 /*|| choix> (int)m_tabarete.size()-1*/);
@@ -71,8 +72,8 @@ void Graphe::TestConnexite()
     ///Pour cela, on fait un BFS a partir d'un sommet de depart quelconque, et on regarde en resultat si tous
     /// les sommets on ete colores ou non...
     cpt=BFSconnexite(0);
-    std::cout<<"cpt = "<<cpt<<std::endl;
-    std::cout<<"ordre = "<<getOrdre()<<std::endl;
+  //  std::cout<<"cpt = "<<cpt<<std::endl;
+   // std::cout<<"ordre = "<<getOrdre()<<std::endl;
 
     ///Si le nombre de sommets colores equivaut au nombre sommet total, alors le graphe est en effet connexe, sinon non!
     if(cpt==getOrdre())
@@ -111,12 +112,12 @@ int Graphe::BFSconnexite(int num_s0)
         std::vector<std::pair<Sommet*,int>> succ;
         succ=m_tabsommet[s->getIndiceSommet()]->getSuccesseurs();
 
-        std::cout<<"s = "<<s->getIndiceSommet()<<std::endl;
+        //std::cout<<"s = "<<s->getIndiceSommet()<<std::endl;
 
-        for(size_t i=0; i<succ.size(); ++i)
+      /*  for(size_t i=0; i<succ.size(); ++i)
         {
             std::cout<<succ[i].first->getIndiceSommet()<<std::endl;
-        }
+        }*/
 
         file.pop();
         for(size_t i=0; i<succ.size(); ++i)
