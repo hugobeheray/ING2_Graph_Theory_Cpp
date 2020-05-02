@@ -248,6 +248,11 @@ void Graphe :: centralite_proximite (std::vector<float> &tabresultats)
         tabresultats[i]=1/tabresultats[i];
         entier = (int)((0.005 + tabresultats[i])*100.0);
         tabresultats[i] = (double)entier / 100.0;
+
+        if(tabresultats[i]<=0)
+        {
+            tabresultats[i]=0;
+        }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_cp=tabresultats;
@@ -263,6 +268,10 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats,
         tabresultats[i]=(getOrdre()-1)/tabresultats[i];
         entier = (int)((0.005 + tabresultats[i])*100.0);
         tabresultats[i] = (double)entier / 100.0;
+        if(tabresultats[i]<=0)
+        {
+            tabresultats[i]=0;
+        }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_cpn=tabresultats;
@@ -282,6 +291,10 @@ void Graphe::centralite_intermediarite(std::vector<float> &tabresultats)
         tabresultats[i]=tabresultats[i]/1;
         entier = (int)((0.005 + tabresultats[i])*100.0);
         tabresultats[i] = (double)entier / 100.0;
+        if(tabresultats[i]<=0)
+        {
+            tabresultats[i]=0;
+        }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_ci=tabresultats;
@@ -297,6 +310,10 @@ void Graphe::centralite_intermediarite_normalise(std::vector<float> &tabresultat
         tabresultats[i]=((tabresultats[i]/1)/(pow(getOrdre(),2)-3*getOrdre()+2))*2;
         entier = (int)((0.005 + tabresultats[i])*100.0);
         tabresultats[i] = (double)entier / 100.0;
+        if(tabresultats[i]<=0)
+        {
+            tabresultats[i]=0;
+        }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_cin=tabresultats;
