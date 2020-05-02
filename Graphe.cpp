@@ -131,7 +131,7 @@ void Graphe::dessiner(Svgfile *svgout)
     ///affichage lettres sommets
     for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100-35,m_tabsommet[i]->getNom(), "black");
+        svgout->addText((m_tabsommet[i]->getX())*100-17, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getNom(), "black");
        // svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
     }
 
@@ -169,17 +169,6 @@ void Graphe::dessiner(Svgfile *svgout)
         svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "orange");
 
     }
-    /*  ///affichage de la legende
-    svgout->addRect(600,400,300,100,"white");
-    svgout->addLine(600,400,900,400,"red");
-    svgout->addLine(600,400,600,500,"red");
-    svgout->addLine(900,400,900,500,"red");
-    svgout->addLine(600,500,900,500,"red");
-    svgout->addText(605,415,"- Rouge : Indice de poids des arêtes", "red");
-    svgout->addText(605,435,"- Violet : Indice de centralité de degré", "purple");
-    svgout->addText(605,455,"- Rose : Indice de centralité de vecteur propre", "pink");
-    svgout->addText(605,475,"- Bleu : Indice de centralité de proximité", "blue");
-    svgout->addText(605,495,"- Vert : Indice de centralité d'intermédiarité", "green");*/
 
     ///affichage des indices
     svgout->addRect(700,60,300,55 + (getOrdre()-1)*22,"white");
@@ -194,7 +183,7 @@ void Graphe::dessiner(Svgfile *svgout)
     svgout->addText(960,85,"Inter", "black");
     for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText(750,113 + i*22,m_tabsommet[i]->getNom(), "grey");
+        svgout->addText(720,113 + i*22,m_tabsommet[i]->getNom(), "grey");
         svgout->addText(810,113 + i*22, m_res_cdn[i], "purple");
         svgout->addText(860,113 + i*22, m_res_cvn[i], "pink");
         svgout->addText(910,113 + i*22, m_res_cpn[i], "blue");
