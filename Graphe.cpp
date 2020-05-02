@@ -136,7 +136,7 @@ void Graphe::dessiner(Svgfile *svgout)
     for(i=0; i<getOrdre(); ++i)
     {
         svgout->addText((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100-35,m_tabsommet[i]->getNom(), "black");
-        svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
+       // svgout->addText((m_tabsommet[i]->getX())*100+7, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getImportance(), "purple");
     }
 
     ///affichage aretes
@@ -186,7 +186,7 @@ void Graphe::dessiner(Svgfile *svgout)
     svgout->addText(605,495,"- Vert : Indice de centralité d'intermédiarité", "green");*/
 
     ///affichage des indices
-    svgout->addRect(700,60,400,340,"white");
+    svgout->addRect(700,60,300,55 + (getOrdre()-1)*22,"white");
     svgout->addLine(700,60,1000,60,"black");
     svgout->addLine(700,100,1000,100,"black");
     svgout->addLine(800,100,700,60,"black");
