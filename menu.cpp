@@ -43,6 +43,52 @@ void Graphe::couleurjaune()
     HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(couleurcin, 14);
 }
+void Graphe::couleurbleufonce()
+{
+    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(couleurcin, 1);
+}
+void Graphe::couleurturquoise()
+{
+    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(couleurcin, 3);
+}
+void Graphe::couleurbleufluo()
+{
+    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(couleurcin, 9);
+}
+void Graphe::couleurvertfonce()
+{
+    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(couleurcin, 2);
+}
+void Graphe::couleurgrisclair()
+{
+    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(couleurcin, 7);
+}
+void Graphe::couleurgrisfonce()
+{
+    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(couleurcin, 8);
+}
+void Graphe::couleurvertfluo()
+{
+    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(couleurcin, 10);
+}
+void Graphe::couleurviolet()
+{
+    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(couleurcin, 5);
+}
+void Graphe::couleurviolet2()
+{
+    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(couleurcin, 13);
+}
+
 
 void menu()
 {
@@ -67,7 +113,27 @@ void menu()
         do
         {
             graphe.couleurjaune();
-            std::cout << "\n\n\t\t\t\tBienvenue dans notre projet Theorie des graphes !\n\n" << std::endl;
+            std::cout << "\n\n\t\t\t\t";
+            graphe.couleurbleufonce();
+            std::cout<<"B";
+            graphe.couleurbleue();
+            std::cout<<"I";
+            graphe.couleurturquoise();
+            std::cout<<"E";
+            graphe.couleurbleufluo();
+            std::cout<<"N";
+            graphe.couleurvertfonce();
+            std::cout<<"V";
+            graphe.couleurverte();
+            std::cout<<"E";
+            graphe.couleurvertfluo();
+            std::cout<<"N";
+            graphe.couleurgrisfonce();
+            std::cout<<"U";
+            graphe.couleurgrisclair();
+            std::cout<<"E";
+            graphe.couleurjaune();
+            std::cout<<" dans notre projet Theorie des graphes !\n\n" << std::endl;
             std::cout << "\t\t\t\t\t    Que voulez vous faire ?\n\n" << std::endl;
             graphe.couleurbleue();
             std::cout << "\t\t1 - Charger un graphe" << std::endl << "\t\t2 - Supprimer une arete" << std::endl <<

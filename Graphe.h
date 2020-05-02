@@ -50,6 +50,15 @@ public:
     void couleurverte();
     void couleurjaune();
     void couleurbleue();
+    void couleurbleufonce();
+    void couleurturquoise();
+    void couleurbleufluo();
+    void couleurvertfonce();
+    void couleurgrisclair();
+    void couleurgrisfonce();
+    void couleurvertfluo();
+    void couleurviolet();
+    void couleurviolet2();
     Graphe(std::string fichier,std::string fichierpoids);
     int getOrdre();
    // int getTaille();
