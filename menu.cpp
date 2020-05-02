@@ -62,7 +62,7 @@ void menu()
     graphe.couleurbleue();
 
     ///Tant qu'on ne quitte pas l'application...
-    while(choix!=7)
+    while(choix!=8)
     {
         do
         {
@@ -73,7 +73,7 @@ void menu()
             std::cout << "\t\t1 - Charger un graphe" << std::endl << "\t\t2 - Supprimer une arete" << std::endl <<
                       "\t\t3 - Calculer, afficher et sauvegarder les differents indices de centralite" << std::endl <<
                       "\t\t4 - Dessiner(impossible avant calculs)" << std::endl << "\t\t5 - Tester la connexite" <<  std::endl <<
-                       "\t\t6 - Comparer les indices (apres suppression)\n" << "\t\t7 - Quitter\n\n\n\n" << std::endl;
+                       "\t\t6 - Comparer les indices (apres suppression)" << std::endl << "\t\t7 - Charger un autre fichier de ponderation" << std::endl << "\t\t8 - Quitter\n\n\n\n" << std::endl;
             graphe.couleurverte();
             std::cin >> choix;
             if(choix==4 && blindagemenu==false)
@@ -84,7 +84,7 @@ void menu()
                     std::cout << "Impossible de dessiner avant de faire les calculs d'indices. Veuillez resaisir un choix" << std::endl;
                     graphe.couleurverte();
                     std::cin >> choix;
-                }while(choix==4 || choix <1 || choix >7);
+                }while(choix==4 || choix <1 || choix >8);
             }
             if((choix==6 && blindagemenu3==false) || (choix==6 && blindagemenu==false))
             {
@@ -94,9 +94,9 @@ void menu()
                     std::cout << "Impossible de comparer avant de supprimer une arete et d'effectuer les calculs. Veuillez resaisir un choix" << std::endl;
                     graphe.couleurverte();
                     std::cin >> choix;
-                }while(choix==6 || choix <1 || choix >7);
+                }while(choix==6 || choix <1 || choix >8);
             }
-            if((choix==2 && blindagemenu2==false) || (choix==3 && blindagemenu2==false) || (choix==4 && blindagemenu2==false) || (choix==5 && blindagemenu2==false) ||(choix==6 && blindagemenu2==false))
+            if((choix==2 && blindagemenu2==false) || (choix==3 && blindagemenu2==false) || (choix==4 && blindagemenu2==false) || (choix==5 && blindagemenu2==false) ||(choix==6 && blindagemenu2==false) || (choix==7 && blindagemenu2==false))
             {
                 do
                 {
@@ -104,11 +104,11 @@ void menu()
                     std::cout << "Impossible d'effectuer des actions avant de charger un graphe. Veuillez resaisir un choix" << std::endl;
                     graphe.couleurverte();
                     std::cin >> choix;
-                }while(choix!=1 || choix <1 || choix >6);
+                }while(choix!=1 || choix <1 || choix >7);
             }
             graphe.couleurbleue();
         }
-        while(choix < 1 || choix > 7);
+        while(choix < 1 || choix > 8);
 
         ///En fonction du choix de l'utilisateur...
         switch(choix)
@@ -119,10 +119,10 @@ void menu()
             graphe.couleurbleue();
             std::cout << "Veuillez indiquer le nom du fichier a charger\n\n\n" << std::endl;
             std::cout <<"\t 1- Graphe Etoile 1\n\t 2- Graphe Etoile 3\n\t 3- Graphe Cycle 4" << std::endl;
-            std::cout <<"\t 4- Graphe Cycle 5\n\t 5- Graphe Amerique du Sud\n\t 6- Graphe Metro Parisien" << std::endl;
+            std::cout <<"\t 4- Graphe Cycle 5\n\t 5- Graphe Amerique du Sud\n\t 6- Graphe Metro Parisien\n\t 7- Graphe personnalise\n" << std::endl;
             graphe.couleurverte();
             std::cin >> choixnomfichier;
-            while(choixnomfichier<1 || choixnomfichier>6)
+            while(choixnomfichier<1 || choixnomfichier>7)
             {
                 graphe.couleurbleue();
                 std::cout << "Erreur de saisie. Veuillez saisir un choix valide." << std::endl;
@@ -135,11 +135,20 @@ void menu()
             if(choixnomfichier==4) {nomfichierpoids="graphe_cycle5_topo_poids.txt";nomfichiertopo="graphe_cycle5_topo.txt";}
             if(choixnomfichier==5) {nomfichierpoids="graphe_ameriquedusud_topo_poids.txt";nomfichiertopo="graphe_ameriquedusud_topo.txt";}
             if(choixnomfichier==6) {nomfichierpoids="graphe_metro_paris_topo_poids.txt";nomfichiertopo="graphe_metro_paris_topo.txt";}
+            if(choixnomfichier==7)
+            {
+                graphe.couleurbleue();
+                std::cout << "Veuillez saisir le nom exact de votre fichier de topologie : \n" << std::endl;
+                graphe.couleurverte();
+                std::cin >> nomfichiertopo;
+                graphe.couleurbleue();
+                std::cout << "Veuillez saisir le nom exact de votre fichier de ponderation : \n" << std::endl;
+                graphe.couleurverte();
+                std::cin >> nomfichierpoids;
+           }
             graphe.couleurbleue();
-
-
             graphe.chargementTopo(nomfichiertopo);
-             graphe.chargementPoids(nomfichierpoids);
+            graphe.chargementPoids(nomfichierpoids);
             graphe.Majsuccesseurs();
             //graphe.afficher();
             std::cout << "\nVotre graphe a bien ete charge.\n\n" << std::endl;
@@ -173,6 +182,7 @@ void menu()
             graphe.calcul_intermediarite(tabresultats);
             graphe.centralite_intermediarite_normalise(tabresultats, compteur_comparaison);
             tabresultats.clear();
+            graphe.sauvegarde();
 
             break;
         case 4:
@@ -189,6 +199,14 @@ void menu()
             graphe.comparaison_indices();
             break;
         case 7:
+            graphe.couleurbleue();
+            std::cout << "Veuillez saisir un nouveau fichier de ponderation\n" << std::endl;
+            graphe.couleurverte();
+            std::cin >> nomfichierpoids;
+            graphe.chargementPoids(nomfichierpoids);
+            graphe.Majsuccesseurs();
+            break;
+        case 8 :
             exit(0);
             break;
         }
