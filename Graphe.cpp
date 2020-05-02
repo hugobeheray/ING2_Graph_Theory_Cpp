@@ -28,7 +28,7 @@ void Graphe::chargementPoids(std::string &fichierpoids)
     if(iss2)
     {
         iss2 >> m_taille;
-        m_tabpoids.clear();
+       // m_tabpoids.clear();
         for( int i=0; i<m_taille; ++i)
         {
             iss2 >> indiceArete >> poids;
@@ -56,8 +56,8 @@ void Graphe::chargementTopo(std::string &fichiertopo)
     {
         iss >> m_orient; /// on recupere l'orientation du graphe
         iss >> m_ordre; /// on recupere l'ordre du graphe
-        m_tabcoords.clear();
-        m_tabsommet.clear();
+        //m_tabcoords.clear();
+       // m_tabsommet.clear();
         for( int i=0; i<getOrdre(); i++)
         {
             //std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
@@ -67,10 +67,8 @@ void Graphe::chargementTopo(std::string &fichiertopo)
             //m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
         }
         iss >> m_taille;
-        m_tabarete.clear();
+       // m_tabarete.clear();
 
-        sommet.clearSuccesseur();
-        sommet.afficherSuccesseurs();
         for( int i=0; i<m_taille; i++)
         {
             iss >> indiceArete >> extrem1 >> extrem2 ;

@@ -81,7 +81,7 @@ void menu()
                     std::cin >> choix;
                 }while(choix==4 || choix <1 || choix >6);
             }
-            if(choix==2 && blindagemenu2==false || choix==3 && blindagemenu2==false || choix==4 && blindagemenu2==false || choix==5 && blindagemenu2==false)
+            if((choix==2 && blindagemenu2==false) || (choix==3 && blindagemenu2==false) || (choix==4 && blindagemenu2==false) || (choix==5 && blindagemenu2==false))
             {
                 do
                 {
