@@ -69,7 +69,6 @@ void Graphe::centralite_degre_normalise(int &compteur_comparaison)
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
     m_res_cdn=m_tabdegre;
-    std::cout << "Compteur Comparaison = " << compteur_comparaison << std::endl;
     if(compteur_comparaison==0)
     {
         m_res_cdn_initial=m_res_cdn;
@@ -155,7 +154,6 @@ void Graphe::centralite_vecteur_normalise(int &compteur_comparaison)
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
     m_res_cvn=m_tabdegre;
-    std::cout << "Compteur Comparaison = " << compteur_comparaison << std::endl;
     if(compteur_comparaison==0)
     {
         m_res_cvn_initial=m_res_cvn;
@@ -268,7 +266,6 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats,
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_cpn=tabresultats;
-    std::cout << "Compteur Comparaison = " << compteur_comparaison << std::endl;
     if(compteur_comparaison==0)
     {
         m_res_cpn_initial=m_res_cpn;
@@ -303,7 +300,6 @@ void Graphe::centralite_intermediarite_normalise(std::vector<float> &tabresultat
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_cin=tabresultats;
-    std::cout << "Compteur Comparaison = " << compteur_comparaison << std::endl;
     if(compteur_comparaison==0)
     {
         m_res_cin_initial=m_res_cin;

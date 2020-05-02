@@ -86,12 +86,12 @@ void menu()
                     std::cin >> choix;
                 }while(choix==4 || choix <1 || choix >7);
             }
-            if(choix==6 && blindagemenu3==false)
+            if((choix==6 && blindagemenu3==false) || (choix==6 && blindagemenu==false))
             {
                 do
                 {
                     graphe.couleurbleue();
-                    std::cout << "Impossible de comparer avant de supprimer une arete. Veuillez resaisir un choix" << std::endl;
+                    std::cout << "Impossible de comparer avant de supprimer une arete et d'effectuer les calculs. Veuillez resaisir un choix" << std::endl;
                     graphe.couleurverte();
                     std::cin >> choix;
                 }while(choix==6 || choix <1 || choix >7);
@@ -104,7 +104,7 @@ void menu()
                     std::cout << "Impossible d'effectuer des actions avant de charger un graphe. Veuillez resaisir un choix" << std::endl;
                     graphe.couleurverte();
                     std::cin >> choix;
-                }while(choix!=1 || choix <1 || choix >7);
+                }while(choix!=1 || choix <1 || choix >6);
             }
             graphe.couleurbleue();
         }
@@ -141,7 +141,8 @@ void menu()
             graphe.chargementTopo(nomfichiertopo);
              graphe.chargementPoids(nomfichierpoids);
             graphe.Majsuccesseurs();
-            graphe.afficher();
+            //graphe.afficher();
+            std::cout << "\nVotre graphe a bien ete charge.\n\n" << std::endl;
             break;
         case 2:
 
