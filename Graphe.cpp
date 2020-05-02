@@ -186,15 +186,31 @@ void Graphe::dessiner(Svgfile *svgout)
     svgout->addText(605,495,"- Vert : Indice de centralité d'intermédiarité", "green");*/
 
     ///affichage des indices
+    svgout->addRect(700,60,400,340,"white");
+    svgout->addLine(700,60,1000,60,"black");
+    svgout->addLine(700,100,1000,100,"black");
+    svgout->addLine(800,100,700,60,"black");
+    svgout->addText(710,95,"Som.", "black");
+    svgout->addText(750,75,"Indices", "black");
+    svgout->addText(810,85,"Deg", "black");
+    svgout->addText(860,85,"V-P", "black");
+    svgout->addText(910,85,"Prox", "black");
+    svgout->addText(960,85,"Inter", "black");
     for(i=0; i<getOrdre(); ++i)
     {
-        svgout->addText((m_tabsommet[i]->getX())*100-65+12, (m_tabsommet[i]->getY())*100-20," (", "black");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+16, (m_tabsommet[i]->getY())*100-20,m_res_cdn[i], "purple");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+46, (m_tabsommet[i]->getY())*100-20,m_res_cvn[i], "pink");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+76, (m_tabsommet[i]->getY())*100-20,m_res_cpn[i], "blue");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+106, (m_tabsommet[i]->getY())*100-20,m_res_cin[i], "green");
-        svgout->addText((m_tabsommet[i]->getX())*100-65+120, (m_tabsommet[i]->getY())*100-20," )", "black");
+        svgout->addText(750,113 + i*22,m_tabsommet[i]->getNom(), "grey");
+        svgout->addText(810,113 + i*22, m_res_cdn[i], "purple");
+        svgout->addText(860,113 + i*22, m_res_cvn[i], "pink");
+        svgout->addText(910,113 + i*22, m_res_cpn[i], "blue");
+        svgout->addText(960,113 + i*22, m_res_cin[i], "green");
+        svgout->addLine(700,115 + i*22,1000,115 + i*22,"black");
     }
+    svgout->addLine(700,60,700,115 + (getOrdre()-1)*22,"black");
+    svgout->addLine(800,60,800,115 + (getOrdre()-1)*22,"black");
+    svgout->addLine(850,60,850,115+ (getOrdre()-1)*22,"black");
+    svgout->addLine(900,60,900,115 + (getOrdre()-1)*22,"black");
+    svgout->addLine(950,60,950,115 + (getOrdre()-1)*22,"black");
+    svgout->addLine(1000,60,1000,115 + (getOrdre()-1)*22,"black");
 }
 
 int Graphe::getOrdre()
