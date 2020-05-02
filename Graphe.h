@@ -40,9 +40,12 @@ private:
 public:
     Graphe();
     ~Graphe();
+    void couleurverte();
+    void couleurjaune();
+    void couleurbleue();
     Graphe(std::string fichier,std::string fichierpoids);
     int getOrdre();
-    int getTaille();
+   // int getTaille();
     void afficher();
     void centralite_degre();
     void centralite_degre_normalise();
@@ -54,7 +57,8 @@ public:
     void calcul_intermediarite(std::vector<float> &tabresultats);
     void sauvegarde();
     void coloration();
-    void suppression_arete(std::string &nomfichier,std::string &nomfichiertopo,Graphe graphe);
+    void Majsuccesseurs();
+    void suppression_arete();
     void Dijsktra(std::vector<float> &tabresultats);
     void centralite_intermediarite(std::vector<float> &tabresultats);
     void centralite_intermediarite_normalise(std::vector<float> &tabresultats);

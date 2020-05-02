@@ -28,17 +28,17 @@ void afficher_parcours(size_t num, std::vector<int>& arbre)
 }
 
 ///ssprgm permettant de changer la couleur dans la console
-void couleurverte()
+void Graphe::couleurverte()
 {
     HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(couleurcin, 10);
 }
-void couleurbleue()
+void Graphe::couleurbleue()
 {
     HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(couleurcin, 11);
 }
-void couleurjaune()
+void Graphe::couleurjaune()
 {
     HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(couleurcin, 14);
@@ -46,7 +46,7 @@ void couleurjaune()
 
 void menu()
 {
-    couleurbleue();
+
     int choix;
 
     ///Pour une bonne gestion du blindage menu
@@ -57,41 +57,42 @@ void menu()
     std::string nomfichierpoids,nomfichiertopo;
 
     Graphe graphe;
+    graphe.couleurbleue();
 
     ///Tant qu'on ne quitte pas l'application...
     while(choix!=6)
     {
         do
         {
-            couleurjaune();
+            graphe.couleurjaune();
             std::cout << "\n\n\t\t\t\tBienvenue dans notre projet Theorie des graphes !\n\n" << std::endl;
             std::cout << "\t\t\t\t\t    Que voulez vous faire ?\n\n" << std::endl;
-            couleurbleue();
+            graphe.couleurbleue();
             std::cout << "\t\t1 - Charger un graphe" << std::endl << "\t\t2 - Supprimer une arete" << std::endl <<
                       "\t\t3 - Calculer, afficher et sauvegarder les differents indices de centralite" << std::endl << "\t\t4 - Dessiner(impossible avant calculs)" << std::endl << "\t\t5 - Tester la connexite" <<  std::endl << "\t\t6 - Quitter\n\n\n\n" << std::endl;
-            couleurverte();
+            graphe.couleurverte();
             std::cin >> choix;
             if(choix==4 && blindagemenu==false)
             {
                 do
                 {
-                    couleurbleue();
+                    graphe.couleurbleue();
                     std::cout << "Impossible de dessiner avant de faire les calculs d'indices. Veuillez resaisir un choix" << std::endl;
-                    couleurverte();
+                    graphe.couleurverte();
                     std::cin >> choix;
                 }while(choix==4 || choix <1 || choix >6);
             }
-            if(choix==2 && blindagemenu2==false || choix==3 && blindagemenu2==false || choix==4 && blindagemenu2==false || choix==5 && blindagemenu2==false)
+            if((choix==2 && blindagemenu2==false) || (choix==3 && blindagemenu2==false) || (choix==4 && blindagemenu2==false) || (choix==5 && blindagemenu2==false))
             {
                 do
                 {
-                    couleurbleue();
+                    graphe.couleurbleue();
                     std::cout << "Impossible d'effectuer des actions avant de charger un graphe. Veuillez resaisir un choix" << std::endl;
-                    couleurverte();
+                    graphe.couleurverte();
                     std::cin >> choix;
                 }while(choix!=1 || choix <1 || choix >6);
             }
-            couleurbleue();
+            graphe.couleurbleue();
         }
         while(choix < 1 || choix > 6);
 
@@ -101,17 +102,17 @@ void menu()
         case 1:
             blindagemenu=false;
             blindagemenu2=true;
-            couleurbleue();
+            graphe.couleurbleue();
             std::cout << "Veuillez indiquer le nom du fichier a charger\n\n\n" << std::endl;
             std::cout <<"\t 1- Graphe Etoile 1\n\t 2- Graphe Etoile 3\n\t 3- Graphe Cycle 4" << std::endl;
             std::cout <<"\t 4- Graphe Cycle 5\n\t 5- Graphe Amerique du Sud\n\t 6- Graphe Metro Parisien" << std::endl;
-            couleurverte();
+            graphe.couleurverte();
             std::cin >> choixnomfichier;
             while(choixnomfichier<1 || choixnomfichier>6)
             {
-                couleurbleue();
+                graphe.couleurbleue();
                 std::cout << "Erreur de saisie. Veuillez saisir un choix valide." << std::endl;
-                couleurverte();
+                graphe.couleurverte();
                 std::cin >> choixnomfichier;
             }
             if(choixnomfichier==1) {nomfichierpoids="graphe_etoile1_topo_poids.txt";nomfichiertopo="graphe_etoile1_topo.txt";}
@@ -120,13 +121,17 @@ void menu()
             if(choixnomfichier==4) {nomfichierpoids="graphe_cycle5_topo_poids.txt";nomfichiertopo="graphe_cycle5_topo.txt";}
             if(choixnomfichier==5) {nomfichierpoids="graphe_ameriquedusud_topo_poids.txt";nomfichiertopo="graphe_ameriquedusud_topo.txt";}
             if(choixnomfichier==6) {nomfichierpoids="graphe_metro_paris_topo_poids.txt";nomfichiertopo="graphe_metro_paris_topo.txt";}
-            couleurbleue();
-            graphe.chargementPoids(nomfichierpoids);
+            graphe.couleurbleue();
+
+
             graphe.chargementTopo(nomfichiertopo);
+             graphe.chargementPoids(nomfichierpoids);
+            graphe.Majsuccesseurs();
             graphe.afficher();
             break;
         case 2:
-            graphe.suppression_arete(nomfichierpoids,nomfichiertopo,graphe);
+
+            graphe.suppression_arete();
             std::cout<<std::endl;
             break;
         case 3:

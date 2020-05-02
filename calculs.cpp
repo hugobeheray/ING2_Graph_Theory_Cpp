@@ -15,7 +15,7 @@ void Graphe::centralite_degre()
     float compteur=0;
     for( int i=0; i<getOrdre() ; i++)
     {
-        for(int j=0; j<getTaille(); j++)
+        for(unsigned int j=0; j<m_tabarete.size(); j++)
         {
             if( (m_tabarete[j]->getExtrem1()==i || m_tabarete[j]->getExtrem2()==i) )
             {
@@ -41,13 +41,13 @@ void Graphe::centralite_degre()
 ///Pour la centralite de degre normalise
 void Graphe::centralite_degre_normalise()
 {
-    int j;
+    unsigned int j;
     int entier=0;
     float compteur=0;
     float compteur_normalise=0;
     for( int i=0; i<getOrdre() ; i++)
     {
-        for(j=0; j<getTaille(); j++)
+        for(j=0; j<m_tabarete.size(); j++)
         {
             if( (m_tabarete[j]->getExtrem1()==i || m_tabarete[j]->getExtrem2()==i) )
             {
@@ -99,7 +99,7 @@ void Graphe::centralite_vecteur_normalise()
         ///Pour chaque sommet, faire la somme des indices de ses voisins
         for( int i=0; i<getOrdre() ; i++)
         {
-            for(int j=0; j<getTaille(); j++)
+            for(unsigned int j=0; j<m_tabarete.size(); j++)
             {
                 if(m_tabarete[j]->getExtrem1()==i )///sommet 0 : detecter 1 voisin
                 {
@@ -180,7 +180,7 @@ void Graphe::centralite_vecteur()
 
         for( int i=0; i<getOrdre() ; i++)
         {
-            for(int j=0; j<getTaille(); j++)
+            for(unsigned int j=0; j<m_tabarete.size(); j++)
             {
                 if(m_tabarete[j]->getExtrem1()==i )
                 {
