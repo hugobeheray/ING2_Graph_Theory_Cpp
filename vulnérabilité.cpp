@@ -17,26 +17,35 @@
 
 void Graphe::Majsuccesseurs()
 {
-    for(size_t i=0;i<m_tabsommet.size();++i)
+    for(size_t i=0; i<m_tabsommet.size(); ++i)
     {
-            m_tabsommet[i]->RetirerSuccesseur();///avec pair
+        m_tabsommet[i]->RetirerSuccesseur();///avec pair
     }
-     for( size_t i=0; i<m_tabarete.size(); i++)
-     {
-            m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
-            m_tabsommet[m_tabarete[i]->getExtrem2()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem1()],m_tabpoids[i]->GetPoids()));
+    for( size_t i=0; i<m_tabarete.size(); i++)
+    {
+        m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
+        m_tabsommet[m_tabarete[i]->getExtrem2()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem1()],m_tabpoids[i]->GetPoids()));
     }
 }
 void Graphe::suppression_arete()
 {
-Majsuccesseurs();
     int choix;
-      ///afficher les indices des aretes a faire
+    ///afficher les indices des aretes a faire
+    for(size_t i=0; i<m_tabarete.size(); i++)
+    {
+        std::cout <<"Arete: " << m_tabarete[i]->GetIndiceArete() << std::endl;
+    }
+
     do
     {
+
         std::cout << "Quelle arete voulez vous supprimer pour tester la connexite?" << std::endl;
+        couleurverte();
         std::cin >> choix;
-    } while(choix<0 || choix>getTaille()-1);
+
+    }
+    while(choix<0 /*|| choix> (int)m_tabarete.size()-1*/);
+    couleurbleue();
 
     for(int i=0; i<(int)m_tabarete.size(); i++)
     {
@@ -44,7 +53,6 @@ Majsuccesseurs();
         {
             ///suppression de l'arete dans le tableau
             m_tabarete.erase(m_tabarete.begin() + i);
-            std::cout << m_tabarete.size();
             break;
         }
     }
@@ -52,6 +60,7 @@ Majsuccesseurs();
     {
         std::cout << "Arete "<<m_tabarete[i]->GetIndiceArete() << std::endl;
     }
+    this->Majsuccesseurs();
 }
 
 ///C'est ici que l'on teste la connexite des reseaux pour savoir si notre graphe et d'un seul tenant ou non

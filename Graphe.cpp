@@ -29,7 +29,7 @@ void Graphe::chargementPoids(std::string &fichierpoids)
     {
         iss2 >> m_taille;
        // m_tabpoids.clear();
-        for( int i=0; i<m_tabarete.size(); ++i)
+        for(unsigned int i=0; i<m_tabarete.size(); ++i)
         {
             iss2 >> indiceArete >> poids;
             m_tabpoids.push_back(new Arete(indiceArete,poids));
@@ -136,7 +136,7 @@ void Graphe::dessiner(Svgfile *svgout)
     }
 
     ///affichage aretes
-    for(i=0; i<getTaille(); ++i)
+    for(i=0; i<m_tabarete.size(); ++i)
     {
         svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100);
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*50 + 5,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
@@ -214,10 +214,7 @@ int Graphe::getOrdre()
     return m_ordre;
 }
 
-int Graphe::getTaille()
-{
-    return m_taille;
-}
+
 
 ///ssprgm qui gere la sauvegarde
 void Graphe::sauvegarde()

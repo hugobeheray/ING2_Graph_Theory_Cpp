@@ -40,9 +40,12 @@ private:
 public:
     Graphe();
     ~Graphe();
+    void couleurverte();
+    void couleurjaune();
+    void couleurbleue();
     Graphe(std::string fichier,std::string fichierpoids);
     int getOrdre();
-    int getTaille();
+   // int getTaille();
     void afficher();
     void centralite_degre();
     void centralite_degre_normalise();
