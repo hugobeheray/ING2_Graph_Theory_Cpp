@@ -135,6 +135,7 @@ void menu()
             graphe.centralite_degre_normalise();
             graphe.centralite_vecteur_normalise();
             graphe.centralite_vecteur();
+            //tabresultats.clear();
 
             graphe.Dijsktra(tabresultats);
             graphe.centralite_proximite(tabresultats);
@@ -150,6 +151,7 @@ void menu()
 
             graphe.calcul_intermediarite(tabresultats);
             graphe.centralite_intermediarite_normalise(tabresultats);
+            tabresultats.clear();
 
             break;
         case 4:
