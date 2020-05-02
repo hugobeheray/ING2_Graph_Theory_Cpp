@@ -33,6 +33,7 @@ public:
     void afficherSuccesseursNoPair() ;
     void AjouterSuccesseurNoPair(Sommet*s);
     std::vector< Sommet*>& getSuccesseursNoPair();
+    void RetirerSuccesseur();
     // ~Sommet();
 };
 

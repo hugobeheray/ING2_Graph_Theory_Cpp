@@ -56,6 +56,11 @@ std::vector<std::pair<Sommet*,int>>& Sommet::getSuccesseurs()
     return m_successeurs;
 }
 
+void Sommet::RetirerSuccesseur()
+{
+    m_successeurs.clear();
+}
+
 void Sommet::clearSuccesseur()
 {
     m_successeurs.clear();
