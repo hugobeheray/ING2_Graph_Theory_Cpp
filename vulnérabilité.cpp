@@ -42,6 +42,7 @@ void Graphe::suppression_arete()
         std::cout << "Quelle arete voulez vous supprimer pour tester la connexite?" << std::endl;
         couleurverte();
         std::cin >> choix;
+        couleurbleue();
 
     }
     while(choix<0 /*|| choix> (int)m_tabarete.size()-1*/);
