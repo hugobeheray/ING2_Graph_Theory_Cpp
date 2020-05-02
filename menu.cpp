@@ -48,6 +48,8 @@ void menu()
 {
     couleurbleue();
     int choix;
+
+    ///Pour une bonne gestion du blindage menu
     bool blindagemenu=false;
     bool blindagemenu2=false;
     int choixnomfichier;
@@ -79,7 +81,7 @@ void menu()
                     std::cin >> choix;
                 }while(choix==4 || choix <1 || choix >6);
             }
-            if(choix==2 || choix==3 || choix==4 || choix==5 && blindagemenu2==false)
+            if(choix==2 && blindagemenu2==false || choix==3 && blindagemenu2==false || choix==4 && blindagemenu2==false || choix==5 && blindagemenu2==false)
             {
                 do
                 {
@@ -122,7 +124,6 @@ void menu()
             graphe.chargementPoids(nomfichierpoids);
             graphe.chargementTopo(nomfichiertopo);
             graphe.afficher();
-            break;
             break;
         case 2:
             graphe.suppression_arete(nomfichierpoids,nomfichiertopo,graphe);

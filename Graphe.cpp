@@ -45,7 +45,10 @@ void Graphe::chargementPoids(std::string &fichierpoids)
 void Graphe::chargementTopo(std::string &fichiertopo)
 {
     Sommet sommet;
-    int x,y, indiceSommet,indiceArete,extrem1,extrem2;
+    int indiceSommet,indiceArete,extrem1,extrem2;
+
+    ///Float pour les x et y pour gerer les nombres a virgule
+    float x,y;
     std::string nom;
 
     std::ifstream iss(fichiertopo);
@@ -55,7 +58,7 @@ void Graphe::chargementTopo(std::string &fichiertopo)
         iss >> m_ordre; /// on recupere l'ordre du graphe
         m_tabcoords.clear();
         m_tabsommet.clear();
-        for( int i=0; i<m_ordre; i++)
+        for( int i=0; i<getOrdre(); i++)
         {
             //std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
             iss >> indiceSommet >> nom >> x >> y;
