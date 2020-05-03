@@ -166,10 +166,11 @@ void menu()
             graphe.couleurbleue();
             std::cout << "Veuillez indiquer le nom du fichier a charger\n\n\n" << std::endl;
             std::cout <<"\t 1- Graphe Etoile 1\n\t 2- Graphe Etoile 3\n\t 3- Graphe Cycle 4" << std::endl;
-            std::cout <<"\t 4- Graphe Cycle 5\n\t 5- Graphe Amerique du Sud\n\t 6- Graphe Metro Parisien\n\t 7- Graphe personnalise\n" << std::endl;
+            std::cout <<"\t 4- Graphe Cycle 5\n\t 5- Graphe Amerique du Sud\n\t 6- Graphe Metro Parisien\n" << "\t 7- Graphe Etoile Connexe\n" <<
+            "\t 8- Graphe personnalise\n" << std::endl;
             graphe.couleurverte();
             std::cin >> choixnomfichier;
-            while(choixnomfichier<1 || choixnomfichier>7)
+            while(choixnomfichier<1 || choixnomfichier>8)
             {
                 graphe.couleurbleue();
                 std::cout << "Erreur de saisie. Veuillez saisir un choix valide." << std::endl;
@@ -182,8 +183,9 @@ void menu()
             if(choixnomfichier==4) {nomfichierpoids="graphe_cycle5_topo_poids.txt";nomfichiertopo="graphe_cycle5_topo.txt";}
             if(choixnomfichier==5) {nomfichierpoids="graphe_ameriquedusud_topo_poids.txt";nomfichiertopo="graphe_ameriquedusud_topo.txt";}
             if(choixnomfichier==6) {nomfichierpoids="graphe_metro_paris_topo_poids.txt";nomfichiertopo="graphe_metro_paris_topo.txt";}
+            if(choixnomfichier==7) {nomfichierpoids="graphe_etoileconnexe_topo_poids.txt";nomfichiertopo="graphe_etoileconnexe_topo.txt";}
 
-            if(choixnomfichier==7)
+            if(choixnomfichier==8)
             {
                 graphe.couleurbleue();
                 std::cout << "Veuillez saisir le nom exact de votre fichier de topologie : \n" << std::endl;
