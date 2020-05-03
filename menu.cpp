@@ -113,27 +113,7 @@ void menu()
         do
         {
             graphe.couleurjaune();
-            std::cout << "\n\n\t\t\t\t";
-            graphe.couleurblanc1();
-            std::cout<<"B";
-            graphe.couleurblanc1();
-            std::cout<<"I";
-            graphe.couleurjaune();
-            std::cout<<"E";
-            graphe.couleurjaune();
-            std::cout<<"N";
-            graphe.couleurgrisclair();
-            std::cout<<"V";
-            graphe.couleurgrisclair();
-            std::cout<<"E";
-            graphe.couleurblanc();
-            std::cout<<"N";
-            graphe.couleurblanc();
-            std::cout<<"U";
-            graphe.couleurblanc();
-            std::cout<<"E";
-            graphe.couleurjaune();
-            std::cout<<" dans notre projet Theorie des graphes !\n\n" << std::endl;
+            std::cout<<"\n\n\t\t\t\tBienvenue dans notre projet Theorie des graphes !\n\n" << std::endl;
             std::cout << "\t\t\t\t\t    Que voulez vous faire ?\n\n" << std::endl;
             graphe.couleurbleue();
             std::cout << "\t\t1 - Charger un graphe" << std::endl << "\t\t2 - Supprimer une arete" << std::endl <<
