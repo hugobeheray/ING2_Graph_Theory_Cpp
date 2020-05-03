@@ -54,6 +54,7 @@ void Graphe::suppression_arete()
         {
             ///suppression de l'arete dans le tableau
             m_tabarete.erase(m_tabarete.begin() + i);
+            m_tabpoids.erase(m_tabpoids.begin() + i);
             break;
         }
     }
@@ -72,8 +73,8 @@ void Graphe::TestConnexite()
     ///Pour cela, on fait un BFS a partir d'un sommet de depart quelconque, et on regarde en resultat si tous
     /// les sommets on ete colores ou non...
     cpt=BFSconnexite(0);
-  //  std::cout<<"cpt = "<<cpt<<std::endl;
-   // std::cout<<"ordre = "<<getOrdre()<<std::endl;
+    //  std::cout<<"cpt = "<<cpt<<std::endl;
+    // std::cout<<"ordre = "<<getOrdre()<<std::endl;
 
     ///Si le nombre de sommets colores equivaut au nombre sommet total, alors le graphe est en effet connexe, sinon non!
     if(cpt==getOrdre())
@@ -114,10 +115,10 @@ int Graphe::BFSconnexite(int num_s0)
 
         //std::cout<<"s = "<<s->getIndiceSommet()<<std::endl;
 
-      /*  for(size_t i=0; i<succ.size(); ++i)
-        {
-            std::cout<<succ[i].first->getIndiceSommet()<<std::endl;
-        }*/
+        /*  for(size_t i=0; i<succ.size(); ++i)
+          {
+              std::cout<<succ[i].first->getIndiceSommet()<<std::endl;
+          }*/
 
         file.pop();
         for(size_t i=0; i<succ.size(); ++i)
@@ -194,6 +195,7 @@ void Graphe::comparaison_indices()
             std::cout << "Evolution Indice Degre : Sommet : " << i << " : Pas de changement" << std::endl;
         }
     }
+    std::cout<<std::endl;
     for(unsigned int i=0; i<m_tabsommet.size(); i++)
     {
         if(tabresultat_comparaison_cvn[i]>0)
@@ -209,6 +211,7 @@ void Graphe::comparaison_indices()
             std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : Pas de changement" << std::endl;
         }
     }
+    std::cout<<std::endl;
     for(unsigned int i=0; i<m_tabsommet.size(); i++)
     {
         if(tabresultat_comparaison_cpn[i]>0)
@@ -224,7 +227,7 @@ void Graphe::comparaison_indices()
             std::cout << "Evolution Indice Proximite : Sommet : " << i << " : Pas de changement" << std::endl;
         }
     }
-
+    std::cout<<std::endl;
     for(unsigned int i=0; i<m_tabsommet.size(); i++)
     {
         if(tabresultat_comparaison_cin[i]>0)
@@ -240,7 +243,7 @@ void Graphe::comparaison_indices()
             std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : Pas de changement" << std::endl;
         }
     }
-
+    std::cout<<std::endl;
     tabresultat_comparaison_cdn.clear();
     tabresultat_comparaison_cin.clear();
     tabresultat_comparaison_cpn.clear();
