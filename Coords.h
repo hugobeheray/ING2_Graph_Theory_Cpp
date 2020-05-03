@@ -6,13 +6,8 @@ class Coords
 public :
     Coords(double x, double y);
     Coords();
-    void afficher() const;
-    void saisir();
     double getX() const;
     double getY() const;
-    void setX(double x);
-    void setY(double y);
-    friend Coords operator+(const Coords& c1, const Coords& c2);
 
 private :
     double m_x;

@@ -61,11 +61,6 @@ std::vector<std::pair<Sommet*,int>>& Sommet::getSuccesseurs()
     return m_successeurs;
 }
 
-void Sommet::clearSuccesseur()
-{
-    m_successeurs.clear();
-}
-
 int Sommet::getImportance()
 {
     return m_importance;
@@ -80,14 +75,3 @@ std::string Sommet::getNom()
 {
     return m_nom;
 }
-
-std::vector< Sommet*>& Sommet::getSuccesseursNoPair()
-{
-    m_poidsD=poidsD;
-}*/
-
-
-
-
-
-

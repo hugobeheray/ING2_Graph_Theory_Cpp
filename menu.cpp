@@ -43,51 +43,6 @@ void Graphe::couleurjaune()
     HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(couleurcin, 14);
 }
-void Graphe::couleurbleufonce()
-{
-    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(couleurcin, 1);
-}
-void Graphe::couleurturquoise()
-{
-    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(couleurcin, 3);
-}
-void Graphe::couleurbleufluo()
-{
-    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(couleurcin, 9);
-}
-void Graphe::couleurvertfonce()
-{
-    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(couleurcin, 2);
-}
-void Graphe::couleurgrisclair()
-{
-    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(couleurcin, 7);
-}
-void Graphe::couleurgrisfonce()
-{
-    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(couleurcin, 8);
-}
-void Graphe::couleurvertfluo()
-{
-    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(couleurcin, 10);
-}
-void Graphe::couleurblanc()
-{
-    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(couleurcin, 15);
-}
-void Graphe::couleurblanc1()
-{
-    HANDLE couleurcin=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(couleurcin, 6);
-}
 
 
 void menu()

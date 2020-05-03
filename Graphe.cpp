@@ -130,7 +130,7 @@ void Graphe::dessiner(Svgfile *svgout)
     }
 
     ///affichage texte aretes
-    for(i=0; i<(int)m_tabarete.size(); ++i)
+    for(int i=0; i<(int)m_tabarete.size(); ++i)
     {
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabarete[i]->GetIndiceArete(),"purple");
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49+17,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,"/","black");
@@ -140,7 +140,7 @@ if(m_orient==0)
 {
 
 
-    for(i=0; i<(int)m_tabarete.size(); i++)
+    for(int i=0; i<(int)m_tabarete.size(); i++)
     {
 
         if(m_tabpoids[i]->GetPoids()==1)

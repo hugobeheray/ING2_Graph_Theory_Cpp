@@ -375,7 +375,7 @@ void Graphe::Dijsktra(std::vector<float> &tabresultats)
                     }
                 }
 
-                ///AFFICHAGE
+                ///AFFICHAGE PARCOURS
                 /*
                                     std::cout <<"Sommet d'arrivee: "<<arrivee;
                                     for(auto z = predecesseur[arrivee]; z!= -1; z = predecesseur[z])
@@ -489,7 +489,6 @@ void Graphe::calcul_intermediarite(std::vector<float> &tabresultats)
 
             }
         }
-        //tabresultats.push_back(somme);
         somme=0;
     }
 

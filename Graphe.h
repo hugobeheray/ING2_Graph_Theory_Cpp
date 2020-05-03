@@ -50,18 +50,7 @@ public:
     void couleurverte();
     void couleurjaune();
     void couleurbleue();
-    void couleurbleufonce();
-    void couleurturquoise();
-    void couleurbleufluo();
-    void couleurvertfonce();
-    void couleurgrisclair();
-    void couleurgrisfonce();
-    void couleurvertfluo();
-    void couleurblanc1();
-    void couleurblanc();
-    void couleurtest();
     int getOrdre();
-   // int getTaille();
     void afficher();
     void centralite_degre();
     void centralite_degre_normalise(int &compteur_comparaison);
