@@ -48,7 +48,7 @@ void Graphe::suppression_arete()
         couleurbleue();
 
     }
-    while(choix<0 || choix> (int)m_tabarete.size()-1);
+    while(choix<0);
     couleurbleue();
 
     for(int i=0; i<(int)m_tabarete.size(); i++)
