@@ -213,7 +213,7 @@ else
         if(m_tabsommet[i]->getImportance()==0)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 4, 10, "cyan");
         if(m_tabsommet[i]->getImportance()==1)
-            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 4, 10, "black");
+            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 0.7, 10, "black");
         if(m_tabsommet[i]->getImportance()==2)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "grey");
         if(m_tabsommet[i]->getImportance()==3)
