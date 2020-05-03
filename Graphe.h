@@ -82,6 +82,7 @@ public:
     void chargementTopo(std::string &fichiertopo);
     void chargementPoids(std::string &fichierpoids);
     void TestConnexite();
+    void k_connexite();
     int BFSconnexite(int num_s0);
 };
 #endif // GRAPHE_H_INCLUDED
