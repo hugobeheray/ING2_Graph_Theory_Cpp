@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <iostream>
 
+///Constructeur de Sommet
 Sommet::Sommet(int indice, std::string nom, float x, float y)
 {
     m_indiceSommet = indice;
@@ -10,6 +11,12 @@ Sommet::Sommet(int indice, std::string nom, float x, float y)
     m_y = y;
 }
 
+Sommet::Sommet()
+{
+
+}
+
+///ssprgm d'affichages et de get pour pouvoir utiliser les donnees de la classe Sommet dans les ssprgm de Graphe
 float Sommet::getX()
 {
     return m_x;
@@ -33,13 +40,20 @@ void Sommet::AjouterSuccesseur(std::pair<Sommet*,int> s)
     m_successeurs.push_back(s);
 }
 
+void Sommet::RetirerSuccesseur()
+{
+    m_successeurs.clear();
+}
+
 void Sommet::afficherSuccesseurs()
 {
+    std::cout <<"AFFICHAGE SUCCESSEURS" << std::endl;
     std::cout << " sommet " << m_indiceSommet << " : ";
     for(size_t i =0; i<m_successeurs.size(); ++i)
     {
         std::cout<< m_successeurs[i].first->getIndiceSommet() << " /(Poids :" << m_successeurs[i].second<< ") ";
     }
+    std::cout << "FIN AFFICHAGE SUCCESSEURS" << std::endl;
 }
 
 std::vector<std::pair<Sommet*,int>>& Sommet::getSuccesseurs()
@@ -62,27 +76,16 @@ std::string Sommet::getNom()
     return m_nom;
 }
 
-void Sommet::setPoidsD(int poidsD)
+/*void Sommet::setPoidsD(int poidsD)
 {
     m_poidsD=poidsD;
-}
-
-void Sommet::afficherSuccesseursNoPair()
-{
-  std::cout << " sommet " << m_indiceSommet << " : ";
-  for(auto s : m_successeursNopair)
-  {
-    std::cout << s->getIndiceSommet() << " ";
-  }
-}
-void Sommet::AjouterSuccesseurNoPair(Sommet*s)
-{
-  m_successeursNopair.push_back(s);
-}
+}*/
 
  std::vector< Sommet*>& Sommet::getSuccesseursNoPair()
 {
   return m_successeursNopair;
 }
+
+
 
 
