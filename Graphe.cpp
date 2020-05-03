@@ -135,14 +135,14 @@ void Graphe::dessiner(Svgfile *svgout)
     }
 
     ///affichage texte aretes
-    for(i=0; i<m_tabarete.size(); ++i)
+    for(i=0; i<(int)m_tabarete.size(); ++i)
     {
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabarete[i]->GetIndiceArete(),"purple");
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49+17,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,"/","black");
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49+22,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
     }
 
-    for(i=0; i<m_tabarete.size(); i++)
+    for(i=0; i<(int)m_tabarete.size(); i++)
     {
         std::cout<<"poids:"<<m_tabpoids[i]->GetPoids()<<std::endl;
 
