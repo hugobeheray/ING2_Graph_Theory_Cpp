@@ -61,11 +61,9 @@ void Graphe::chargementTopo(std::string &fichiertopo)
         m_tabsommet.clear();
         for( int i=0; i<getOrdre(); i++)
         {
-            //std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
             iss >> indiceSommet >> nom >> x >> y;
             m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
             m_tabcoords.push_back(new Coords(x,y));
-            //m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
         }
         iss >> taille;
         m_tabarete.clear();

@@ -23,8 +23,16 @@ void Graphe::Majsuccesseurs()
     }
     for( size_t i=0; i<m_tabarete.size(); i++)
     {
-        m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
-        m_tabsommet[m_tabarete[i]->getExtrem2()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem1()],m_tabpoids[i]->GetPoids()));
+        if(!m_orient)/// Si le graphe n'est pas oriente
+        {
+            m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
+             m_tabsommet[m_tabarete[i]->getExtrem2()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem1()],m_tabpoids[i]->GetPoids()));
+        }
+        else
+        {
+            m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
+        }
+
     }
 }
 void Graphe::suppression_arete()
@@ -72,8 +80,8 @@ void Graphe::TestConnexite()
     ///Pour cela, on fait un BFS a partir d'un sommet de depart quelconque, et on regarde en resultat si tous
     /// les sommets on ete colores ou non...
     cpt=BFSconnexite(0);
-  //  std::cout<<"cpt = "<<cpt<<std::endl;
-   // std::cout<<"ordre = "<<getOrdre()<<std::endl;
+    //  std::cout<<"cpt = "<<cpt<<std::endl;
+    // std::cout<<"ordre = "<<getOrdre()<<std::endl;
 
     ///Si le nombre de sommets colores equivaut au nombre sommet total, alors le graphe est en effet connexe, sinon non!
     if(cpt==getOrdre())
@@ -114,10 +122,10 @@ int Graphe::BFSconnexite(int num_s0)
 
         //std::cout<<"s = "<<s->getIndiceSommet()<<std::endl;
 
-      /*  for(size_t i=0; i<succ.size(); ++i)
-        {
-            std::cout<<succ[i].first->getIndiceSommet()<<std::endl;
-        }*/
+        /*  for(size_t i=0; i<succ.size(); ++i)
+          {
+              std::cout<<succ[i].first->getIndiceSommet()<<std::endl;
+          }*/
 
         file.pop();
         for(size_t i=0; i<succ.size(); ++i)
