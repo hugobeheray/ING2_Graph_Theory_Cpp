@@ -201,6 +201,7 @@ void menu()
             if(choixnomfichier==4) {nomfichierpoids="graphe_cycle5_topo_poids.txt";nomfichiertopo="graphe_cycle5_topo.txt";}
             if(choixnomfichier==5) {nomfichierpoids="graphe_ameriquedusud_topo_poids.txt";nomfichiertopo="graphe_ameriquedusud_topo.txt";}
             if(choixnomfichier==6) {nomfichierpoids="graphe_metro_paris_topo_poids.txt";nomfichiertopo="graphe_metro_paris_topo.txt";}
+
             if(choixnomfichier==7)
             {
                 graphe.couleurbleue();
@@ -211,7 +212,7 @@ void menu()
                 std::cout << "Veuillez saisir le nom exact de votre fichier de ponderation : \n" << std::endl;
                 graphe.couleurverte();
                 std::cin >> nomfichierpoids;
-           }
+            }
             graphe.couleurbleue();
             graphe.chargementTopo(nomfichiertopo);
             graphe.chargementPoids(nomfichierpoids);
@@ -219,12 +220,13 @@ void menu()
             //graphe.afficher();
             std::cout << "\nVotre graphe a bien ete charge.\n\n" << std::endl;
             break;
-        case 2:
 
+        case 2:
             blindagemenu3=true;
             graphe.suppression_arete();
             std::cout<<std::endl;
             break;
+
         case 3:
             blindagemenu=true;
             graphe.centralite_degre();
@@ -249,8 +251,8 @@ void menu()
             graphe.centralite_intermediarite_normalise(tabresultats, compteur_comparaison);
             tabresultats.clear();
             graphe.sauvegarde();
-
             break;
+
         case 4:
         {
             Svgfile svgfile;
@@ -258,12 +260,15 @@ void menu()
             graphe.dessiner(&svgfile);
         }
         break;
+
         case 5:
             graphe.TestConnexite();
             break;
+
         case 6 :
             graphe.comparaison_indices();
             break;
+
         case 7:
             graphe.couleurbleue();
             std::cout << "Veuillez saisir un nouveau fichier de ponderation\n" << std::endl;
@@ -272,6 +277,7 @@ void menu()
             graphe.chargementPoids(nomfichierpoids);
             graphe.Majsuccesseurs();
             break;
+
         case 8 :
             exit(0);
             break;
