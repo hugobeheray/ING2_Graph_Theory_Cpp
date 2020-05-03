@@ -5,7 +5,6 @@
 #include "svgfile.h"
 #include "menu.h"
 #include "Coords.h"
-#include "calculs.h"
 #include <math.h>
 #include<queue>
 
@@ -13,6 +12,7 @@
 void Graphe::centralite_degre()
 {
     float compteur=0;
+
     for( int i=0; i<getOrdre() ; i++)
     {
         for(unsigned int j=0; j<m_tabarete.size(); j++)
@@ -142,8 +142,17 @@ void Graphe::centralite_vecteur_normalise(int &compteur_comparaison)
 
     ///affichage des indices de chaque sommet
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE NORMALISE" << std::endl << std::endl;
+
     for(i=0; i<m_tabdegre.size(); i++)
     {
+        if(m_tabdegre[i]<=0)
+        {
+            m_tabdegre[i]=0;
+        }
+        if(m_tabdegre[i]>=1)
+        {
+            m_tabdegre[i]=1;
+        }
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
     m_res_cvn=m_tabdegre;
@@ -151,6 +160,7 @@ void Graphe::centralite_vecteur_normalise(int &compteur_comparaison)
     {
         m_res_cvn_initial=m_res_cvn;
     }
+    m_tabdegre.clear();
 }
 
 ///Pour la centralite de vecteur 'NON normalise', les resultats obtenus ne seront pas pertinents
@@ -249,19 +259,21 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats,
 {
     int entier;
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE NORMALISE" << std::endl << std::endl;
+
     for(unsigned int i=0; i<tabresultats.size(); i++)
     {
         tabresultats[i]=(getOrdre()-1)/tabresultats[i];
-        entier = (int)((0.005 + tabresultats[i])*100.0);
-        tabresultats[i] = (double)entier / 100.0;
         if(tabresultats[i]<=0)
         {
             tabresultats[i]=0;
         }
-         if(tabresultats[i]>=1)
+        if(tabresultats[i]>=1)
         {
             tabresultats[i]=1;
         }
+        entier = (int)((0.005 + tabresultats[i])*100.0);
+        tabresultats[i] = (double)entier / 100.0;
+
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
 

@@ -11,7 +11,7 @@
 #include <sstream>
 #include "svgfile.h"
 #include "Coords.h"
-#include "calculs.h"
+
 
 Graphe::Graphe()
 {
@@ -276,7 +276,7 @@ void Graphe::sauvegarde()
     {
         for(int i=0; i<getOrdre(); ++i)
         {
-            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << m_res_cd[i] << "\t" << m_res_cdn[i] << "\t" << m_res_cv[i] << "\t" << m_res_cvn[i] <<"\t" << m_res_cp[i] << "\t" << m_res_cpn[i] << "\t " << m_res_ci[i] << "\t" << m_res_cin[i] << std::endl;
+            flux << m_tabsommet[i]->getIndiceSommet() << "\t" << m_res_cd[i] << "\t" << m_res_cdn[i] /*<< "\t" << m_res_cv[i] */<< "\t" << m_res_cvn[i] <<"\t" << m_res_cp[i] << "\t" << m_res_cpn[i] << "\t " << m_res_ci[i] << "\t" << m_res_cin[i] << std::endl;
         }
     }
 }
