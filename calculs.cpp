@@ -544,7 +544,7 @@ void Graphe::k_connexite()
     std::cout<<"Etude de la k-connexite du graphe : "<<std::endl;
     if(connexite)
     {
-        std::cout<<"Le graphe est "<<degretest<<"-connexe"<<std::endl;
+        std::cout<<"Le graphe est "<<degretest<<"-arete(s)-connexe"<<std::endl;
     }
     if(!connexite)
     {
