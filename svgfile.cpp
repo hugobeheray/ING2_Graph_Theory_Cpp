@@ -41,7 +41,7 @@ Svgfile::Svgfile(std::string _filename, int _width, int _height) :
 
     m_style << "<defs>" << std::endl
             << "<marker id=\"arrowhead\" markerWidth=\"10\" markerHeight=\"7\" " << std::endl
-            << "refX=\"15\" refY=\"3.5\" orient=\"auto\">" << std::endl
+            << "refX=\"20\" refY=\"3.5\" orient=\"auto\">" << std::endl
             << "<polygon points=\"0 0, 15 3.5, 0 7\" />" << std::endl
             << "</marker>" << std::endl
             << "</defs>" << std::endl

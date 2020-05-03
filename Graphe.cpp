@@ -123,7 +123,7 @@ void Graphe::afficher()
 ///Pour le dessin dans le .svg
 void Graphe::dessiner(Svgfile *svgout)
 {
-    //svgout->addGrid();
+    svgout->addGrid();
 
     ///affichage lettres sommets
     for(int i=0; i<getOrdre(); ++i)
@@ -144,7 +144,6 @@ if(m_orient==0)
 
     for(unsigned int i=0; i<m_tabarete.size(); i++)
     {
-        std::cout<<"poids:"<<m_tabpoids[i]->GetPoids()<<std::endl;
 
         if(m_tabpoids[i]->GetPoids()==1)
             svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"black");
@@ -211,9 +210,9 @@ else
     for(int i=0; i<getOrdre(); ++i)
     {
         if(m_tabsommet[i]->getImportance()==0)
-            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 4, 10, "cyan");
+            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "cyan");
         if(m_tabsommet[i]->getImportance()==1)
-            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 0.7, 10, "black");
+            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "black");
         if(m_tabsommet[i]->getImportance()==2)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "grey");
         if(m_tabsommet[i]->getImportance()==3)
@@ -223,7 +222,7 @@ else
         if(m_tabsommet[i]->getImportance()==5)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "green");
         if(m_tabsommet[i]->getImportance()==6)
-            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "yellow");
+            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5 , 10, "yellow");
         if(m_tabsommet[i]->getImportance()==7)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "orange");
         if(m_tabsommet[i]->getImportance()==8)
