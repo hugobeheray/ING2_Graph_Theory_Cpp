@@ -38,10 +38,21 @@ Svgfile::Svgfile(std::string _filename, int _width, int _height) :
     // Writing the header into the SVG file
     m_ostrm << svgHeader;
     m_ostrm << "width=\"" << m_width << "\" height=\"" << m_height << "\">\n\n";
+
+    m_style << "<defs>" << std::endl
+            << "<marker id=\"arrowhead\" markerWidth=\"10\" markerHeight=\"7\" " << std::endl
+            << "refX=\"15\" refY=\"3.5\" orient=\"auto\">" << std::endl
+            << "<polygon points=\"0 0, 15 3.5, 0 7\" />" << std::endl
+            << "</marker>" << std::endl
+            << "</defs>" << std::endl
+            << "<style>" << std::endl;
 }
 
 Svgfile::~Svgfile()
 {
+    m_style << "</style>" << std::endl;
+    //Writing the style snippet
+    m_ostrm << m_style.str();
     // Writing the ending into the SVG file
     m_ostrm << svgEnding;
 
@@ -131,6 +142,18 @@ void Svgfile::addLine(double x1, double y1, double x2, double y2, std::string co
             << attrib("x2", x2)
             << attrib("y2", y2)
             << attrib("stroke", color)
+            << "/>\n";
+}
+
+void Svgfile::addArrow(double x1, double y1, double x2, double y2, std::string color)
+{
+    m_ostrm << "<line "
+            << attrib("x1", x1)
+            << attrib("y1", y1)
+            << attrib("x2", x2)
+            << attrib("y2", y2)
+            << attrib("stroke", color)
+            << attrib("marker-end", "url(#arrowhead)")
             << "/>\n";
 }
 

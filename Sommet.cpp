@@ -86,10 +86,7 @@ std::string Sommet::getNom()
     m_poidsD=poidsD;
 }*/
 
- std::vector< Sommet*>& Sommet::getSuccesseursNoPair()
-{
-  return m_successeursNopair;
-}
+
 
 
 

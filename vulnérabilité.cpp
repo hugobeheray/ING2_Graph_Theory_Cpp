@@ -23,16 +23,11 @@ void Graphe::Majsuccesseurs()
     }
     for( size_t i=0; i<m_tabarete.size(); i++)
     {
+         m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
         if(!m_orient)/// Si le graphe n'est pas oriente
         {
-            m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
              m_tabsommet[m_tabarete[i]->getExtrem2()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem1()],m_tabpoids[i]->GetPoids()));
         }
-        else
-        {
-            m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
-        }
-
     }
 }
 void Graphe::suppression_arete()
@@ -53,7 +48,7 @@ void Graphe::suppression_arete()
         couleurbleue();
 
     }
-    while(choix<0 /*|| choix> (int)m_tabarete.size()-1*/);
+    while(choix<0 || choix> (int)m_tabarete.size()-1);
     couleurbleue();
 
     for(int i=0; i<(int)m_tabarete.size(); i++)
