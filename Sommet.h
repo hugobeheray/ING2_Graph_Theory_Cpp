@@ -11,7 +11,8 @@ private:
     std::string m_nom;
     std::vector<std::pair<Sommet*,int>> m_successeurs;
     std::vector<Sommet*> m_successeursNopair;
-    float m_importance;
+    //int m_poidsD;
+    int m_importance;
 
 public:
     Sommet(int indice, std::string nom, float x, float y);
@@ -19,8 +20,9 @@ public:
     float getY();
     Sommet();
     int getIndiceSommet();
-    float getImportance();
-    void setImportance(float importance);
+    int getImportance();
+    void RetirerSuccesseur();
+    void setImportance(int importance);
     void setPoidsD(int poidsD);
     std::string getNom();
     void afficherSommet() ;
