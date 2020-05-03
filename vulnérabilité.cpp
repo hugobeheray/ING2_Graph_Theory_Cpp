@@ -177,11 +177,25 @@ void Graphe::comparaison_indices()
     {
         if(tabresultat_comparaison_cdn[i]>0)
         {
-            std::cout << "Evolution Indice Degre : Sommet : " << i << " : -" << tabresultat_comparaison_cdn[i] << "%" << std::endl;
+            if(tabresultat_comparaison_cdn[i]>1000)
+            {
+                std::cout << "Evolution Indice Degre : Sommet : " << i << " : 0%" << std::endl;
+            }
+            else
+            {
+                std::cout << "Evolution Indice Degre : Sommet : " << i << " : -" << tabresultat_comparaison_cdn[i] << "%" << std::endl;
+            }
         }
         if(tabresultat_comparaison_cdn[i]<0)
         {
-            std::cout << "Evolution Indice Degre : Sommet : " << i << " : +" << -tabresultat_comparaison_cdn[i] << "%" << std::endl;
+            if(tabresultat_comparaison_cdn[i]<1000)
+            {
+                std::cout << "Evolution Indice Degre : Sommet : " << i << " : 0%" << std::endl;
+            }
+            else
+            {
+               std::cout << "Evolution Indice Degre : Sommet : " << i << " : +" << -tabresultat_comparaison_cdn[i] << "%" << std::endl;
+            }
         }
         if(tabresultat_comparaison_cdn[i]==0)
         {
@@ -195,11 +209,25 @@ void Graphe::comparaison_indices()
     {
         if(tabresultat_comparaison_cvn[i]>0)
         {
-            std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : -" << tabresultat_comparaison_cvn[i] << "%" << std::endl;
+            if(tabresultat_comparaison_cvn[i]>1000)
+            {
+                std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : 0%" << std::endl;
+            }
+            else
+            {
+                std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : -" << tabresultat_comparaison_cvn[i] << "%" << std::endl;
+            }
         }
         if(tabresultat_comparaison_cvn[i]<0)
         {
-            std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : +" << -tabresultat_comparaison_cvn[i] << "%" << std::endl;
+            if(tabresultat_comparaison_cvn[i]<1000)
+            {
+                std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : 0%" << std::endl;
+            }
+            else
+            {
+                std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : +" << -tabresultat_comparaison_cvn[i] << "%" << std::endl;
+            }
         }
         if(tabresultat_comparaison_cvn[i]==0)
         {
@@ -213,11 +241,25 @@ void Graphe::comparaison_indices()
     {
         if(tabresultat_comparaison_cpn[i]>0)
         {
-            std::cout << "Evolution Indice Proximite : Sommet : " << i << " : -" << tabresultat_comparaison_cpn[i] << "%" << std::endl;
+            if(tabresultat_comparaison_cpn[i]>1000)
+            {
+                std::cout << "Evolution Indice Proximite : Sommet : " << i << " : 0%" << std::endl;
+            }
+            else
+            {
+                std::cout << "Evolution Indice Proximite : Sommet : " << i << " : -" << tabresultat_comparaison_cpn[i] << "%" << std::endl;
+            }
         }
         if(tabresultat_comparaison_cpn[i]<0)
         {
-            std::cout << "Evolution Indice Proximite : Sommet : " << i << " : +" << -tabresultat_comparaison_cpn[i] << "%" << std::endl;
+            if(tabresultat_comparaison_cpn[i]<1000)
+            {
+                std::cout << "Evolution Indice Proximite : Sommet : " << i << " : 0%" << std::endl;
+            }
+            else
+            {
+                std::cout << "Evolution Indice Proximite : Sommet : " << i << " : +" << -tabresultat_comparaison_cpn[i] << "%" << std::endl;
+            }
         }
         if(tabresultat_comparaison_cpn[i]==0)
         {
@@ -231,11 +273,25 @@ void Graphe::comparaison_indices()
     {
         if(tabresultat_comparaison_cin[i]>0)
         {
-            std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : -" << tabresultat_comparaison_cin[i] << "%" << std::endl;
+            if(tabresultat_comparaison_cin[i]>1000)
+            {
+                std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : 0%" << std::endl;
+            }
+            else
+            {
+                std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : -" << tabresultat_comparaison_cin[i] << "%" << std::endl;
+            }
         }
         if(tabresultat_comparaison_cin[i]<0)
         {
-            std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : +" << -tabresultat_comparaison_cin[i] << "%" << std::endl;
+            if(tabresultat_comparaison_cin[i]<1000)
+            {
+                std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : 0%" << std::endl;
+            }
+            else
+            {
+               std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : +" << -tabresultat_comparaison_cin[i] << "%" << std::endl;
+            }
         }
         if(tabresultat_comparaison_cin[i]==0)
         {
