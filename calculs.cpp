@@ -526,25 +526,26 @@ void Graphe::calcul_intermediarite(std::vector<float> &tabresultats)
 void Graphe::k_connexite()
 {
     bool connexite=false;
-    float degretest;
+    int degretest;
     int cpt=0;
-    degretest=m_tabsommet[0]->getImportance();
+    degretest=m_tabsommet[1]->getImportance();
 
-    for (unsigned int i=1; i<(m_tabsommet.size()-1); i++)
+    for (unsigned int i=1; i<(m_tabsommet.size()); i++)
     {
         if(degretest==m_tabsommet[i]->getImportance())
         {
             cpt++;
         }
     }
-    if(cpt==(getOrdre()-1))
+
+    if(cpt==(int)(m_tabsommet.size()-1))
     {
         connexite=true;
     }
     std::cout<<"Etude de la k-connexite du graphe : "<<std::endl;
     if(connexite)
     {
-        std::cout<<"Le graphe est "<<degretest<<"-arete(s)-connexe"<<std::endl;
+        std::cout<<"Le graphe est "<<degretest<<"-arete-connexe"<<std::endl;
     }
     if(!connexite)
     {

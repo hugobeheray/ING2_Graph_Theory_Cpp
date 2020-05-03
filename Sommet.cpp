@@ -66,12 +66,12 @@ void Sommet::clearSuccesseur()
     m_successeurs.clear();
 }
 
-float Sommet::getImportance()
+int Sommet::getImportance()
 {
     return m_importance;
 }
 
-void Sommet::setImportance(float importance)
+void Sommet::setImportance(int importance)
 {
      m_importance=importance;
 }
