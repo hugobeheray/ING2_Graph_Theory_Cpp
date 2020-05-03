@@ -516,9 +516,36 @@ void Graphe::calcul_intermediarite(std::vector<float> &tabresultats)
         tabresultats.push_back(tabcompteur[i]);
     }
 
-      /* for(i=0; i<getOrdre(); ++i)
-      {
-          std::cout << "INDICE INTER SOMMET " << i << " : " << tabcompteur[i] << std::endl;
-      }*/
+    /* for(i=0; i<getOrdre(); ++i)
+    {
+        std::cout << "INDICE INTER SOMMET " << i << " : " << tabcompteur[i] << std::endl;
+    }*/
 
+}
+
+void Graphe::k_connexite()
+{
+    bool connexite=false;
+    float degretest;
+    int cpt=0;
+
+    degretest=m_tabsommet[0]->getImportance();
+
+    for (unsigned int i=1; i<getOrdre(); i++)
+    {
+        if(degretest==m_tabsommet[i]->getImportance())
+        {
+            cpt++;
+        }
+    }
+    if(cpt==(getOrdre()-1))
+    {
+        connexite=true;
+    }
+
+    std::cout<<"Etude de la k-connexite du graphe : "<<std::endl;
+    if(connexite)
+        std::cout<<"Le graphe est "<<degretest<<"-connexe"<<std::endl;
+    else
+        std::cout<<"Le graphe n'est pas k-connexe"<<std::endl;
 }
