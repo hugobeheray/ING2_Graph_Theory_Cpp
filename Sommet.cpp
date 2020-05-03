@@ -73,7 +73,7 @@ int Sommet::getImportance()
 
 void Sommet::setImportance(int importance)
 {
-     m_importance=importance;
+    m_importance=importance;
 }
 
 std::string Sommet::getNom()
@@ -81,14 +81,9 @@ std::string Sommet::getNom()
     return m_nom;
 }
 
-/*void Sommet::setPoidsD(int poidsD)
+std::vector< Sommet*>& Sommet::getSuccesseursNoPair()
 {
-    m_poidsD=poidsD;
-}*/
-
- std::vector< Sommet*>& Sommet::getSuccesseursNoPair()
-{
-  return m_successeursNopair;
+    return m_successeursNopair;
 }
 
 

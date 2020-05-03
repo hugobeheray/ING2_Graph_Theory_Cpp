@@ -94,7 +94,6 @@ void Graphe::centralite_vecteur_normalise(int &compteur_comparaison)
         sommevoisins.push_back(0);
     }
 
-
     do
     {
         lambda2=lambda;
@@ -115,15 +114,9 @@ void Graphe::centralite_vecteur_normalise(int &compteur_comparaison)
                     sommevoisins[i]=sommevoisins[i]+ m_tabdegre[m_tabarete[j]->getExtrem1()];
                     tabresultat[m_tabarete[j]->getExtrem2()]= sommevoisins[i];
                 }
-
             }
             sommevoisins[i]=0;
         }
-
-        /* for(unsigned int i=0; i<tabresultat.size(); i++)
-        {
-            std::cout << "tabresultat " << i << " = " << tabresultat[i] << std::endl; //1/1/1/4/2/4/1/1/1 au premier tour de la grande boucle for
-        }*/
 
         ///Calcul de lambda
         for(i=0; i<getOrdre(); i++)
@@ -140,12 +133,12 @@ void Graphe::centralite_vecteur_normalise(int &compteur_comparaison)
             m_tabdegre[i] = (double)entier / 100.0;
         }
 
+        ///Pour voir les differentes valeures de lambda
         //std::cout<< "LAMBDA = " << lambda <<std::endl; //pour voir les differentes valeurs de lambda
     }
 
     ///tant que delta lambda est superieur a 0,01, ici notre condition
     while(abs(lambda-lambda2)>0.01);
-
 
     ///affichage des indices de chaque sommet
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE VECTEUR PROPRE NORMALISE" << std::endl << std::endl;
@@ -158,7 +151,6 @@ void Graphe::centralite_vecteur_normalise(int &compteur_comparaison)
     {
         m_res_cvn_initial=m_res_cvn;
     }
-    //m_tabdegre.clear();
 }
 
 ///Pour la centralite de vecteur 'NON normalise', les resultats obtenus ne seront pas pertinents
@@ -200,15 +192,9 @@ void Graphe::centralite_vecteur()
                     sommevoisins[i]=sommevoisins[i]+ m_tabdegre[m_tabarete[j]->getExtrem1()];
                     tabresultat[m_tabarete[j]->getExtrem2()]= sommevoisins[i];
                 }
-
             }
             sommevoisins[i]=0;
         }
-
-        /* for(unsigned int i=0; i<tabresultat.size(); i++)
-        {
-            std::cout << "tabresultat " << i << " = " << tabresultat[i] << std::endl; //1/1/1/4/2/4/1/1/1 au premier tour de la grande boucle for
-        }*/
 
         for(i=0; i<getOrdre(); i++)
         {
@@ -274,6 +260,7 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats,
         }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
+
     m_res_cpn=tabresultats;
     if(compteur_comparaison==0)
     {
@@ -515,12 +502,6 @@ void Graphe::calcul_intermediarite(std::vector<float> &tabresultats)
     {
         tabresultats.push_back(tabcompteur[i]);
     }
-
-    /* for(i=0; i<getOrdre(); ++i)
-    {
-        std::cout << "INDICE INTER SOMMET " << i << " : " << tabcompteur[i] << std::endl;
-    }*/
-
 }
 
 void Graphe::k_connexite()

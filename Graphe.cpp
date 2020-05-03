@@ -21,7 +21,6 @@ Graphe::Graphe()
 ///ssprgm qui charge le fichier contenant le poids des aretes et stock tout ça dans des tableaux
 void Graphe::chargementPoids(std::string &fichierpoids)
 {
-
     int indiceArete,poids;
     std::ifstream iss2(fichierpoids);
 
@@ -38,7 +37,6 @@ void Graphe::chargementPoids(std::string &fichierpoids)
     else
         std::cout << "erreur lors de l'ouverture du fichier "<<std::endl;
     iss2.close();
-
 }
 
 ///ssprgm qui charge le fichier et stock tout ça dans des tableaux
@@ -51,8 +49,8 @@ void Graphe::chargementTopo(std::string &fichiertopo)
     ///Float pour les x et y pour gerer les nombres a virgule
     float x,y;
     std::string nom;
-
     std::ifstream iss(fichiertopo);
+
     if(iss)
     {
         iss >> m_orient; /// on recupere l'orientation du graphe
@@ -171,8 +169,6 @@ void Graphe::dessiner(Svgfile *svgout)
             svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"cyan");
     }
 
-
-
     ///affichage coloration en fonction du degre et sommets
     for(int i=0; i<getOrdre(); ++i)
     {
@@ -200,9 +196,7 @@ void Graphe::dessiner(Svgfile *svgout)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "pink");
         if(m_tabsommet[i]->getImportance()==11)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "magenta");
-
     }
-
 
     ///affichage des indices
     svgout->addRect(700,60,300,55 + (getOrdre()-1)*22,"white");
@@ -215,6 +209,7 @@ void Graphe::dessiner(Svgfile *svgout)
     svgout->addText(860,85,"V-P", "black");
     svgout->addText(910,85,"Prox", "black");
     svgout->addText(960,85,"Inter", "black");
+
     for(int i=0; i<getOrdre(); ++i)
     {
         svgout->addText(705,113 + i*22,m_tabsommet[i]->getNom(), "grey");
@@ -224,6 +219,7 @@ void Graphe::dessiner(Svgfile *svgout)
         svgout->addText(960,113 + i*22, m_res_cin[i], "green");
         svgout->addLine(700,115 + i*22,1000,115 + i*22,"black");
     }
+
     svgout->addLine(700,60,700,115 + (getOrdre()-1)*22,"black");
     svgout->addLine(800,60,800,115 + (getOrdre()-1)*22,"black");
     svgout->addLine(850,60,850,115+ (getOrdre()-1)*22,"black");
@@ -236,8 +232,6 @@ int Graphe::getOrdre()
 {
     return m_ordre;
 }
-
-
 
 ///ssprgm qui gere la sauvegarde
 void Graphe::sauvegarde()
