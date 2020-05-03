@@ -136,3 +136,113 @@ int Graphe::BFSconnexite(int num_s0)
     }
     return cpt;
 }
+void Graphe::comparaison_indices()
+{
+
+    std::vector<float> tabresultat_comparaison_cdn;
+    std::vector<float> tabresultat_comparaison_cvn;
+    std::vector<float> tabresultat_comparaison_cpn;
+    std::vector<float> tabresultat_comparaison_cin;
+
+    for(unsigned int i=0; i<m_tabsommet.size(); i++)
+    {
+        if(m_res_cdn_initial[i]==0)
+        {
+            tabresultat_comparaison_cdn.push_back(0);
+        }
+        else
+        {
+            tabresultat_comparaison_cdn.push_back((m_res_cdn_initial[i]-m_res_cdn[i])/m_res_cdn_initial[i] *100);
+        }
+        if(m_res_cvn_initial[i]==0)
+        {
+            tabresultat_comparaison_cdn.push_back(0);
+        }
+        else
+        {
+            tabresultat_comparaison_cvn.push_back((m_res_cvn_initial[i]-m_res_cvn[i])/m_res_cvn_initial[i] *100);
+        }
+        if(m_res_cpn_initial[i]==0)
+        {
+            tabresultat_comparaison_cdn.push_back(0);
+        }
+        else
+        {
+            tabresultat_comparaison_cpn.push_back((m_res_cpn_initial[i]-m_res_cpn[i])/m_res_cpn_initial[i] *100);
+        }
+        if(m_res_cin_initial[i]==0)
+        {
+            tabresultat_comparaison_cdn.push_back(0);
+        }
+        else
+        {
+            tabresultat_comparaison_cin.push_back((m_res_cin_initial[i]-m_res_cin[i])/m_res_cin_initial[i] *100);
+        }
+    }
+    for(unsigned int i=0; i<m_tabsommet.size(); i++)
+    {
+        if(tabresultat_comparaison_cdn[i]>0)
+        {
+            std::cout << "Evolution Indice Degre : Sommet : " << i << " : -" << tabresultat_comparaison_cdn[i] << "%" << std::endl;
+        }
+        if(tabresultat_comparaison_cdn[i]<0)
+        {
+            std::cout << "Evolution Indice Degre : Sommet : " << i << " : +" << -tabresultat_comparaison_cdn[i] << "%" << std::endl;
+        }
+        if(tabresultat_comparaison_cdn[i]==0)
+        {
+            std::cout << "Evolution Indice Degre : Sommet : " << i << " : Pas de changement" << std::endl;
+        }
+    }
+    for(unsigned int i=0; i<m_tabsommet.size(); i++)
+    {
+        if(tabresultat_comparaison_cvn[i]>0)
+        {
+            std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : -" << tabresultat_comparaison_cvn[i] << "%" << std::endl;
+        }
+        if(tabresultat_comparaison_cvn[i]<0)
+        {
+            std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : +" << -tabresultat_comparaison_cvn[i] << "%" << std::endl;
+        }
+        if(tabresultat_comparaison_cvn[i]==0)
+        {
+            std::cout << "Evolution Indice Vecteur propre : Sommet : " << i << " : Pas de changement" << std::endl;
+        }
+    }
+    for(unsigned int i=0; i<m_tabsommet.size(); i++)
+    {
+        if(tabresultat_comparaison_cpn[i]>0)
+        {
+            std::cout << "Evolution Indice Proximite : Sommet : " << i << " : -" << tabresultat_comparaison_cpn[i] << "%" << std::endl;
+        }
+        if(tabresultat_comparaison_cpn[i]<0)
+        {
+            std::cout << "Evolution Indice Proximite : Sommet : " << i << " : +" << -tabresultat_comparaison_cpn[i] << "%" << std::endl;
+        }
+        if(tabresultat_comparaison_cpn[i]==0)
+        {
+            std::cout << "Evolution Indice Proximite : Sommet : " << i << " : Pas de changement" << std::endl;
+        }
+    }
+
+    for(unsigned int i=0; i<m_tabsommet.size(); i++)
+    {
+        if(tabresultat_comparaison_cin[i]>0)
+        {
+            std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : -" << tabresultat_comparaison_cin[i] << "%" << std::endl;
+        }
+        if(tabresultat_comparaison_cin[i]<0)
+        {
+            std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : +" << -tabresultat_comparaison_cin[i] << "%" << std::endl;
+        }
+        if(tabresultat_comparaison_cin[i]==0)
+        {
+            std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : Pas de changement" << std::endl;
+        }
+    }
+
+    tabresultat_comparaison_cdn.clear();
+    tabresultat_comparaison_cin.clear();
+    tabresultat_comparaison_cpn.clear();
+    tabresultat_comparaison_cvn.clear();
+}

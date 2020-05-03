@@ -39,7 +39,7 @@ void Graphe::centralite_degre()
 }
 
 ///Pour la centralite de degre normalise
-void Graphe::centralite_degre_normalise()
+void Graphe::centralite_degre_normalise(int &compteur_comparaison)
 {
     unsigned int j;
     int entier=0;
@@ -69,11 +69,15 @@ void Graphe::centralite_degre_normalise()
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
     m_res_cdn=m_tabdegre;
+    if(compteur_comparaison==0)
+    {
+        m_res_cdn_initial=m_res_cdn;
+    }
     std::cout<<std::endl;
 }
 
 ///Pour la centralite de vecteur, qui est de base normalise par la division par lambda...
-void Graphe::centralite_vecteur_normalise()
+void Graphe::centralite_vecteur_normalise(int &compteur_comparaison)
 {
     float i=0;
     float somme=0;
@@ -150,6 +154,10 @@ void Graphe::centralite_vecteur_normalise()
         std::cout << "              Sommet "<<i<<" : "<< m_tabdegre[i] << std::endl;
     }
     m_res_cvn=m_tabdegre;
+    if(compteur_comparaison==0)
+    {
+        m_res_cvn_initial=m_res_cvn;
+    }
     //m_tabdegre.clear();
 }
 
@@ -240,13 +248,18 @@ void Graphe :: centralite_proximite (std::vector<float> &tabresultats)
         tabresultats[i]=1/tabresultats[i];
         entier = (int)((0.005 + tabresultats[i])*100.0);
         tabresultats[i] = (double)entier / 100.0;
+
+        if(tabresultats[i]<=0)
+        {
+            tabresultats[i]=0;
+        }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_cp=tabresultats;
 }
 
 ///Pour la centralite proximite normalisee
-void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
+void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats, int &compteur_comparaison)
 {
     int entier;
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE PROXIMITE NORMALISE" << std::endl << std::endl;
@@ -255,9 +268,17 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats)
         tabresultats[i]=(getOrdre()-1)/tabresultats[i];
         entier = (int)((0.005 + tabresultats[i])*100.0);
         tabresultats[i] = (double)entier / 100.0;
+        if(tabresultats[i]<=0)
+        {
+            tabresultats[i]=0;
+        }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_cpn=tabresultats;
+    if(compteur_comparaison==0)
+    {
+        m_res_cpn_initial=m_res_cpn;
+    }
 }
 
 ///Pour la centralite intermediarite
@@ -270,13 +291,17 @@ void Graphe::centralite_intermediarite(std::vector<float> &tabresultats)
         tabresultats[i]=tabresultats[i]/1;
         entier = (int)((0.005 + tabresultats[i])*100.0);
         tabresultats[i] = (double)entier / 100.0;
+        if(tabresultats[i]<=0)
+        {
+            tabresultats[i]=0;
+        }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_ci=tabresultats;
 }
 
 ///Pour la centralite intermediarite normalisee
-void Graphe::centralite_intermediarite_normalise(std::vector<float> &tabresultats)
+void Graphe::centralite_intermediarite_normalise(std::vector<float> &tabresultats, int &compteur_comparaison)
 {
     int entier;
     std::cout << std::endl << std::endl << "           RESULTATS CENTRALITE INTERMEDIARITE NORMALISE" << std::endl << std::endl;
@@ -285,9 +310,18 @@ void Graphe::centralite_intermediarite_normalise(std::vector<float> &tabresultat
         tabresultats[i]=((tabresultats[i]/1)/(pow(getOrdre(),2)-3*getOrdre()+2))*2;
         entier = (int)((0.005 + tabresultats[i])*100.0);
         tabresultats[i] = (double)entier / 100.0;
+        if(tabresultats[i]<=0)
+        {
+            tabresultats[i]=0;
+        }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
     m_res_cin=tabresultats;
+    if(compteur_comparaison==0)
+    {
+        m_res_cin_initial=m_res_cin;
+    }
+    compteur_comparaison++;
 }
 
 ///ssprgm executant l'algorithme de Dijsktra
