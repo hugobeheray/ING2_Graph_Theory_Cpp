@@ -10,7 +10,7 @@ private:
     int m_indiceSommet;
     std::string m_nom;
     std::vector<std::pair<Sommet*,int>> m_successeurs;
-    std::vector<Sommet*> m_successeursNopair;
+    //std::vector<Sommet*> m_successeursNopair;
     //int m_poidsD;
     int m_importance;
 

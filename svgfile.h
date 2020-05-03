@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <set>
+#include <sstream>
 
 constexpr char defcol[] = "black";
 
@@ -21,6 +22,7 @@ public:
     void addTriangle(double x1, double y1, double x2, double y2,
                      double x3, double y3, std::string colorFill=defcol);
     void addLine(double x1, double y1, double x2, double y2, std::string color=defcol);
+   void addArrow(double x1, double y1, double x2, double y2, std::string color);
     void addCross(double x, double y, double span, std::string color=defcol);
 
     void addText(double x, double y, std::string text, std::string color=defcol);
@@ -35,13 +37,14 @@ public:
     Svgfile& operator=(const Svgfile&) = delete;
 
 private:
-    std::string m_filename;
-    std::ofstream m_ostrm;
-    int m_width;
-    int m_height;
+        std::string m_filename;
+        std::ofstream m_ostrm;
+        std::stringstream m_style;
+        int m_width;
+        int m_height;
 
-    // Pour éviter les ouverture multiples
-    static std::set<std::string> s_openfiles;
+        // Pour éviter les ouverture multiples
+        static std::set<std::string> s_openfiles;
 };
 
 #endif // SVGFILE_H_INCLUDED

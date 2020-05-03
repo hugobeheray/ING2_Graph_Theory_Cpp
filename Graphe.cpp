@@ -59,11 +59,9 @@ void Graphe::chargementTopo(std::string &fichiertopo)
         m_tabsommet.clear();
         for( int i=0; i<getOrdre(); i++)
         {
-            //std::cout <<m_tabpoids[i]->GetPoids() << std::endl;
             iss >> indiceSommet >> nom >> x >> y;
             m_tabsommet.push_back(new Sommet(indiceSommet,nom,x,y));
             m_tabcoords.push_back(new Coords(x,y));
-            //m_tabsommet[i]->setPoidsD(m_tabpoids[i]->GetPoids());
         }
         iss >> taille;
         m_tabarete.clear();
@@ -138,10 +136,12 @@ void Graphe::dessiner(Svgfile *svgout)
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49+17,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,"/","black");
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49+22,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
     }
+if(m_orient==0)
+{
+
 
     for(i=0; i<(int)m_tabarete.size(); i++)
     {
-        std::cout<<"poids:"<<m_tabpoids[i]->GetPoids()<<std::endl;
 
         if(m_tabpoids[i]->GetPoids()==1)
             svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"black");
@@ -168,6 +168,39 @@ void Graphe::dessiner(Svgfile *svgout)
         if(m_tabpoids[i]->GetPoids()>=12)
             svgout->addLine(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"cyan");
     }
+}
+else
+{
+    for(unsigned int i=0; i<m_tabarete.size(); i++)
+    {
+        std::cout<<"poids:"<<m_tabpoids[i]->GetPoids()<<std::endl;
+
+        if(m_tabpoids[i]->GetPoids()==1)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"black");
+        if(m_tabpoids[i]->GetPoids()==2)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"grey");
+        if(m_tabpoids[i]->GetPoids()==3)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"brown");
+        if(m_tabpoids[i]->GetPoids()==4)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"blue");
+        if(m_tabpoids[i]->GetPoids()==5)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"green");
+        if(m_tabpoids[i]->GetPoids()==6)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"yellow");
+        if(m_tabpoids[i]->GetPoids()==7)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"orange");
+        if(m_tabpoids[i]->GetPoids()==8)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"red");
+        if(m_tabpoids[i]->GetPoids()==9)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"purple");
+        if(m_tabpoids[i]->GetPoids()==10)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"pink");
+        if(m_tabpoids[i]->GetPoids()==11)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"magenta");
+        if(m_tabpoids[i]->GetPoids()>=12)
+            svgout->addArrow(m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem1()]->getY()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getX()*100,m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()*100,"cyan");
+    }
+}
 
     ///affichage coloration en fonction du degre et sommets
     for(int i=0; i<getOrdre(); ++i)
@@ -185,7 +218,7 @@ void Graphe::dessiner(Svgfile *svgout)
         if(m_tabsommet[i]->getImportance()==5)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "green");
         if(m_tabsommet[i]->getImportance()==6)
-            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "yellow");
+            svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5 , 10, "yellow");
         if(m_tabsommet[i]->getImportance()==7)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "orange");
         if(m_tabsommet[i]->getImportance()==8)

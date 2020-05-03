@@ -258,6 +258,10 @@ void Graphe :: centralite_proximite_normalise (std::vector<float> &tabresultats,
         {
             tabresultats[i]=0;
         }
+         if(tabresultats[i]>=1)
+        {
+            tabresultats[i]=1;
+        }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
 
@@ -300,6 +304,10 @@ void Graphe::centralite_intermediarite_normalise(std::vector<float> &tabresultat
         if(tabresultats[i]<=0)
         {
             tabresultats[i]=0;
+        }
+        if(tabresultats[i]>=1)
+        {
+            tabresultats[i]=1;
         }
         std::cout << "               Sommet " << i << " : " << tabresultats[i] << std::endl;
     }
