@@ -57,9 +57,9 @@ public:
     void couleurgrisclair();
     void couleurgrisfonce();
     void couleurvertfluo();
-    void couleurviolet();
-    void couleurviolet2();
-    Graphe(std::string fichier,std::string fichierpoids);
+    void couleurblanc1();
+    void couleurblanc();
+    void couleurtest();
     int getOrdre();
    // int getTaille();
     void afficher();
