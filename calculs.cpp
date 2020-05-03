@@ -528,10 +528,9 @@ void Graphe::k_connexite()
     bool connexite=false;
     float degretest;
     int cpt=0;
-
     degretest=m_tabsommet[0]->getImportance();
 
-    for (unsigned int i=1; i<getOrdre(); i++)
+    for (unsigned int i=1; i<(m_tabsommet.size()-1); i++)
     {
         if(degretest==m_tabsommet[i]->getImportance())
         {
@@ -542,10 +541,13 @@ void Graphe::k_connexite()
     {
         connexite=true;
     }
-
     std::cout<<"Etude de la k-connexite du graphe : "<<std::endl;
     if(connexite)
+    {
         std::cout<<"Le graphe est "<<degretest<<"-connexe"<<std::endl;
-    else
+    }
+    if(!connexite)
+    {
         std::cout<<"Le graphe n'est pas k-connexe"<<std::endl;
+    }
 }
