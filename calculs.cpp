@@ -165,7 +165,7 @@ void Graphe::centralite_vecteur_normalise(int &compteur_comparaison)
 
 ///Pour la centralite de vecteur 'NON normalise', les resultats obtenus ne seront pas pertinents
 ///dans le sens ou ils n'apportent aucune valeures ajoutes pour les futures comparaisons d'indices
-///et que la pseudo version 'NON Normalise' n'est pas demande dans le sujet
+///et que la pseudo version 'NON Normalise' n'est pas demande dans le sujet, on peut considerer cela comme un "add-on"
 void Graphe::centralite_vecteur()
 {
     float i=0;
@@ -219,6 +219,7 @@ void Graphe::centralite_vecteur()
             m_tabdegre[i] = (double)entier / 100.0;
         }
 
+        ///Pour voir les differentes valeures de lambda
         //std::cout<< "LAMBDA = " << lambda <<std::endl;//pour voir les differentes valeurs de lambda
     }
 

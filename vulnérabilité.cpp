@@ -14,25 +14,28 @@
 ///ne contenant pas les informations de l'arete supprimee pour
 ///pouvoir par la suite les utiliser pour les calculs et l'affichage dans le .svg
 
-
+///Permet de mettre a jour les successeurs apres la suppression d'une arete
 void Graphe::Majsuccesseurs()
 {
     for(size_t i=0; i<m_tabsommet.size(); ++i)
     {
-        m_tabsommet[i]->RetirerSuccesseur();///avec pair
+        m_tabsommet[i]->RetirerSuccesseur();
     }
     for( size_t i=0; i<m_tabarete.size(); i++)
     {
-         m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
-        if(!m_orient)/// Si le graphe n'est pas oriente
+        m_tabsommet[m_tabarete[i]->getExtrem1()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem2()],m_tabpoids[i]->GetPoids()));///avec pair
+
+        /// Si le graphe n'est pas oriente
+        if(!m_orient)
         {
-             m_tabsommet[m_tabarete[i]->getExtrem2()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem1()],m_tabpoids[i]->GetPoids()));
+            m_tabsommet[m_tabarete[i]->getExtrem2()]->AjouterSuccesseur(std::make_pair(m_tabsommet[m_tabarete[i]->getExtrem1()],m_tabpoids[i]->GetPoids()));
         }
     }
 }
 void Graphe::suppression_arete()
 {
     int choix;
+
     ///afficher les indices des aretes a faire
     for(size_t i=0; i<m_tabarete.size(); i++)
     {
@@ -41,12 +44,10 @@ void Graphe::suppression_arete()
 
     do
     {
-
         std::cout << "Quelle arete voulez vous supprimer pour tester la connexite?" << std::endl;
         couleurverte();
         std::cin >> choix;
         couleurbleue();
-
     }
     while(choix<0);
     couleurbleue();
@@ -194,7 +195,7 @@ void Graphe::comparaison_indices()
             }
             else
             {
-               std::cout << "Evolution Indice Degre : Sommet : " << i << " : +" << -tabresultat_comparaison_cdn[i] << "%" << std::endl;
+                std::cout << "Evolution Indice Degre : Sommet : " << i << " : +" << -tabresultat_comparaison_cdn[i] << "%" << std::endl;
             }
         }
         if(tabresultat_comparaison_cdn[i]==0)
@@ -290,7 +291,7 @@ void Graphe::comparaison_indices()
             }
             else
             {
-               std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : +" << -tabresultat_comparaison_cin[i] << "%" << std::endl;
+                std::cout << "Evolution Indice Intermediarite : Sommet : " << i << " : +" << -tabresultat_comparaison_cin[i] << "%" << std::endl;
             }
         }
         if(tabresultat_comparaison_cin[i]==0)
@@ -301,6 +302,7 @@ void Graphe::comparaison_indices()
 
     std::cout<<std::endl;
 
+    ///Et on clear les tableaux pour une bonne gestion de la memoire
     tabresultat_comparaison_cdn.clear();
     tabresultat_comparaison_cin.clear();
     tabresultat_comparaison_cpn.clear();

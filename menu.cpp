@@ -176,6 +176,8 @@ void menu()
                 nomfichierpoids="graphe_etoileconnexe_topo_poids.txt";
                 nomfichiertopo="graphe_etoileconnexe_topo.txt";
             }
+
+            ///Pour des fichiers personalises ou orientes...
             if(choixnomfichier==8)
             {
                 graphe.couleurbleue();
@@ -247,6 +249,9 @@ void menu()
             graphe.couleurbleue();
             std::cout << "Veuillez saisir un nouveau fichier de ponderation\n" << std::endl;
             graphe.couleurverte();
+
+            ///Code fournis avec seulement un deuxieme fichier de ponderation disponible pour
+            ///le graphe etoile1, ce qui demontre le fait qu'on puisse bien changer de fichier de ponderations entre temps lors de l'execution du prgm
             std::cin >> nomfichierpoids;
             graphe.chargementPoids(nomfichierpoids);
             graphe.Majsuccesseurs();
