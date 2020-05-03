@@ -108,7 +108,7 @@ void menu()
     graphe.couleurbleue();
 
     ///Tant qu'on ne quitte pas l'application...
-    while(choix!=8)
+    while(choix!=9)
     {
         do
         {
@@ -119,7 +119,8 @@ void menu()
             std::cout << "\t\t1 - Charger un graphe" << std::endl << "\t\t2 - Supprimer une arete" << std::endl <<
                       "\t\t3 - Calculer, afficher et sauvegarder les differents indices de centralite" << std::endl <<
                       "\t\t4 - Dessiner(impossible avant calculs)" << std::endl << "\t\t5 - Tester la connexite" <<  std::endl <<
-                       "\t\t6 - Comparer les indices (apres suppression)" << std::endl << "\t\t7 - Charger un autre fichier de ponderation" << std::endl << "\t\t8 - Quitter\n\n\n\n" << std::endl;
+                       "\t\t6 - Comparer les indices (apres suppression)" << std::endl << "\t\t7 - Charger un autre fichier de ponderation\n" <<
+                       "\t\t8 - Etudier la k-connexite" << std::endl << "\t\t9 - Quitter\n\n\n\n" << std::endl;
             graphe.couleurverte();
             std::cin >> choix;
             if(choix==4 && blindagemenu==false)
@@ -130,7 +131,7 @@ void menu()
                     std::cout << "Impossible de dessiner avant de faire les calculs d'indices. Veuillez resaisir un choix" << std::endl;
                     graphe.couleurverte();
                     std::cin >> choix;
-                }while(choix==4 || choix <1 || choix >8);
+                }while(choix==4 || choix <1 || choix >9);
             }
             if((choix==6 && blindagemenu3==false) || (choix==6 && blindagemenu==false))
             {
@@ -142,7 +143,7 @@ void menu()
                     std::cin >> choix;
                 }while(choix==6 || choix <1 || choix >8);
             }
-            if((choix==2 && blindagemenu2==false) || (choix==3 && blindagemenu2==false) || (choix==4 && blindagemenu2==false) || (choix==5 && blindagemenu2==false) ||(choix==6 && blindagemenu2==false) || (choix==7 && blindagemenu2==false))
+            if((choix==2 && blindagemenu2==false) || (choix==3 && blindagemenu2==false) || (choix==4 && blindagemenu2==false) || (choix==5 && blindagemenu2==false) ||(choix==6 && blindagemenu2==false) || (choix==7 && blindagemenu2==false) ||(choix==8 && blindagemenu2==false))
             {
                 do
                 {
@@ -150,11 +151,11 @@ void menu()
                     std::cout << "Impossible d'effectuer des actions avant de charger un graphe. Veuillez resaisir un choix" << std::endl;
                     graphe.couleurverte();
                     std::cin >> choix;
-                }while(choix!=1 || choix <1 || choix >7);
+                }while(choix!=1 || choix <1 || choix >8);
             }
             graphe.couleurbleue();
         }
-        while(choix < 1 || choix > 8);
+        while(choix < 1 || choix > 9);
 
         ///En fonction du choix de l'utilisateur...
         switch(choix)
@@ -257,8 +258,10 @@ void menu()
             graphe.chargementPoids(nomfichierpoids);
             graphe.Majsuccesseurs();
             break;
-
         case 8 :
+            graphe.k_connexite();
+            break;
+        case 9 :
             exit(0);
             break;
         }

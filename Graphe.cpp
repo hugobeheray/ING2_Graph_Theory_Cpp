@@ -125,24 +125,23 @@ void Graphe::afficher()
 ///Pour le dessin dans le .svg
 void Graphe::dessiner(Svgfile *svgout)
 {
-    int i;
     svgout->addGrid();
 
     ///affichage lettres sommets
-    for(i=0; i<getOrdre(); ++i)
+    for(int i=0; i<getOrdre(); ++i)
     {
         svgout->addText((m_tabsommet[i]->getX())*100-17, (m_tabsommet[i]->getY())*100-15,m_tabsommet[i]->getNom(), "black");
     }
 
     ///affichage texte aretes
-    for(i=0; i<m_tabarete.size(); ++i)
+    for(unsigned int i=0; i<m_tabarete.size(); ++i)
     {
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabarete[i]->GetIndiceArete(),"purple");
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49+17,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,"/","black");
         svgout->addText((m_tabsommet[m_tabarete[i]->getExtrem1()]->getX()+ m_tabsommet[m_tabarete[i]->getExtrem2()]->getX())*49+22,(m_tabsommet[m_tabarete[i]->getExtrem2()]->getY()+ m_tabsommet[m_tabarete[i]->getExtrem1()]->getY())*49,m_tabpoids[i]->GetPoids(),"red");
     }
 
-    for(i=0; i<m_tabarete.size(); i++)
+    for(unsigned int i=0; i<m_tabarete.size(); i++)
     {
         std::cout<<"poids:"<<m_tabpoids[i]->GetPoids()<<std::endl;
 
@@ -175,7 +174,7 @@ void Graphe::dessiner(Svgfile *svgout)
 
 
     ///affichage coloration en fonction du degre et sommets
-    for(i=0; i<getOrdre(); ++i)
+    for(int i=0; i<getOrdre(); ++i)
     {
         if(m_tabsommet[i]->getImportance()==0)
             svgout->addCircle((m_tabsommet[i]->getX())*100, (m_tabsommet[i]->getY())*100, 5, 10, "cyan");
@@ -216,7 +215,7 @@ void Graphe::dessiner(Svgfile *svgout)
     svgout->addText(860,85,"V-P", "black");
     svgout->addText(910,85,"Prox", "black");
     svgout->addText(960,85,"Inter", "black");
-    for(i=0; i<getOrdre(); ++i)
+    for(int i=0; i<getOrdre(); ++i)
     {
         svgout->addText(705,113 + i*22,m_tabsommet[i]->getNom(), "grey");
         svgout->addText(810,113 + i*22, m_res_cdn[i], "purple");
